@@ -507,6 +507,8 @@ $(document).ready(function(){
     /*
      * Color Picker
      */
+   
+    /*
     if ($('.color-picker')[0]) {
 	$('.color-picker').each(function(){
 	    $('.color-picker').each(function(){
@@ -515,6 +517,7 @@ $(document).ready(function(){
             });
         });
     }
+    */
     
     /*
      * HTML Editor

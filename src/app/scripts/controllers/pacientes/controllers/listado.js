@@ -2,7 +2,7 @@
 .controller('pacientesController', ['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices',
 	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices) {
 	
-	$scope.Paciente = {fecha : new Date()};	
+	$scope.Paciente = {fecha : new Date(), color : '#000000'};	
 
 	//Cuando se selecciona un paciente
 	$scope.Paciente = varsFactoryService.pacienteSeleccionado();
