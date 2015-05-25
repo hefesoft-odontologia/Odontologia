@@ -45,12 +45,7 @@
                   </div>
                   <div class="col-sm-4">                      
                       <div class="input-group form-group">
-                        <div class='input-group date' id='datetimepickerFecha'>
-                            <input type="text" class="form-control" placeholder="Fecha" ng-model="Paciente.fecha">
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
+                       <date-picker format="'DD/MM/YYYY'" ng-model="Paciente.fecha"/>
                       </div>
                   </div>
 

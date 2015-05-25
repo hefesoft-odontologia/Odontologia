@@ -2,9 +2,7 @@
 .controller('pacientesController', ['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices',
 	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices) {
 	
-	$scope.Paciente = {};
-
-	var fechaSeleccionada = new Date();
+	$scope.Paciente = {fecha : new Date()};	
 
 	//Cuando se selecciona un paciente
 	$scope.Paciente = varsFactoryService.pacienteSeleccionado();
@@ -36,7 +34,6 @@
 
 		var data = $scope.Paciente;		
 		data.PartitionKey = usuario.username;
-		data["fecha"] = fechaSeleccionada;
 
 		//Cuando es un nuevo paciente el otro caso es cuando se edita un registro
 		if(angular.isUndefined(data.RowKey)){
@@ -162,18 +159,7 @@ dataFactory.getPicture = function(){
 
 }
 
-function inicializarFechas(){
-  var datePicker = $('#datetimepickerFecha').datetimepicker({
-      format: 'DD/MM/YYYY'
-  });
 
-  datePicker.on("dp.change", function(e) {
-	fechaSeleccionada = e.date;	
-  });
-}
-
-
-inicializarFechas();
 
 return dataFactory;
 
