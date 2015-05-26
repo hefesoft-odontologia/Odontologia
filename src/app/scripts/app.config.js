@@ -63,6 +63,23 @@ angular
       /*****************************************************/
 
 
+
+      /****************** Diagnosticos /******************/
+
+      .state('app.listadoDiagnosticos', {
+        url: "/listadoDiagnosticos",
+        cache: false,
+        views: {
+            'menuContent': {
+                templateUrl: "app/views/diagnosticos/Diagnosticos.html",
+                controller: "DxListadoCtrl"
+            }       
+            }
+      })
+
+
+      
+
       /******************** Auth *******************/
       .state('register', {
         url: "/register",

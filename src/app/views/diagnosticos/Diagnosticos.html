@@ -1,0 +1,105 @@
+<div class="container">
+
+    <button ng-click="adicionar()" class="btn btn-info btn-sm waves-effect waves-button waves-float">Adicionar</button>
+    <br>
+    
+     <div class="card">
+        <div class="card-header">
+            <h2>Adicionar nuevo<small></small></h2>
+        </div>
+        
+        <div class="card-body card-padding">
+             <p class="c-black f-500">Crear un nuevo diagnostico</p> 
+
+            <div class="form-group">
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Nombre" ng-model="Diagnostico.nombre">
+                </div>
+            </div>
+            
+
+            <div class="checkbox m-b-15">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Activo
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="fg-line">
+                    <div class="select">
+                        <select class="form-control">
+                            <option>Seleccione un tipo</option>
+                            <option>Pieza</option>
+                            <option>Superficie</option>
+                            <option>General</option>                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-sm-6">
+                    <div class="cp-container">
+                       <p>Simbolo diagnostico</p>
+                       <color-picker ng-model="Diagnostico.simboloDiagnostico"/>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="cp-container">
+                      <p>Simbolo evolución</p>
+                      <color-picker ng-model="Diagnostico.simboloEvolucion"/>
+                    </div>
+                </div>
+                <br>
+
+            <p class="c-black f-500">Indicar Cie</p> 
+
+            <div class="form-group">
+                <div class="fg-line">
+                     <input type="text" ng-model="Diagnostico.idiceCie" typeahead="cie.Descripcion for cie in listadoCie | filter:$viewValue | limitTo:8" class="form-control">
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Diagnosticos <small>Diagnosticos disponibles</small></h2>
+        </div>
+        
+        <table id="data-table-command" class="table table-striped table-vmiddle">
+            <thead>
+                <tr>
+                    
+                    <th data-column-id="nombre" data-order="desc">Nombre</th>
+                    <th data-column-id="orden" data-type="numeric">orden</th>
+                    <th data-column-id="estado" data-order="desc">Estado</th>
+                    <th data-column-id="tipo" data-order="desc">Tipo</th>
+                    <th data-column-id="simboloDx" data-order="desc">Simbolo diagnostico</th>
+                    <th data-column-id="simboloDv" data-order="desc">Simbolo Evolucion</th>
+                    <th data-column-id="indicarCie" data-order="desc">Indicar Cie</th>                    
+                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                    
+                    <td>eduardo@pingpong.com</td>
+                    <td>14.10.2013</td>
+                    <td>eduardo@pingpong.com</td>
+                    <td>eduardo@pingpong.com</td>
+                    <td>eduardo@pingpong.com</td>
+                    <td>eduardo@pingpong.com</td>
+                    <td>eduardo@pingpong.com</td>
+                    <td>eduardo@pingpong.com</td>
+                </tr>                
+            </tbody>
+        </table>
+    </div>
+</div>

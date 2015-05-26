@@ -22,6 +22,31 @@ module.exports = function(options) {
 
     gulp.watch(options.src + '/app/**/*.js', function(event) {
       if(isOnlyChange(event)) {
+        gulp.start('scriptsValidateAll');
+      } else {
+        gulp.start('inject');
+      }
+    });
+
+    gulp.watch(options.src + '/app/**/*.html', function(event) {
+      browserSync.reload(event.path);
+    });
+  });
+
+  gulp.task('watchDev', ['inject'], function () {
+
+    gulp.watch([options.src + '/*.html', 'bower.json'], ['inject']);
+
+    gulp.watch(options.src + '/app/**/*.css', function(event) {
+      if(isOnlyChange(event)) {
+        browserSync.reload(event.path);
+      } else {
+        gulp.start('inject');
+      }
+    });
+
+    gulp.watch(options.src + '/app/**/*.js', function(event) {
+      if(isOnlyChange(event)) {
         gulp.start('scripts');
       } else {
         gulp.start('inject');
