@@ -1,0 +1,74 @@
+<div class="card">
+        <div class="card-header">
+            <h2>Adicionar nuevo<small></small></h2>
+        </div>
+        
+        <div class="card-body card-padding">
+             <p class="c-black f-500">Crear o modificar un diagnostico</p> 
+
+            <div class="form-group">
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Nombre" ng-model="Diagnostico.nombre">
+                </div>
+            </div>
+            
+
+            <div class="checkbox m-b-15">
+                <label>
+                    <input type="checkbox" ng-model="Diagnostico.activo" ng-checked="Diagnostico.activo">
+                    <i class="input-helper"></i>
+                    Activo
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="fg-line">
+                    <p>Tipo</p>
+                    <div class="select">
+                       <select 
+                            class="form-control" 
+                            ng-model="Diagnostico.Tipo"
+                            ng-options="tipo.nombre for tipo in Tipo"
+                            ng-change="tipo(Diagnostico.Tipo)"
+                            >
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="col-sm-6">
+                    <div class="cp-container">
+                       <p>Simbolo diagnostico</p>
+                       <color-picker ng-model="Diagnostico.simboloDiagnostico"/>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="cp-container">
+                      <p>Simbolo evolución</p>
+                      <color-picker ng-model="Diagnostico.simboloEvolucion"/>
+                    </div>
+                </div>
+                <br>
+
+            <p class="c-black f-500">Indicar Cie</p> 
+
+            <div class="form-group">
+                <div class="fg-line">
+                     <input type="text" ng-model="Diagnostico.idiceCie" typeahead="cie.Descripcion for cie in listadoCie | filter:$viewValue | limitTo:8" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="fg-line">
+                    <button ng-click="adicionar()" class="btn btn-info btn-sm waves-effect waves-button waves-float">Guardar</button>    
+                </div>
+            </div>
+
+
+            </div>
+        </div>
+</div>
+
+    

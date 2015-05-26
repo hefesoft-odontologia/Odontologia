@@ -1,42 +1,68 @@
   angular.module('odontologiaApp')
-  .controller('DxListadoCtrl', ['$scope', 'CieCupsServices', 
-    function ($scope, CieCupsServices) {
+  .controller('DxListadoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory) {
 
-    $scope.Diagnostico = {};
-    $scope.listadoCie = [];  	
-
+    $scope.Listado = [];
+   
   	function inicializar(){
-  		$("#data-table-command").bootgrid({
-            css: {
-                icon: 'md icon',
-                iconColumns: 'md-view-module',
-                iconDown: 'md-expand-more',
-                iconRefresh: 'md-refresh',
-                iconUp: 'md-expand-less'
-            },
-            formatters: {
-                "commands": function(column, row) {
-                    return "<button type=\"button\" class=\"btn btn-icon command-edit\" data-row-id=\"" + row.id + "\"><span class=\"md md-edit\"></span></button> " + 
-                        "<button type=\"button\" class=\"btn btn-icon command-delete\" data-row-id=\"" + row.id + "\"><span class=\"md md-delete\"></span></button>";
-                }
-            }
-      });
-
-      CieCupsServices.listadoCie().then(cie, error);
+      dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
+      .success(function(data){
+          var data = procesarListado(data);
+          $scope.Listado = data;        
+        }).error(function(error){
+          console.log(error);          
+        })
   	}
 
-    $scope.adicionar = function(){
-      var data = $scope.Diagnostico;
-    }
+    $scope.eliminar = function(data, $index){
+      data.Estado_Entidad = "2";    
+      dataTableStorageFactory.saveStorage(data);
+      $scope.Listado.splice($index, 1);
+    }  
 
-    function cie(data){
-      $scope.listadoCie = data;
-    }
+    function procesarListado(data){
+      for (var i = 0; i < data.length; i++) {
+            if(!angular.isUndefined(data[i]["Tipo"]) && data[i]["Tipo"] != null){
+              data[i]["Tipo"] = JSON.parse(data[i]["Tipo"]); 
+            }
+        };
 
-    function error(err){
-      console.log(err);
+        return data;
     }
+  
+    /***************** Modal /***********************/
 
+   $scope.open = function (size, seleccionado) {
+
+   var modalInstance = $modal.open({
+      animation: true,
+      templateUrl: 'app/scripts/controllers/Diagnosticos/views/addDiagnostico.html',
+      controller: 'AddDxCtrl',
+      size: size,
+      resolve: {
+        dxSeleccionado : function () {
+          return seleccionado;
+        }
+      }
+    });
+
+  modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, 
+    function (data) {
+      console.log('Modal dismissed at: ' + new Date());
+
+      if(data !==  "backdrop click" && !angular.isUndefined(data)){
+        $scope.Listado.push(data);
+        procesarListado($scope.Listado);
+      }
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+ /*****************************************************/
 
   	inicializar();
 

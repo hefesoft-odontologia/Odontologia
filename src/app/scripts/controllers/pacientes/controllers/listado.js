@@ -58,7 +58,7 @@
 	$scope.delete = function(data, $index){
 		data.Estado_Entidad = "2";		
 		dataTableStorageFactory.saveStorage(data);
-		$scope.Pacientes.splice($index, 1)
+		$scope.Pacientes.splice($index, 1);
 	} 
 
 	$scope.cargarImagen = function(item){
