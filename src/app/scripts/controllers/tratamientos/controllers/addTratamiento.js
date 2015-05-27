@@ -1,6 +1,6 @@
   angular.module('odontologiaApp')
-  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'dxSeleccionado', '$modalInstance',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService, dxSeleccionado, $modalInstance) {
+  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService',  '$modalInstance',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  $modalInstance) {
 
     var esNuevo = true;
     $scope.Tratamiento = {};

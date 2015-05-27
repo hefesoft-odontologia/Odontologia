@@ -64,7 +64,7 @@
      var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
-        controller: 'listadoTratamientosProcedimientos',
+        controller : 'listadoProcedimientosTratamientosCtrl',
         size: size,
         resolve: {
           dxSeleccionado : function () {
