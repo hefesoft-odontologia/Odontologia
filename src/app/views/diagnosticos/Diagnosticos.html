@@ -31,12 +31,21 @@
                             <td>{{item.simboloDiagnostico}}</td>
                             <td>{{item.simboloEvolucion}}</td>
                             <td>{{item.idiceCie}}</td>
+
+                            <td>
+                                <button 
+                                ng-click="openTratamiento('lg', item)" 
+                                class="btn btn-info btn-sm waves-effect waves-button waves-float">Tratamientos</button>
+                            </td>
+                            
                             <td>
                                 <button ng-click="open('lg', item)" class="btn btn-info btn-sm waves-effect waves-button waves-float">Editar</button>    
                             </td>
+
                             <td>
                                 <button ng-click="eliminar(item, $index)" class="btn btn-info btn-sm waves-effect waves-button waves-float">Eliminar</button>    
-                            </td>
+                            </td>                           
+
                         </tr>
                     </tbody>
                 </table>

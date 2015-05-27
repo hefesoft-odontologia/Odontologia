@@ -32,31 +32,58 @@
   
     /***************** Modal /***********************/
 
+    /****************** Editar ******************/
    $scope.open = function (size, seleccionado) {
-
-   var modalInstance = $modal.open({
-      animation: true,
-      templateUrl: 'app/scripts/controllers/Diagnosticos/views/addDiagnostico.html',
-      controller: 'AddDxCtrl',
-      size: size,
-      resolve: {
-        dxSeleccionado : function () {
-          return seleccionado;
+     var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'app/scripts/controllers/Diagnosticos/views/addDiagnostico.html',
+        controller: 'AddDxCtrl',
+        size: size,
+        resolve: {
+          dxSeleccionado : function () {
+            return seleccionado;
+          }
         }
-      }
-    });
+      });
 
-  modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, 
-    function (data) {
-      console.log('Modal dismissed at: ' + new Date());
+    modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, 
+      function (data) {
+        console.log('Modal dismissed at: ' + new Date());
 
-      if(data !==  "backdrop click" && !angular.isUndefined(data)){
-        $scope.Listado.push(data);
-        procesarListado($scope.Listado);
-      }
-    });
+        if(data !==  "backdrop click" && !angular.isUndefined(data)){
+          $scope.Listado.push(data);
+          procesarListado($scope.Listado);
+        }
+      });
+  };
+
+  /****************** Tratamientos pop up ******************/
+  $scope.openTratamiento = function (size, seleccionado) {
+     var modalInstance = $modal.open({
+        animation: true,
+        templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
+        controller: 'listadoTratamientosProcedimientos',
+        size: size,
+        resolve: {
+          dxSeleccionado : function () {
+            return seleccionado;
+          }
+        }
+      });
+
+    modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, 
+      function (data) {
+        console.log('Modal dismissed at: ' + new Date());
+
+        if(data !==  "backdrop click" && !angular.isUndefined(data)){
+          $scope.Listado.push(data);
+          procesarListado($scope.Listado);
+        }
+      });
   };
 
   $scope.toggleAnimation = function () {

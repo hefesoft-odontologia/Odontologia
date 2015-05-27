@@ -17,6 +17,19 @@
 		    return deferred.promise;
   		}
 
+  		dataFactory.listadoCup = function(){
+  			var deferred = $q.defer();
+  			$q.all([sharedSignatureHttpHelper.getAll("TRCUPS", '?tn=TRCUPS&sv=2014-02-14&si=Shared&sig=z45zzlAqNKC5wxghBsKDQFXPXrTwDrLBnh%2FApTKIwoU%3D')
+		    	])
+		    .then(function(data){            
+		        var Cup = data[0].value;		        
+				var listado = procesarCups(Cup);
+				deferred.resolve(listado);
+		    });
+
+		    return deferred.promise;
+  		}
+
   		function procesarCie(data){
   			var listado = [];
 			for (var i = 0; i < data.length; i++) {
@@ -28,6 +41,19 @@
 
 			return listado;
 		}
+
+		function procesarCups(data){
+			var listado = [];
+			for (var i = 0; i < data.length; i++) {
+				var item = data[i];
+				var busqueda = item.PartitionKey + " " + item.RowKey;
+
+				listado.push({Codigo : item.PartitionKey, Descripcion: item.RowKey, Tipo : "Cup", Busqueda: busqueda});
+			};
+
+			return listado;
+		}
+
 
 
   		return dataFactory;
