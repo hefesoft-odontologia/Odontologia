@@ -70,8 +70,17 @@ angular
             }
       })
 
-      /****************** Tratamientos /******************/
+      /****************** Formula medica /******************/
 
+      .state('app.listadoFormulaNedica', {
+        url: "/listadoFormulaMedica",
+        cache: false,
+        views: {
+            'menuContent': {
+                templateUrl: "app/scripts/controllers/formulaMedica/views/listado.html"                
+            }       
+            }
+      })
            
 
       /******************** Auth *******************/
