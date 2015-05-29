@@ -14,8 +14,8 @@ Hefesot.aListado = function(listado){
 Hefesot.convertirListasAString = function(item){
     for (var i in item)
     {
-        var n = i.indexOf("array");
-        var m = i.indexOf("object");
+        var n = i.indexOf("arrayHefesoft");
+        var m = i.indexOf("objectHefesoft");
 
         if(n >=0 || m >=0){
             item[i] = JSON.stringify(item[i]);
@@ -26,14 +26,22 @@ Hefesot.convertirListasAString = function(item){
 }
 
 Hefesot.convertirstringAListas = function (item){
-    for (var i in item)
-    {
-        var n = i.indexOf("array");
-        var m = i.indexOf("object");
+    try{
+        for (var i in item)
+        {
+            var nombrePropiedad = i;
+            var n = nombrePropiedad.indexOf("arrayHefesoft");
+            var m = nombrePropiedad.indexOf("objectHefesoft");
 
-        if(n >=0 || m >=0){
-            item[i] = JSON.parse(item[i]);
-        }          
+            if(n >=0 || m >=0){
+                if(angular.isString(item[i])){
+                    item[i] = validarYaEsObjeto(item[i]);
+                }
+            }          
+        }
+    }
+    catch(ex){
+        throw('error al parsear convertirstringAListas' + ex);
     }
 
     return item;
@@ -41,18 +49,20 @@ Hefesot.convertirstringAListas = function (item){
 
 
 Hefesot.procesarList = function (data){
-    var esObjeto = (!angular.isUndefined(data) && data !== null && typeof data === 'object');
+    if(!angular.isUndefined(data)){
+        var esObjeto = (!angular.isUndefined(data) && data !== null && typeof data === 'object');
 
-    if(esObjeto){
-        var esArray = (Array.isArray(data));
-        if(esArray){
-            for (x in data) {
-                var item = data[x];
-                data[x] = Hefesoft.convertirstringAListas(item);
-            }               
-        }
-        else{
-            data = Hefesoft.convertirstringAListas(data);
+        if(esObjeto){
+            var esArray = (Array.isArray(data));
+            if(esArray){
+                for (x in data) {
+                    var item = data[x];
+                    data[x] = Hefesoft.convertirstringAListas(item);
+                }               
+            }
+            else{
+                data = Hefesoft.convertirstringAListas(data);
+            }
         }
     }
 
@@ -77,3 +87,13 @@ Hefesot.listTostring = function(elemento, method){
 
     return elemento; 
 }
+
+function validarYaEsObjeto(item){
+
+    while(angular.isString(item)){
+       item = JSON.parse(item);
+    }
+
+    return item;
+}
+

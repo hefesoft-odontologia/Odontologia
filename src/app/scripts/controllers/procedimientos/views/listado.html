@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in tratamientoSeleccionado.arrayProcedimientos track by $index">
+                    <tr ng-repeat="item in tratamientoSeleccionado.arrayHefesoftProcedimientos track by $index">
                         <td>
                              <md-button ng-click="eliminar(item, $index)" class="md-delete"></md-button>
                         </td> 
@@ -30,7 +30,7 @@
                             <i class="md md-keyboard-arrow-right" ng-click="openProcedimientos('lg',item)">Editar</i>
                         </td>                      
                         <td>{{item.nombre}}</td>
-                        <td>{{item.objectEspecialidad.nombre}}</td>
+                        <td>{{item.objectHefesoftEspecialidad.nombre}}</td>
                         <td>{{item.idiceCup}}</td>
                         <td class="f-500 c-cyan">{{item.valor}}</td>                            
                     </tr>                      

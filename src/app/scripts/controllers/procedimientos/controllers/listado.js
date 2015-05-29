@@ -35,12 +35,12 @@ angular.module('odontologiaApp')
 	   	$scope.tratamientoSeleccionado = item;
 	   	tratamientoSeleccionado = item;
 	  	
-	  	if(angular.isUndefined($scope.tratamientoSeleccionado.arrayProcedimientos)){
-	  		$scope.tratamientoSeleccionado.arrayProcedimientos = [];
+	  	if(angular.isUndefined($scope.tratamientoSeleccionado.arrayHefesoftProcedimientos)){
+	  		$scope.tratamientoSeleccionado.arrayHefesoftProcedimientos = [];
 	  	}
 	  }
 
 	  $scope.eliminar = function(item, $index){
-	  	$scope.tratamientoSeleccionado.arrayProcedimientos.splice($index, 1);
+	  	$scope.tratamientoSeleccionado.arrayHefesoftProcedimientos.splice($index, 1);
 	  }
 }])

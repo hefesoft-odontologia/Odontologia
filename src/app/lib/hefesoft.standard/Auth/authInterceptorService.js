@@ -14,7 +14,11 @@ angular.module('auth')
         config.headers = config.headers || {};        
         var authData = $localstorage.getObject('authorizationData');
         config.headers.Authorization = authData.access_token;
-        config.data = Hefesot.listTostring(config.data, config.method);
+
+        if(!angular.isUndefined(config.data)){
+            config.data = Hefesot.listTostring(config.data, config.method);
+        }
+
         return config;
     }
  
@@ -25,8 +29,10 @@ angular.module('auth')
         return $q.reject(rejection);
     }
 
-    var _response = function (response) {        
-        Hefesot.procesarList(response.data);
+    var _response = function (response) {
+        if(!angular.isUndefined(response.data)){
+            Hefesot.procesarList(response.data);
+        }
         return response;
     }
  

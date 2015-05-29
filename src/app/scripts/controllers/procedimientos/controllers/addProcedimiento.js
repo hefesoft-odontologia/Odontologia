@@ -20,20 +20,22 @@
    }
 
     function agregarProcedimientos(item){
-     if(angular.isUndefined(tratamientoSeleccionado.arrayProcedimientos)){
-        tratamientoSeleccionado.arrayProcedimientos = [];
+     if(angular.isUndefined(tratamientoSeleccionado.arrayHefesoftProcedimientos)){
+        tratamientoSeleccionado.arrayHefesoftProcedimientos = [];
      }
 
      //Se agrega el procedimiento al treatamiento seleccionado
-     tratamientoSeleccionado.arrayProcedimientos.push(item);
+     tratamientoSeleccionado.arrayHefesoftProcedimientos.push(item);
      sumar(tratamientoSeleccionado);
      $modalInstance.dismiss();     
    }
 
    function sumar(data){
       var valor = 0;
-      for (var i = data.arrayProcedimientos.length - 1; i >= 0; i--) {
-         valor = valor + data.arrayProcedimientos[i].valor;
+      for (var i = data.arrayHefesoftProcedimientos.length - 1; i >= 0; i--) {
+         //Decimal con 2 decimales
+         valor = parseFloat(valor) + parseFloat(data.arrayHefesoftProcedimientos[i].valor); 
+         valor = valor.toFixed(2);
       };
 
       data.valor = valor;

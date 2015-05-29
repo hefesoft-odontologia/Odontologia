@@ -1,19 +1,23 @@
 
 <div class="login-content" ng-controller="signInController as vm"> 
-           
+
+               
                <!-- Login -->
         <div class="lc-block toggled" id="l-login">
+
+        <form name="login">
+           
             <div class="input-group m-b-20">
                 <span class="input-group-addon"><i class="md md-person"></i></span>
                 <div class="fg-line">
-                    <input type="text" ng-model="loginData.username" class="form-control" placeholder="Usuario" required>
+                    <input type="text" ng-model="loginData.username" name="username" class="form-control" placeholder="Usuario" required>
                 </div>
             </div>
             
             <div class="input-group m-b-20">
                 <span class="input-group-addon"><i class="md md-accessibility"></i></span>
                 <div class="fg-line">
-                    <input type="password" ng-model="loginData.password" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" ng-model="loginData.password" name="password" class="form-control" placeholder="Contraseña" required>
                 </div>
             </div>
             
@@ -27,12 +31,21 @@
                 </label>
             </div>
             
-            <a ng-click="doSign()" class="btn btn-login btn-danger btn-float"><i class="md md-arrow-forward"></i></a>
+            <a
+            ng-hide="login.username.$invalid || login.password.$invalid" 
+            ng-click="doSign()" 
+            class="btn btn-login btn-danger btn-float">
+                <i class="md md-arrow-forward"></i>
+            </a>
             
             <ul class="login-navigation">
                 <li ui-sref="register" class="bgm-red">Registrarse</li>
                 <li ui-sref="forgot" class="bgm-orange">Olvide mi contraseña?</li>
             </ul>
-        </div>
+
+        </form>
+
+        </div>    
 </div>
+
         

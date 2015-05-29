@@ -19,7 +19,7 @@
                     <div class="select">
                        <select 
                             class="form-control" 
-                            ng-model="Procedimiento.objectEspecialidad"
+                            ng-model="Procedimiento.objectHefesoftEspecialidad"
                             ng-options="especialidad.nombre for especialidad in Especialidades"                            
                             >
                         </select>
@@ -38,7 +38,11 @@
 
             <div class="form-group">
                 <div class="fg-line">
-                    <input type="text" class="form-control" placeholder="Valor" ng-model="Procedimiento.valor">
+                    <input type="text" 
+                    class="form-control"
+                    placeholder="Valor"
+                    ng-model="Procedimiento.valor"
+                    numeric-only>
                 </div>
             </div>
 

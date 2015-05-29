@@ -8,10 +8,7 @@
 
     $scope.Tipo = [{nombre: 'Pieza', codigo : 1}, {nombre: 'Superficie', codigo : 2}, {nombre: 'General', codigo : 3}];
 
-    $scope.tipo = function(item){
-      $scope.Diagnostico['Tipo'] = JSON.stringify(item);
-    }
-
+   
     /* Modo edicion */
     if(!angular.isUndefined(dxSeleccionado))
     {

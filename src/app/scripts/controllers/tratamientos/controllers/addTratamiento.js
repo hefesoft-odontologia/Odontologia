@@ -13,7 +13,7 @@
 
 
    function agregarTratamiento(item){    
-     dxSeleccionado.arrayTratamientos.push(item);     
+     dxSeleccionado.arrayHefesoftTratamientos.push(item);     
      $modalInstance.dismiss(); 
    }
 

@@ -1,3 +1,4 @@
+<form name="addDiagnostico">
 <div class="card">
         <div class="card-header">
             <h2>Adicionar o modificar<small></small></h2>
@@ -8,7 +9,7 @@
 
             <div class="form-group">
                 <div class="fg-line">
-                    <input type="text" class="form-control" placeholder="Nombre" ng-model="Diagnostico.nombre">
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" ng-model="Diagnostico.nombre" required>
                 </div>
             </div>
             
@@ -27,9 +28,8 @@
                     <div class="select">
                        <select 
                             class="form-control" 
-                            ng-model="Diagnostico.Tipo"
-                            ng-options="tipo.nombre for tipo in Tipo"
-                            ng-change="tipo(Diagnostico.Tipo)"
+                            ng-model="Diagnostico.objectHefesoftTipo"                            
+                            ng-options="tipo.nombre for tipo in Tipo"                           
                             >
                         </select>
                     </div>
@@ -56,13 +56,23 @@
 
             <div class="form-group">
                 <div class="fg-line">
-                     <input type="text" ng-model="Diagnostico.idiceCie" typeahead="cie.Descripcion for cie in listadoCie | filter:$viewValue | limitTo:8" class="form-control">
+                     <input 
+                     name="cie"
+                     type="text" 
+                     ng-model="Diagnostico.idiceCie" 
+                     typeahead="cie.Descripcion for cie in listadoCie | filter:$viewValue | limitTo:8" 
+                     class="form-control">
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="fg-line">
-                    <button ng-click="adicionar()" class="btn btn-info btn-sm waves-effect waves-button waves-float">Guardar</button>    
+                    <button
+                    ng-disabled="addDiagnostico.nombre.$invalid || addDiagnostico.cie.$invalid" 
+                    ng-click="adicionar()" 
+                    class="btn btn-info btn-sm waves-effect waves-button waves-float">
+                    Guardar
+                    </button>    
                 </div>
             </div>
 
@@ -70,5 +80,5 @@
             </div>
         </div>
 </div>
-
+</form>
     

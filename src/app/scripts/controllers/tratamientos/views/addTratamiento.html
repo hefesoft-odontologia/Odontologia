@@ -1,3 +1,4 @@
+<form name="formAdicionarTratamiento">
 <div class="card">
         <div class="card-header">
             <h2>Adicionar o modificar<small></small></h2>
@@ -8,13 +9,22 @@
 
             <div class="form-group">
                 <div class="fg-line">
-                    <input type="text" class="form-control" placeholder="Nombre" ng-model="Tratamiento.nombre">
+                    <input type="text" 
+                    class="form-control"
+                    placeholder="Nombre"
+                    name="nombre"
+                    ng-model="Tratamiento.nombre" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="fg-line">
-                    <button ng-click="adicionar()" class="btn btn-info btn-sm waves-effect waves-button waves-float">Guardar</button>    
+                    <button
+                    ng-disabled="formAdicionarTratamiento.nombre.$invalid"
+                    ng-click="adicionar()" 
+                    class="btn btn-info btn-sm waves-effect waves-button waves-float">
+                        Guardar
+                    </button>    
                 </div>
             </div>
 
@@ -22,5 +32,6 @@
             </div>
         </div>
 </div>
+</form>
 
     
