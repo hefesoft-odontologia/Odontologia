@@ -1,31 +1,24 @@
   angular.module('odontologiaApp')
-  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService',  '$modalInstance',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  $modalInstance) {
+  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService',  '$modalInstance', 'dxSeleccionado',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  $modalInstance, dxSeleccionado) {
 
     var esNuevo = true;
     $scope.Tratamiento = {};
 
+
    $scope.adicionar = function(){
    	 var data = $scope.Tratamiento;
-      //data.PartitionKey = usuario.username;
-      data.PartitionKey = "UsuarioPruebas";
+      agregarTratamiento(data);
+   }
 
-      //Cuando es un nuevo paciente el otro caso es cuando se edita un registro
-      if(angular.isUndefined(data.RowKey)){
-        data.generarIdentificador = true;
-      }
 
-      data.nombreTabla= 'TmTratamientos';       
+   function agregarTratamiento(item){    
+     dxSeleccionado.arrayTratamientos.push(item);     
+     dataTableStorageFactory.saveStorage(dxSeleccionado).then(success);     
+   }
 
-      dataTableStorageFactory.saveStorage(data).then(function(data){        
-        messageService.showMessage("Tratamiento guardado");
-        if(esNuevo){
-          $modalInstance.dismiss(data);
-        }
-        else{
-          $modalInstance.close(); 
-        }
-      });
+   function success(data){    
+    $modalInstance.dismiss();
    }
 
   }])

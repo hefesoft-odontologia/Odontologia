@@ -4,7 +4,7 @@ angular.module('odontologiaApp')
 		restrict: 'E',
 		require: ['ngModel'],
 		link: function (scope, iElement, attributes, ngModelCtrl) {
-		   var cargarTratamiento = scope.inicializarElementosProcedimientos;
+		   var cargarTratamiento = scope.inicializarElementos;
 		   ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
 		  		var valor = ngModelCtrl[0].$viewValue;	
@@ -13,6 +13,9 @@ angular.module('odontologiaApp')
 		  }
 		},
 		controller: 'listadoProcedimientosCtrl',
-		templateUrl : 'app/scripts/controllers/procedimientos/views/listado.html'		
+		templateUrl : 'app/scripts/controllers/procedimientos/views/listado.html',
+		scope:{
+			dxSeleccionado : '='
+		}
 	};
 }])

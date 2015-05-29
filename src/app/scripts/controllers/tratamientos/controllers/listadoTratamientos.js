@@ -2,7 +2,8 @@
   .controller('listadoTratamientosCtrl', ['$scope', '$modal', 'dataTableStorageFactory', 'messageService', 
     function ($scope, $modal, dataTableStorageFactory, messageService) {
 
-       $scope.tratamientos = [];  
+
+    	//Aca llega diagnosticoSeleccionado $scope.diagnosticoSeleccionado     
        $scope.selected = function(item){
        	 $scope.tratamientoSeleccionado = item;       	 
        }
@@ -15,8 +16,8 @@
 	        controller: 'AddTratamientoCtrl',
 	        size: size,
 	        resolve: {
-	          tratamientoSeleccionado : function () {
-	            return seleccionado;
+	          dxSeleccionado : function () {
+	            return $scope.diagnosticoSeleccionado;
 	          }
 	        }
 	      });
@@ -24,28 +25,23 @@
 	    modalInstance.result.then(function (selectedItem) {
 	        $scope.selected = selectedItem;
 	      }, 
-	      function (data) {
+	      function (data) {	      	
 	       	inicializarElementos();
 	      });
 	  };
 
 
 	  function inicializarElementos(){
-	  	dataTableStorageFactory.getTableByPartition('TmTratamientos', 'UsuarioPruebas')
-      	.success(function(data){          
-          $scope.tratamientos = data;        
-        }).error(function(error){
-          console.log(error);          
-        })
+	  	$scope.diagnosticoSeleccionado.arrayTratamientos = angular.aListado($scope.diagnosticoSeleccionado.arrayTratamientos);
+	  	if(angular.isUndefined($scope.diagnosticoSeleccionado.arrayTratamientos)){
+	  		$scope.diagnosticoSeleccionado.arrayTratamientos = [];
+	  	}	  
 	  }
 
-	  $scope.eliminar = function(data, $index){
-	      data.Estado_Entidad = "2";    
-	      dataTableStorageFactory.saveStorage(data);
-	      $scope.tratamientos.splice($index, 1);
-      }
-
-     
+	  $scope.eliminar = function(data, $index){	      
+	      $scope.diagnosticoSeleccionado.arrayTratamientos.splice($index, 1);	      
+	      dataTableStorageFactory.saveStorage($scope.diagnosticoSeleccionado).then(inicializarElementos);	      
+      }    
 
 	  inicializarElementos();
 

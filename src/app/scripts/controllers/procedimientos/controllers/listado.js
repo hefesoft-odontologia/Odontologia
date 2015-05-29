@@ -1,8 +1,6 @@
 angular.module('odontologiaApp')
 .controller('listadoProcedimientosCtrl', ['$scope', 'dataTableStorageFactory', '$modal',
-	function ($scope, dataTableStorageFactory, $modal) {
-
-	var tratamientoSeleccionado = {};
+	function ($scope, dataTableStorageFactory, $modal) {	
 
 	/*************************** Procedimientos *********************/
 	  $scope.openProcedimientos = function (size, seleccionado) {
@@ -15,6 +13,9 @@ angular.module('odontologiaApp')
 	          tratamientoSeleccionado : function () {
 	            return $scope.tratamientoSeleccionado;
 	          },
+	          dxSeleccionado: function(){
+	          	return $scope.dxSeleccionado;
+	          },
 	          seleccionado : function(){
 	          	return seleccionado; 
 	          }
@@ -25,29 +26,28 @@ angular.module('odontologiaApp')
 	        $scope.selected = selectedItem;
 	      }, 
 	      function (data) {
-	       	inicializarElementosProcedimientos();
+	       	$scope.inicializarElementos($scope.tratamientoSeleccionado);
 	      });
 	  };
 
 
-	   $scope.inicializarElementosProcedimientos = function(item){
+	   $scope.inicializarElementos = function(item){
+	   	$scope.tratamientoSeleccionado = item;
 	   	tratamientoSeleccionado = item;
-	  	//El ultimo parametro es el tratamiento seleccionado
-	  	dataTableStorageFactory.getTableByPartition('TmProcedimiento', 'UsuarioPruebas' + tratamientoSeleccionado.RowKey)
-      	.success(function(data){
-      	  var list = procesarProcedimientos(data);
-          $scope.procedimientos = list;        
-        }).error(function(error){
-          console.log(error);          
-        })
+	  	
+	  	if(angular.isUndefined($scope.tratamientoSeleccionado.arrayProcedimientos)){
+	  		$scope.tratamientoSeleccionado.arrayProcedimientos = [];
+	  	}
 	  }
 
-	   function procesarProcedimientos(data){
-      	for (var i = data.length - 1; i >= 0; i--) {
-      		data[i]['especialidad'] = JSON.parse(data[i]['especialidad']);
-      	};
+	  $scope.eliminar = function(item, $index){
+	  	$scope.tratamientoSeleccionado.arrayProcedimientos.splice($index, 1);	    
+	    dataTableStorageFactory.saveStorage($scope.dxSeleccionado).then(success)
+	  }
 
-      	return data;
-      }
-	
+	  function success(data){
+	  	$scope.dxSeleccionado.tratamientos = data; 
+	  }
+
+
 }])

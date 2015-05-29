@@ -6,8 +6,7 @@
    
   	function inicializar(){
       dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
-      .success(function(data){
-          var data = procesarListado(data);
+      .success(function(data){          
           $scope.Listado = data;        
         }).error(function(error){
           console.log(error);          
@@ -19,16 +18,7 @@
       dataTableStorageFactory.saveStorage(data);
       $scope.Listado.splice($index, 1);
     }  
-
-    function procesarListado(data){
-      for (var i = 0; i < data.length; i++) {
-            if(!angular.isUndefined(data[i]["Tipo"]) && data[i]["Tipo"] != null){
-              data[i]["Tipo"] = JSON.parse(data[i]["Tipo"]); 
-            }
-        };
-
-        return data;
-    }
+   
   
     /***************** Modal /***********************/
 
@@ -77,12 +67,7 @@
         $scope.selected = selectedItem;
       }, 
       function (data) {
-        console.log('Modal dismissed at: ' + new Date());
-
-        if(data !==  "backdrop click" && !angular.isUndefined(data)){
-          $scope.Listado.push(data);
-          procesarListado($scope.Listado);
-        }
+        
       });
   };
 

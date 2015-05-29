@@ -64,7 +64,7 @@ angular
         cache: false,
         views: {
             'menuContent': {
-                templateUrl: "app/views/diagnosticos/Diagnosticos.html",
+                templateUrl: "app/scripts/controllers/Diagnosticos/views/Diagnosticos.html",
                 controller: "DxListadoCtrl"
             }       
             }

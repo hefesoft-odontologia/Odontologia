@@ -1,6 +1,6 @@
   angular.module('odontologiaApp')
-  .controller('AddProcedimientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'tratamientoSeleccionado', 'seleccionado', '$modalInstance',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService, tratamientoSeleccionado, seleccionado, $modalInstance) {
+  .controller('AddProcedimientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'tratamientoSeleccionado', 'seleccionado', '$modalInstance', 'dxSeleccionado',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService, tratamientoSeleccionado, seleccionado, $modalInstance, dxSeleccionado) {
 
     var esNuevo = true;
     $scope.Procedimiento = {};
@@ -17,26 +17,24 @@
    $scope.adicionar = function(){
    	 var data = $scope.Procedimiento;
      data.especialidad =  JSON.stringify(data.especialidad);
+     agregarProcedimientos(data);
+   }
 
-      //data.PartitionKey = usuario.username;
-      data.PartitionKey = "UsuarioPruebas" + tratamientoSeleccionado.RowKey;
-      
-      //Cuando es un nuevo paciente el otro caso es cuando se edita un registro
-      if(angular.isUndefined(data.RowKey)){
-        data.generarIdentificador = true;
-      }
+    function agregarProcedimientos(item){
+     if(angular.isUndefined(tratamientoSeleccionado.procedimientos)){
+        tratamientoSeleccionado.procedimientos = [];
+     }
 
-      data.nombreTabla= 'TmProcedimiento';       
+     //Se agrega el procedimiento al treatamiento seleccionado
+     tratamientoSeleccionado.arrayProcedimientos.push(item);
+     //Como son propiedades observables automaticamente se agregan al objeto diagnostico
+     //que es el que finalmente se persiste
+     dxSeleccionado.arrayTratamientos = JSON.stringify(dxSeleccionado.arrayTratamientos);
+     dataTableStorageFactory.saveStorage(dxSeleccionado).then(successSave);
+   }
 
-      dataTableStorageFactory.saveStorage(data).then(function(data){        
-        messageService.showMessage("Procedimiento guardado");
-        if(esNuevo){
-          $modalInstance.dismiss(data);
-        }
-        else{
-          $modalInstance.close(); 
-        }
-      });
+   function successSave(){     
+     $modalInstance.dismiss();
    }
 
     function inicializar(){

@@ -96,13 +96,14 @@ angular.module('azure')
     }
 
 
+     
 
-    dataFactory.saveStorage = function (item){
+    dataFactory.saveStorage = function (item){       
         var deferred = $q.defer();
         $ionicLoading.show();
         dataFactory.postTable(item)
             .success(function (data) {
-                $ionicLoading.hide();
+                $ionicLoading.hide();                
                 deferred.resolve(data);
             })
             .error(function (error) {

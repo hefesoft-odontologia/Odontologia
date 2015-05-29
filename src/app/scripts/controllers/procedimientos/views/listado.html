@@ -22,9 +22,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in procedimientos">
+                    <tr ng-repeat="item in tratamientoSeleccionado.procedimientos track by $index">
                         <td>
-                             <md-button ng-click="eliminarProcedimiento(item, $index)" class="md-delete"></md-button>
+                             <md-button ng-click="eliminar(item, $index)" class="md-delete"></md-button>
                         </td> 
                         <td>
                             <i class="md md-keyboard-arrow-right" ng-click="openProcedimientos('lg',item)">Editar</i>
