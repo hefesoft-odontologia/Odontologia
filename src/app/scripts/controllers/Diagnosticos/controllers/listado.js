@@ -3,6 +3,7 @@
     function ($scope, CieCupsServices, $modal, dataTableStorageFactory) {
 
     $scope.Listado = [];
+    $scope.diagnosticoSeleccionado = {};
    
   	function inicializar(){
       dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
@@ -51,6 +52,7 @@
 
   /****************** Tratamientos pop up ******************/
   $scope.openTratamiento = function (size, seleccionado) {
+    $scope.diagnosticoSeleccionado = seleccionado;
      var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
@@ -58,7 +60,7 @@
         size: size,
         resolve: {
           dxSeleccionado : function () {
-            return seleccionado;
+            return $scope.diagnosticoSeleccionado;
           }
         }
       });
@@ -67,7 +69,7 @@
         $scope.selected = selectedItem;
       }, 
       function (data) {
-        
+        dataTableStorageFactory.saveStorage($scope.diagnosticoSeleccionado);
       });
   };
 

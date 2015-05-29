@@ -14,11 +14,7 @@
 
    function agregarTratamiento(item){    
      dxSeleccionado.arrayTratamientos.push(item);     
-     dataTableStorageFactory.saveStorage(dxSeleccionado).then(success);     
+     $modalInstance.dismiss(); 
    }
 
-   function success(data){    
-    $modalInstance.dismiss();
-   }
-
-  }])
+}])

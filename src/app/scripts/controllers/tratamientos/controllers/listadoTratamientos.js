@@ -32,15 +32,14 @@
 
 
 	  function inicializarElementos(){
-	  	$scope.diagnosticoSeleccionado.arrayTratamientos = angular.aListado($scope.diagnosticoSeleccionado.arrayTratamientos);
+	  	$scope.diagnosticoSeleccionado.arrayTratamientos = Hefesot.aListado($scope.diagnosticoSeleccionado.arrayTratamientos);
 	  	if(angular.isUndefined($scope.diagnosticoSeleccionado.arrayTratamientos)){
 	  		$scope.diagnosticoSeleccionado.arrayTratamientos = [];
 	  	}	  
 	  }
 
 	  $scope.eliminar = function(data, $index){	      
-	      $scope.diagnosticoSeleccionado.arrayTratamientos.splice($index, 1);	      
-	      dataTableStorageFactory.saveStorage($scope.diagnosticoSeleccionado).then(inicializarElementos);	      
+	      $scope.diagnosticoSeleccionado.arrayTratamientos.splice($index, 1);	      	      
       }    
 
 	  inicializarElementos();

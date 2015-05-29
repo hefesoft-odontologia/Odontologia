@@ -15,26 +15,28 @@
   
 
    $scope.adicionar = function(){
-   	 var data = $scope.Procedimiento;
-     data.especialidad =  JSON.stringify(data.especialidad);
+   	 var data = $scope.Procedimiento;     
      agregarProcedimientos(data);
    }
 
     function agregarProcedimientos(item){
-     if(angular.isUndefined(tratamientoSeleccionado.procedimientos)){
-        tratamientoSeleccionado.procedimientos = [];
+     if(angular.isUndefined(tratamientoSeleccionado.arrayProcedimientos)){
+        tratamientoSeleccionado.arrayProcedimientos = [];
      }
 
      //Se agrega el procedimiento al treatamiento seleccionado
      tratamientoSeleccionado.arrayProcedimientos.push(item);
-     //Como son propiedades observables automaticamente se agregan al objeto diagnostico
-     //que es el que finalmente se persiste
-     dxSeleccionado.arrayTratamientos = JSON.stringify(dxSeleccionado.arrayTratamientos);
-     dataTableStorageFactory.saveStorage(dxSeleccionado).then(successSave);
+     sumar(tratamientoSeleccionado);
+     $modalInstance.dismiss();     
    }
 
-   function successSave(){     
-     $modalInstance.dismiss();
+   function sumar(data){
+      var valor = 0;
+      for (var i = data.arrayProcedimientos.length - 1; i >= 0; i--) {
+         valor = valor + data.arrayProcedimientos[i].valor;
+      };
+
+      data.valor = valor;
    }
 
     function inicializar(){
@@ -48,7 +50,6 @@
    function error(err){
       console.log(err);
    }
-
 
    inicializar();
 

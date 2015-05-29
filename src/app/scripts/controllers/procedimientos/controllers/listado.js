@@ -41,13 +41,6 @@ angular.module('odontologiaApp')
 	  }
 
 	  $scope.eliminar = function(item, $index){
-	  	$scope.tratamientoSeleccionado.arrayProcedimientos.splice($index, 1);	    
-	    dataTableStorageFactory.saveStorage($scope.dxSeleccionado).then(success)
+	  	$scope.tratamientoSeleccionado.arrayProcedimientos.splice($index, 1);
 	  }
-
-	  function success(data){
-	  	$scope.dxSeleccionado.tratamientos = data; 
-	  }
-
-
 }])
