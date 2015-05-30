@@ -81,6 +81,17 @@ angular
             }       
             }
       })
+
+      /****************** Odontograma /******************/
+      .state('app.odontograma', {
+        url: "/odontograma",
+        cache: false,
+        views: {
+            'menuContent': {
+                templateUrl: "app/scripts/controllers/odontograma/views/odontograma.html"                                
+            }       
+            }
+      })
            
 
       /******************** Auth *******************/

@@ -7,13 +7,13 @@ angular.module('azure')
 
 
     dataFactory.getJsonData = function (nombre) {
-        return $http.get('js/data/' + nombre);
+        return $http.get('app/scripts/json/data/' + nombre);
     };
 
     dataFactory.getJsonDataPromise = function (nombre) {
         var deferred = $q.defer();
         $ionicLoading.show();
-        $http.get('js/data/' + nombre)
+        $http.get('app/scripts/json/data/' + nombre)
         .success(function (data) {
                 $ionicLoading.hide();
                 deferred.resolve(data);

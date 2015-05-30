@@ -44,8 +44,7 @@
         console.log('Modal dismissed at: ' + new Date());
 
         if(data !==  "backdrop click" && !angular.isUndefined(data)){
-          $scope.Listado.push(data);
-          procesarListado($scope.Listado);
+          $scope.Listado.push(data);          
         }
       });
   };
