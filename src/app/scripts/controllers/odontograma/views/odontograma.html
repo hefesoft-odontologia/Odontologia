@@ -1,1 +1,31 @@
-<piezas-dentales ng-model="piezasDentales"></piezas-dentales>
+
+
+<li class="pull-right">
+    <ul class="top-menu">
+        <li id="toggle-width">
+            <div class="toggle-switch">
+            	<p>{{piezasDentales.Permanente | textoDientePermanenteTemporal}}</p>
+                <input 
+                	id="dientesPermanentes" 
+                	type="checkbox"
+                	ng-model="piezasDentales.Permanente"
+                	hidden="hidden">
+                <label 
+                	for="dientesPermanentes" 
+                	class="ts-helper">                	
+                </label>
+            </div>
+        </li>    
+    </ul>
+</li>
+
+</br>
+</br>
+</br>
+</br>
+
+<piezas-dentales 
+	permanente="piezasDentales.Permanente" 
+	ng-model="piezasDentales"
+>
+</piezas-dentales>

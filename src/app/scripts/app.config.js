@@ -88,7 +88,8 @@ angular
         cache: false,
         views: {
             'menuContent': {
-                templateUrl: "app/scripts/controllers/odontograma/views/odontograma.html"                                
+                templateUrl: "app/scripts/controllers/odontograma/views/odontograma.html",
+                controller: 'odontogramaCtrl'                                
             }       
             }
       })

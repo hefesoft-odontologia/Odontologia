@@ -17,37 +17,34 @@
 
 </style>
 
-<div class="contenedor-fila-piezas-dentales">
+<div ng-show="permanente" class="contenedor-fila-piezas-dentales">
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte1' | filter: textoBuscar">
-		<pieza-dental source="n"></pieza-dental>
+		<pieza-dental source="n" ng-model="n"></pieza-dental>
 	</div>	
 </div>
 
-<div class="contenedor-fila-piezas-dentales-temporales">
+<div ng-hide="permanente" class="contenedor-fila-piezas-dentales-temporales">
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte2' | filter: textoBuscar">
-		<pieza-dental source="n"></pieza-dental>
+		<pieza-dental source="n" ng-model="n"></pieza-dental>
 	</div>	
 </div>
 
-<div class="contenedor-fila-piezas-dentales-temporales">
+<div ng-hide="permanente" class="contenedor-fila-piezas-dentales-temporales">
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte3' | filter: textoBuscar">
-		<pieza-dental source="n"></pieza-dental>
+		<pieza-dental source="n" ng-model="n"></pieza-dental>
 	</div>	
 </div>
 
-<div class="contenedor-fila-piezas-dentales">
+<div ng-show="permanente" class="contenedor-fila-piezas-dentales">
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte4' | filter: textoBuscar">
-		<pieza-dental source="n"></pieza-dental>
+		<pieza-dental source="n" ng-model="n"></pieza-dental>
 	</div>	
 </div>
-
-
-
