@@ -89,7 +89,7 @@ Hefesot.listTostring = function(elemento, method){
 }
 
 Hefesot.random = function(){
-    var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    var rString = random(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     return rString;    
 }
 

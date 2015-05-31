@@ -2,8 +2,11 @@
 </br>
 </br>  
 
+
 <div class="card">
     <wizard on-finish="finishedWizard()"> 
+
+        <!-- Primer paso -->        
         <wz-step title="Inicio">
             <h4>Simbolo diagnostico</h4>
             <p>Seleccione el tipo de simbolo que desea para su diagnostico</p>
@@ -79,22 +82,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!--
-            <button 
-                class="btn btn-default waves-effect waves-button waves-float"
-                wz-next value="Simbolo"
-            >
-                <i class="md md-arrow-forward"></i> Siguiente
-            </button>
-            -->
+            </div>            
         </wz-step>
 
-
+        <!-- segundo paso -->
         <wz-step title="Simbolo">
             <h4>Simbolo</h4>
-            <p>Selecciona el elemento </p>           
+            <p>Selecciona el elemento</p>           
 
              <div ng-show="wizard.mostrarColor" class="form-group">
                 <div class="fg-line">
@@ -104,16 +98,42 @@
 
             <div ng-show="wizard.mostrarSimbolo" class="form-group">
                 <div class="fg-line">
-                    <input type="text" name="nombre" class="form-control" placeholder="Simbolo" ng-model="wizard.simbolo" required>
+                    <input type="text" name="nombre" class="form-control" placeholder="Simbolo" ng-model="Diagnostico.simbolo" required>
                 </div>
             </div>
 
-            <div ng-show="wizard.mostrarImagen" class="form-group">
-                <div class="fg-line">
-                    <file-upload-image-widget></file-upload-image-widget>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div ng-show="wizard.mostrarImagen" class="form-group">
+                        <div class="fg-line">
+                            <file-upload-image-widget 
+                            ng-model="Diagnostico.imagen">
+                            </file-upload-image-widget>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div ng-show="wizard.mostrarImagen" class="form-group">
+                        <div class="fg-line">
+                            <img 
+                            style="max-width: 300px;" 
+                            ng-src="{{Diagnostico.imagen}}"/>      
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            
+            <button 
+                class="btn btn-default waves-effect waves-button waves-float"
+                wz-next value="Simbolo"
+            >
+                <i class="md md-arrow-forward"></i> Siguiente
+            </button>
+            
+            
         </wz-step>
 
 

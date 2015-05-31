@@ -83,7 +83,7 @@ angular.module('Upload')
                 success: function (data, status) {
                     //console.log(data);
                     //console.log(status);
-                    deferred.resolve(data);
+                    deferred.resolve(submitUri);
                 },
                 error: function (xhr, desc, err) {
                     console.log(desc);
@@ -149,7 +149,7 @@ angular.module('Upload')
             var baseUrl = urlUploadFiles;
             var indexOfQueryStart = baseUrl.indexOf("?");
             submitUri = baseUrl.substring(0, indexOfQueryStart) + '/' + selectedFile.blobname + baseUrl.substring(indexOfQueryStart);
-            console.log(submitUri);
+            //console.log(submitUri);
         }
 
         function uploadFileInBlocks(){

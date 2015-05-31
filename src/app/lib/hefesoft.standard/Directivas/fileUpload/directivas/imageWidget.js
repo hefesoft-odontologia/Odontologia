@@ -4,14 +4,16 @@ angular.module('directivas')
 
 	var urlUploadFiles = "http://hefesoft.blob.core.windows.net/files/files?sv=2014-02-14&sr=c&sig=RqRcu1vwp56UdXTdRpZfEEWzv7rYrDT87B5iZafAOS4%3D&st=2015-05-15T05%3A00%3A00Z&se=2030-12-02T05%3A00%3A00Z&sp=rwl";       
     var path = "http://hefesoft.blob.core.windows.net/files/files/";
-    
+    var ngCtrl;
 
 	var directiva = {};
+	directiva.require= ['ngModel'];
 	directiva.restrict = 'E';
 	directiva.templateUrl = "app/lib/hefesoft.standard/Directivas/fileUpload/template/imageWidget.html";	
 
-	directiva.link = function (scope, element, iAttrs) {
+	directiva.link = function (scope, element, iAttrs, ngModelCtrl) {
 
+	  ngCtrl = ngModelCtrl;
 	  var options = 
 	  {
 	  	'showUpload':false,
@@ -27,9 +29,10 @@ angular.module('directivas')
 	  	 file.blobname = window.Hefesot.random();
     	 uploadService.upload(file, urlUploadFiles).then(success);
 	  });
-	};
+	};	
 
 	function success(e){
+		ngCtrl[0].$setViewValue(e);
 		console.log(e);
 	}
 

@@ -1,9 +1,9 @@
   angular.module('odontologiaApp')
-  .controller('SimboloCtrl', ['$scope', 'dataTableStorageFactory',
-    function ($scope, dataTableStorageFactory) {
+  .controller('SimboloCtrl', ['$scope', 'dataTableStorageFactory', 'wizardPasoVariablesServices', '$rootScope',
+    function ($scope, dataTableStorageFactory, wizardPasoVariablesServices, $rootScope) {
 
     	$scope.wizard = {mostrarColor: false, mostrarSimbolo: false, mostrarImagen: false};
-
+        $scope.cerrar;        
 
     	$scope.mostrarSimbolo = function(tipo){
 
@@ -22,6 +22,14 @@
     			$scope.wizard.mostrarSimbolo = false;
     			$scope.wizard.mostrarImagen = true;
     		}
-    	}    
+    	}
+
+        $scope.finishedWizard = function(){
+            wizardPasoVariablesServices.setDiagnosticoSimbolo($scope.wizard);
+            $scope.cerrar = true;
+            
+            //Version alternativa para cerrar la ventana
+            //$rootScope.$broadcast('Cerrar-ventana');           
+        }    
 
 }])
