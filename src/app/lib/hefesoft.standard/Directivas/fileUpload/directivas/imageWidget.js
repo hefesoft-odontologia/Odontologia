@@ -6,10 +6,10 @@ angular.module('directivas')
 	directiva.templateUrl = "app/lib/hefesoft.standard/Directivas/fileUpload/template/imageWidget.html";	
 
 	directiva.link = function (scope, element, iAttrs) {
-	  var fileInput = $(element).find('.fileinput').fileinput();
+	  var fileInput = $(element).find('.file').fileinput();
 
-	  fileInput.on("change.bs.fileinput", function(e){
-	  	console.log(e);
+	  fileInput.on('fileloaded', function(event, file, previewId, index, reader) {
+    	console.log("fileloaded");
 	  });
 	};
 
