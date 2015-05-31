@@ -88,6 +88,18 @@ Hefesot.listTostring = function(elemento, method){
     return elemento; 
 }
 
+Hefesot.random = function(){
+    var rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    return rString;    
+}
+
+function random(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
+
+
 function validarYaEsObjeto(item){
 
     while(angular.isString(item)){

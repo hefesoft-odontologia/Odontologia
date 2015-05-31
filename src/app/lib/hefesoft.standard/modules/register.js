@@ -1,7 +1,7 @@
 angular.module('fixes', []);
 angular.module('auth', []);
 angular.module('azure', []);
-angular.module('directivas', []);
+angular.module('directivas', ['Upload']);
 angular.module('Global', []);
 angular.module('Message', []);
 angular.module('Shared', []);

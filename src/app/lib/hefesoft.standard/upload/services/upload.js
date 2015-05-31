@@ -37,12 +37,12 @@ angular.module('Upload')
                         //xhr.setRequestHeader('Content-Length', requestData.length);
                     },
                     success: function (data, status) {
-                        console.log(data);
-                        console.log(status);
+                        //console.log(data);
+                        //console.log(status);
                         bytesUploaded += requestData.length;
                         var percentComplete = ((parseFloat(bytesUploaded) / parseFloat(selectedFile.size)) * 100).toFixed(2);
 
-                        console.log(percentComplete + " %");
+                        //console.log(percentComplete + " %");
                         selectedFile['percent'] = percentComplete + " %";
 
                         $timeout(function(){
@@ -65,13 +65,13 @@ angular.module('Upload')
 
         function commitBlockList() {
             var uri = submitUri + '&comp=blocklist';
-            console.log(uri);
+            //console.log(uri);
             var requestBody = '<?xml version="1.0" encoding="utf-8"?><BlockList>';
             for (var i = 0; i < blockIds.length; i++) {
                 requestBody += '<Latest>' + blockIds[i] + '</Latest>';
             }
             requestBody += '</BlockList>';
-            console.log(requestBody);
+            //console.log(requestBody);
             $.ajax({
                 url: uri,
                 type: "PUT",
@@ -81,8 +81,8 @@ angular.module('Upload')
                     //xhr.setRequestHeader('Content-Length', requestBody.length);
                 },
                 success: function (data, status) {
-                    console.log(data);
-                    console.log(status);
+                    //console.log(data);
+                    //console.log(status);
                     deferred.resolve(data);
                 },
                 error: function (xhr, desc, err) {
@@ -137,7 +137,7 @@ angular.module('Upload')
             var fileSize = selectedFile.size;
             if (fileSize < maxBlockSize) {
                 maxBlockSize = fileSize;
-                console.log("max block size = " + maxBlockSize);
+                //console.log("max block size = " + maxBlockSize);
             }
             totalBytesRemaining = fileSize;
             if (fileSize % maxBlockSize == 0) {
@@ -145,7 +145,7 @@ angular.module('Upload')
             } else {
                 numberOfBlocks = parseInt(fileSize / maxBlockSize, 10) + 1;
             }
-            console.log("total blocks = " + numberOfBlocks);
+            //console.log("total blocks = " + numberOfBlocks);
             var baseUrl = urlUploadFiles;
             var indexOfQueryStart = baseUrl.indexOf("?");
             submitUri = baseUrl.substring(0, indexOfQueryStart) + '/' + selectedFile.blobname + baseUrl.substring(indexOfQueryStart);
@@ -154,10 +154,10 @@ angular.module('Upload')
 
         function uploadFileInBlocks(){
         	if (totalBytesRemaining > 0) {
-                console.log("current file pointer = " + currentFilePointer + " bytes read = " + maxBlockSize);
+                //console.log("current file pointer = " + currentFilePointer + " bytes read = " + maxBlockSize);
                 var fileContent = selectedFile.slice(currentFilePointer, currentFilePointer + maxBlockSize);
                 var blockId = blockIdPrefix + pad(blockIds.length, 6);
-                console.log("block id = " + blockId);
+                //console.log("block id = " + blockId);
                 blockIds.push(btoa(blockId));
                 reader.readAsArrayBuffer(fileContent);
                 currentFilePointer += maxBlockSize;
