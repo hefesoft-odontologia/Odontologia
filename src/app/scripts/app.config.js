@@ -1,11 +1,18 @@
 angular
-  .module('odontologiaApp').config(['$stateProvider', '$urlRouterProvider', '$httpProvider',
-  	function ($stateProvider, $urlRouterProvider, $httpProvider) {
+  .module('odontologiaApp').config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ocLazyLoadProvider',
+  	function ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider) {
 
       $httpProvider.defaults.withCredentials = true;
       $httpProvider.interceptors.push('authInterceptorService');
 
   		$urlRouterProvider.otherwise('/login');
+
+      configureLazy($ocLazyLoadProvider);
+      routesDiagnosticos($stateProvider, $ocLazyLoadProvider);
+      routesPacientes($stateProvider, $ocLazyLoadProvider);
+      routesOdontograma($stateProvider, $ocLazyLoadProvider);
+      routesFormulaMedica($stateProvider, $ocLazyLoadProvider);
+      authOdontograma($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
@@ -31,96 +38,5 @@ angular
             }       
             }
       })
-
-
-      /************************* Pacientes *******************************/
-
-      .state('app.listadoPacientes', {
-        url: "/listadoPacientes",
-        cache: false,
-        views: {
-            'menuContent': {
-                templateUrl: "app/views/pacientes/listado.html",
-                controller : 'pacientesController'
-            }       
-            }
-      })
-
-      .state('app.paciente', {
-        url: "/paciente",
-        cache: false,
-        views: {
-            'menuContent': {
-                templateUrl: "app/views/pacientes/paciente.html",
-                controller: "pacientesController"
-            }       
-            }
-      })
-
-      /****************** Diagnosticos /******************/
-
-      .state('app.listadoDiagnosticos', {
-        url: "/listadoDiagnosticos",
-        cache: false,
-        views: {
-            'menuContent': {
-                templateUrl: "app/scripts/controllers/Diagnosticos/views/Diagnosticos.html",
-                controller: "DxListadoCtrl"
-            }       
-            }
-      })
-
-      /****************** Formula medica /******************/
-
-      .state('app.listadoFormulaNedica', {
-        url: "/listadoFormulaMedica",
-        cache: false,
-        views: {
-            'menuContent': {
-                templateUrl: "app/scripts/controllers/formulaMedica/views/listado.html"                
-            }       
-            }
-      })
-
-      /****************** Odontograma /******************/
-      .state('app.odontograma', {
-        url: "/odontograma",
-        cache: false,
-        views: {
-            'menuContent': {
-                templateUrl: "app/scripts/controllers/odontograma/views/odontograma.html",
-                controller: 'odontogramaCtrl'                                
-            }       
-            }
-      })
-           
-
-      /******************** Auth *******************/
-      .state('register', {
-        url: "/register",
-        cache: false,
-        templateUrl : "app/views/register/register.html"        
-      })
-
-      .state('login', {
-        url: "/login",
-        cache: false,
-        templateUrl : "app/views/register/login.html"
-      })
-
-      .state('404', {
-        url: "/404",
-        cache: false,
-        templateUrl : "app/views/404/404.html"
-      })
-
-      .state('forgot', {
-        url: "/forgot",
-        cache: false,
-        templateUrl : "app/views/register/forgot.html"
-      })
-
-      /*********************************************/
-    
-  	
+   
   }])

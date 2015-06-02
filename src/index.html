@@ -10,8 +10,7 @@
         <!-- Vendor CSS -->
         <link href="app/Template/vendors/fullcalendar/fullcalendar.css" rel="stylesheet">
         <link href="app/Template/vendors/animate-css/animate.min.css" rel="stylesheet">
-        <link href="app/Template/vendors/noUiSlider/jquery.nouislider.min.css" rel="stylesheet">
-        <link href="app/Template/vendors/farbtastic/farbtastic.css" rel="stylesheet">
+        <link href="app/Template/vendors/noUiSlider/jquery.nouislider.min.css" rel="stylesheet">       
         <link href="app/Template/vendors/summernote/summernote.css" rel="stylesheet">
         <link href="app/Template/vendors/sweet-alert/sweet-alert.min.css" rel="stylesheet">
         <link href="app/Template/vendors/material-icons/material-design-iconic-font.min.css" rel="stylesheet">
@@ -37,6 +36,7 @@
           <!-- Javascript Libraries -->
         <script src="app/Template/js/jquery-2.1.1.min.js"></script>
         <script src="app/Template/js/bootstrap.min.js"></script>
+        
 
          <!-- Javascript Libraries -->
         <script src="../bower_components/angular/angular.js"></script>
@@ -53,8 +53,7 @@
         <script src="app/Template/vendors/bootstrap-select/bootstrap-select.min.js"></script>
         <script src="app/lib/hefesoft.standard/signalR/jquery.signalR-2.2.0.min.js"></script>
         <script src="app/Template/vendors/noUiSlider/jquery.nouislider.all.min.js"></script>
-        <script src="app/Template/vendors/input-mask/input-mask.min.js"></script>
-        <script src="app/Template/vendors/farbtastic/farbtastic.min.js"></script>
+        <script src="app/Template/vendors/input-mask/input-mask.min.js"></script>        
         <script src="app/Template/vendors/summernote/summernote.min.js"></script>
         <script src="app/Template/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
         <script src="app/Template/vendors/fileinput/fileinput.min.js"></script>
@@ -64,7 +63,6 @@
         <script src="app/Template/vendors/bootgrid/jquery.bootgrid.min.js"></script>
         
         <script src="app/Template/js/functions.js"></script>
-        
 
         <!-- Registrar modulos debe ir de primeras -->
         <script src="app/lib/hefesoft.standard/modules/register.js"></script>
@@ -75,27 +73,12 @@
         <!-- Fixes librerias que estan en ionic y el sistema busca -->
         <script src="app/lib/hefesoft.standard/Fixes/fixes.js"></script>
 
-        <!-- Auth -->        
-        <script src="app/lib/hefesoft.standard/Auth/Controllers/signIn.js"></script>
-        <script src="app/lib/hefesoft.standard/Auth/Controllers/signUp.js"></script>
-        <script src="app/lib/hefesoft.standard/Auth/sign.js"></script>
-        <script src="app/lib/hefesoft.standard/Auth/inicializarServicios.js"></script>       
-        <script src="app/lib/hefesoft.standard/Auth/token.js"></script>        
-        <script src="app/lib/hefesoft.standard/Auth/usuario.js"></script>
         <script src="app/lib/hefesoft.standard/Auth/authInterceptorService.js"></script>
-        <script src="app/lib/hefesoft.standard/Auth/transformPost.js"></script>
 
-        <!-- Azure -->
-        <script src="app/lib/hefesoft.standard/Azure/imagesStorage.js"></script>
-        <script src="app/lib/hefesoft.standard/Azure/push.js"></script>
-        <script src="app/lib/hefesoft.standard/Azure/email.js"></script>        
-        <script src="app/lib/hefesoft.standard/Azure/tableStorage.js"></script>
-        <script src="app/lib/hefesoft.standard/Azure/blobStorage.js"></script>  
 
         <!-- Directives -->
         <script src="app/lib/hefesoft.standard/Directivas/recaptcha/Controller/recaptcha.js"></script>
-        <script src="app/lib/hefesoft.standard/Directivas/recaptcha/Directiva/recaptcha.js"></script>
-        <script src="app/lib/hefesoft.standard/Directivas/colorPicker/directiva/colorPicker.js"></script>
+        <script src="app/lib/hefesoft.standard/Directivas/recaptcha/Directiva/recaptcha.js"></script>        
         <script src="app/lib/hefesoft.standard/Directivas/numeros/validarSoloNumeros.js"></script>
 
         <!-- Globales-->
@@ -113,16 +96,7 @@
         <script src="app/lib/hefesoft.standard/signalR/procesaMensajes.js"></script>
         <script src="app/lib/hefesoft.standard/signalR/signalr.js"></script>        
 
-        <!-- Stripe -->
-        <script src="app/lib/hefesoft.standard/Stripe/Controllers/misSuscripciones.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Controllers/misTarjetas.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Controllers/Register.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Factory/stripeService.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Validaciones/stripe.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Controllers/Register.js"></script>
-        <script src="app/lib/hefesoft.standard/Stripe/Controllers/Register.js"></script>
-
-
+     
         <!-- W8 -->
         <script src="app/lib/hefesoft.standard/Universal.App/message.js"></script>
 
@@ -140,6 +114,19 @@
         <script src="app/lib/hefesoft.standard/util/platform.js"></script>
         <script src="app/lib/hefesoft.standard/util/validarNavegacion.js"></script>
                 
+
+          <!-- OCLazyLoad -->
+        <script src="app/scripts/lazy/dependencias.js"></script>
+        <script src="../bower_components/oclazyload/dist/ocLazyLoad.js"></script> 
+        <script src="app/scripts/lazy/ocLazyConfiguration.js"></script>      
+
+        <!-- Routes -->
+        <script src="app/scripts/routers/Auth.js"></script>
+        <script src="app/scripts/routers/diagnosticos.js"></script>
+        <script src="app/scripts/routers/pacientes.js"></script>
+        <script src="app/scripts/routers/odontograma.js"></script>
+        <script src="app/scripts/routers/formulaMedica.js"></script>
+
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="app/scripts/app.js"></script>
         <script src="app/scripts/app.config.js"></script>
@@ -147,67 +134,15 @@
 
         <script src="app/scripts/controllers/main.js"></script>
         <!-- endbuild -->
-
-        <!-- Pacientes -->
-        <script src="app/scripts/controllers/pacientes/controllers/listado.js"></script>
-        <script src="app/scripts/controllers/pacientes/services/inicializarListado.js"></script>
-        <script src="app/lib/hefesoft.standard/Directivas/Date-Picker/Directiva/datePicker.js"></script>
-
-         <!-- Diagnosticos -->
-        <script src="app/scripts/controllers/Diagnosticos/controllers/listado.js"></script>
-        <script src="app/scripts/controllers/Diagnosticos/services/CieCups.js"></script>
-        <script src="app/scripts/controllers/Diagnosticos/controllers/addDiagnostico.js"></script>
-
-        <!-- Tratamientos -->
-        <script src="app/scripts/controllers/tratamientos/controllers/listadoTratamientos.js"></script>
-        <script src="app/scripts/controllers/tratamientos/controllers/addTratamiento.js"></script>
-        <script src="app/scripts/controllers/tratamientos/directivas/listado.js"></script>
-
-        <script src="app/scripts/controllers/tratamientos/directivas/wizardSimbolo/controller/simbolo.js"></script>
-        <script src="app/scripts/controllers/tratamientos/directivas/wizardSimbolo/controller/wizardSimbolo.js"></script>
-        <script src="app/scripts/controllers/tratamientos/directivas/wizardSimbolo/directiva/simbolo.js"></script>
-        <script src="app/scripts/controllers/tratamientos/directivas/wizardSimbolo/directiva/wizardSimbolo.js"></script>
-
-
-        
-
-        <!-- Procedimientos -->
-        <script src="app/scripts/controllers/procedimientos/controllers/addProcedimiento.js"></script>
-        <script src="app/scripts/controllers/procedimientos/controllers/listado.js"></script>
-        <script src="app/scripts/controllers/procedimientos/directivas/listadoProcedimientos.js"></script>
-        <script src="app/scripts/controllers/tratamientos/controllers/listadoTratamientosProcedimientos.js"></script>
-
-        <!-- Formula Medica -->
-        <script src="app/scripts/controllers/formulaMedica/controllers/listado.js"></script>
-        <script src="app/scripts/controllers/formulaMedica/controllers/addFormulaMedica.js"></script>
-        <script src="app/scripts/controllers/formulaMedica/directivas/listado.js"></script>
-
-        <!-- Odontograma -->
-        <script src="app/scripts/controllers/odontograma/directivas/piezaDental/directiva/directiva.js"></script>
-        <script src="app/scripts/controllers/odontograma/directivas/piezasDentales/directiva/directiva.js"></script>
-        <script src="app/scripts/controllers/odontograma/services/json/odontogramaBase.js"></script>
-        <script src="app/scripts/controllers/odontograma/controllers/piezasDentales.js"></script>
-        <script src="app/scripts/controllers/odontograma/controllers/odontograma.js"></script>
-        <script src="app/scripts/controllers/odontograma/filter/textoDientePermanenteTemporal.js"></script>
-        <script src="app/scripts/controllers/odontograma/directivas/superficies/directiva/superficie.js"></script>
-        <script src="app/scripts/controllers/odontograma/directivas/superficies/filter/simbolo.js"></script>
-        <script src="app/scripts/controllers/odontograma/directivas/superficies/filter/colorSuperficie.js"></script>
-
-        <!-- Wizard -->
-        <script src="../bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
-        <link href="../bower_components/angular-wizard/dist/angular-wizard.min.css" rel="stylesheet" type="text/css">
+     
+      
+      
 
         <!-- Lodash -->
         <script src="../bower_components/lodash/dist/lodash.min.js"></script>
 
-        <!-- Hefesoft directives -->
-        <link href="../bower_components/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" type="text/css">
-        <script src="../bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
-        <script src="../bower_components/bootstrap-fileinput/js/fileinput_locale_es.js"></script>
-        <script src="app/lib/hefesoft.standard/Directivas/fileUpload/directivas/imageWidget.js"></script>
-        <script src="app/scripts/controllers/tratamientos/directivas/wizardSimbolo/services/pasoVariables.js"></script>
+        
 
-        <script src="app/lib/hefesoft.standard/util/modal.js"></script>
         
     </head>
     <body ng-app="odontologiaApp" style="height:100%;">      

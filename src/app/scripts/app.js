@@ -12,7 +12,8 @@
 angular
   .module('odontologiaApp', 
 [
-	'ui.router', 
+    'oc.lazyLoad',
+	  'ui.router', 
   	'auth', 
   	'azure',
   	'Util',
@@ -24,8 +25,7 @@ angular
   	'Global',
   	'directivas',
   	'angular-loading-bar',
-  	'ui.bootstrap',
-  	'mgo-angular-wizard'
+  	'ui.bootstrap'  	
 ]);
 
 

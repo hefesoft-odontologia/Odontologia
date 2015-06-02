@@ -1,4 +1,4 @@
-  angular.module('odontologiaApp')
+ angular.module('odontologiaApp')
 .controller('pacientesController', ['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices',
 	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices) {
 	
@@ -20,7 +20,7 @@
 	$scope.navegarOdontograma = function(item){
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);		
-		$state.go("odontograma.listado");
+		$state.go("app.odontograma");
 	}
 
 	$scope.navegarPeriododntograma = function(item){

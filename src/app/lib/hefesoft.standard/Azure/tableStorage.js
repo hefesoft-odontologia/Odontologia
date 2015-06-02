@@ -1,6 +1,6 @@
 angular.module('azure')
-    .factory('dataTableStorageFactory', ['$http','urlServicioFactory','$ionicLoading', '$q',
-        function($http, urlServicioFactory, $ionicLoading, $q) {
+    .factory('dataTableStorageFactory', ['$http','urlServicioFactory','$q',
+        function($http, urlServicioFactory, $q) {
     
     var urlBase = urlServicioFactory.getUrlService();
     var dataFactory = {};
@@ -12,15 +12,12 @@ angular.module('azure')
 
     dataFactory.getJsonDataPromise = function (nombre) {
         var deferred = $q.defer();
-        $ionicLoading.show();
         $http.get('app/scripts/json/data/' + nombre)
-        .success(function (data) {
-                $ionicLoading.hide();
+        .success(function (data) {                
                 deferred.resolve(data);
             })
             .error(function (error) {
-                console.log(error);
-                $ionicLoading.hide();
+                console.log(error);                
                 deferred.reject(error);
             });
 
@@ -99,16 +96,13 @@ angular.module('azure')
      
 
     dataFactory.saveStorage = function (item){       
-        var deferred = $q.defer();
-        $ionicLoading.show();
+        var deferred = $q.defer();        
         dataFactory.postTable(item)
-            .success(function (data) {
-                $ionicLoading.hide();                
+            .success(function (data) {                
                 deferred.resolve(data);
             })
             .error(function (error) {
-                console.log(error);
-                $ionicLoading.hide();
+                console.log(error);                
                 deferred.reject(error);
             });
 
