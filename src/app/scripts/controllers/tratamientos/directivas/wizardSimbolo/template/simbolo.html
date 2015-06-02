@@ -138,7 +138,7 @@
                     <div ng-show="wizard.mostrarImagen" class="form-group">
                         <div class="fg-line">
                             <file-upload-image-widget 
-                            ng-model="Diagnostico.imagen">
+                            ng-model="wizard.imagen">
                             </file-upload-image-widget>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                         <div class="fg-line">
                             <img 
                             style="max-width: 300px;" 
-                            ng-src="{{Diagnostico.imagen}}"/>      
+                            ng-src="{{wizard.imagen}}"/>      
                         </div>
                     </div>
                 </div>
