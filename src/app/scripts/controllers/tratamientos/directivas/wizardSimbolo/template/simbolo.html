@@ -97,9 +97,39 @@
             </div>
 
             <div ng-show="wizard.mostrarSimbolo" class="form-group">
-                <div class="fg-line">
-                    <input type="text" name="nombre" class="form-control" placeholder="Simbolo" ng-model="Diagnostico.simbolo" required>
+
+                <div class="row">                    
+                    <div class="col-sm-6">
+                        <p>Fuente</p>
+                        <div class="select">
+                           <select 
+                                class="form-control" 
+                                ng-model="wizard.objectHefesoftFuente"
+                                ng-options="fuente.fuente for fuente in Fuentes"
+                                >
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <p>Simbolo</p>
+                        <div class="fg-line">
+                            <input type="text"
+                            ng-style="
+                            {
+                                'font-family': (wizard.objectHefesoftFuente.fuente)
+                            }"                             
+                            name="nombre" 
+                            class="form-control" 
+                            placeholder="" 
+                            ng-model="wizard.simbolo" 
+                            required>
+                        </div>
+                    </div>
+
                 </div>
+
+
             </div>
 
 

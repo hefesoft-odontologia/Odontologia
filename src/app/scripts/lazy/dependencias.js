@@ -230,8 +230,16 @@ function stripeDependencies(){
     return diagnosticos;
 }
 
+function fontDependencies(){
+    var diagnosticos = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        files: 
+        [
+            "app/styles/font.css"
+        ]
+    }
 
-
-
-
-   
+    return diagnosticos;
+}

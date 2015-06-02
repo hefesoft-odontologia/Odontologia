@@ -3,6 +3,9 @@
     function ($scope, dataTableStorageFactory, wizardPasoVariablesServices, $rootScope) {
 
     	$scope.wizard = {mostrarColor: false, mostrarSimbolo: false, mostrarImagen: false};
+        $scope.Fuentes = [{fuente: 'Arial', codigo : 1 },{fuente: 'Glyphyx', codigo : 2}, {fuente: 'signify', codigo : 3}, {fuente: 'raphael', codigo : 4}, {fuente:'odontologia', codigo : 5}];
+        $scope.wizard.objectHefesoftFuente = $scope.Fuentes[1];
+
         $scope.cerrar;        
 
     	$scope.mostrarSimbolo = function(tipo){
