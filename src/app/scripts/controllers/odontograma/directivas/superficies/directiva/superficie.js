@@ -13,8 +13,10 @@ directive('superficie', function(){
       color : '=',
       simbolo : '=',
       fuente : '=',
-      pathImagen : '='
-   };   
+      pathImagen : '=' /* recordar que en el html debe ponerse asi path-imagen */
+   };
+
+   directiva.controller = 'SuperficieCtrl';   
 
    directiva.templateUrl = 'app/scripts/controllers/odontograma/directivas/superficies/template/superficie.html';
    return directiva;

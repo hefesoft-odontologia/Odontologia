@@ -1,6 +1,6 @@
   angular.module('odontologiaApp')
-  .controller('wizardSimboloCtrl', ['$scope', 'dataTableStorageFactory', '$modal',
-    function ($scope, dataTableStorageFactory,  $modal) {
+  .controller('wizardSimboloCtrl', ['$scope', 'dataTableStorageFactory', '$modal', 'wizardPasoVariablesServices',
+    function ($scope, dataTableStorageFactory, $modal, wizardPasoVariablesServices) {
 
     $scope.openWizard = function (size, seleccionado) {
 	     var modalInstance = $modal.open({
@@ -17,7 +17,8 @@
 	        
 	    }, 
 	    function (data) {
-	       	
+	    	var valor = wizardPasoVariablesServices.getDiagnosticoSimbolo();
+	    	$scope.ngModelCtrl[0].$setViewValue(valor);
 	    });
 	    
 	  };

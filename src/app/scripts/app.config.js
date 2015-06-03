@@ -13,6 +13,7 @@ angular
       routesOdontograma($stateProvider, $ocLazyLoadProvider);
       routesFormulaMedica($stateProvider, $ocLazyLoadProvider);
       authOdontograma($stateProvider, $ocLazyLoadProvider);
+      routesGallery($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 

@@ -99,7 +99,7 @@
             <div ng-show="wizard.mostrarSimbolo" class="form-group">
 
                 <div class="row">                    
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <p>Fuente</p>
                         <div class="select">
                            <select 
@@ -111,7 +111,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <p>Simbolo</p>
                         <div class="fg-line">
                             <input type="text"
@@ -127,6 +127,20 @@
                         </div>
                     </div>
 
+                     <div class="col-sm-4">
+                        <p></p>
+                        <div>
+                            <h3 type="text"
+                            ng-style="
+                            {
+                                'font-family': (wizard.objectHefesoftFuente.fuente)
+                            }"
+                            >
+                            {{wizard.simbolo}}
+                            </h3> 
+                        </div>
+                    </div>
+
                 </div>
 
 
@@ -138,7 +152,7 @@
                     <div ng-show="wizard.mostrarImagen" class="form-group">
                         <div class="fg-line">
                             <file-upload-image-widget 
-                            ng-model="wizard.imagen">
+                            ng-model="wizard.pathImagen">
                             </file-upload-image-widget>
                         </div>
                     </div>
@@ -149,14 +163,15 @@
                         <div class="fg-line">
                             <img 
                             style="max-width: 300px;" 
-                            ng-src="{{wizard.imagen}}"/>      
+                            ng-src="{{wizard.pathImagen}}"/>      
                         </div>
                     </div>
                 </div>
             </div>
 
             
-            <button 
+            <button
+                ng-click="previsualizar()" 
                 class="btn btn-default waves-effect waves-button waves-float"
                 wz-next value="Simbolo"
             >
@@ -168,9 +183,25 @@
 
 
 
-        <wz-step title="More steps">
-            <p>Even more steps!!</p>
-            <input type="submit" wz-next value="Finish now" />
+        <wz-step title="Finalizar">
+            <p>Asi se ve tu diagnostico en una superficie del odontograma</p>
+            
+            <div style="max-width: 50px;">
+                <superficie
+                    simbolo="wizard.simbolo"                
+                    fuente="wizard.objectHefesoftFuente.fuente"
+                    path-imagen="wizard.pathImagen" 
+                    color="wizard.color">
+                </superficie>
+            </div>
+
+            <button               
+                class="btn btn-default waves-effect waves-button waves-float"
+                wz-next value="Finalizar"
+            >
+                <i class="md md-arrow-forward"></i> Finalizar
+            </button>
+            
         </wz-step>
     </wizard>
     </br>

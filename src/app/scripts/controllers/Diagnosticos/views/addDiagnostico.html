@@ -1,3 +1,15 @@
+<style type="text/css">
+    .wizarSimboloBoton{
+        display: -webkit-box;
+    }
+
+    .wizarSimboloPrev{
+        max-width: 20px;
+        margin-left: 20px;
+    }
+</style>
+
+
 <form name="addDiagnostico">
 <div class="card">
         <div class="card-header">
@@ -40,14 +52,39 @@
                 <div class="col-sm-6">
                     <div class="cp-container">
                        <p>Simbolo diagnostico</p>
-                       <wizard-simbolo></wizard-simbolo>                       
+
+                   <div class="wizarSimboloBoton">
+                       <wizard-simbolo ng-model="Diagnostico.objectHefesoftDiagnostico"></wizard-simbolo>
+
+                        <superficie
+                            class="wizarSimboloPrev"
+                            simbolo="Diagnostico.objectHefesoftDiagnostico.simbolo"                
+                            fuente="Diagnostico.objectHefesoftDiagnostico.objectHefesoftFuente.fuente"
+                            path-imagen="Diagnostico.objectHefesoftDiagnostico.pathImagen" 
+                            color="Diagnostico.objectHefesoftDiagnostico.color">
+                        </superficie>
+                    </div>
+
                     </div>
                 </div>
                 
                 <div class="col-sm-6">
                     <div class="cp-container">
                       <p>Simbolo evolución</p>
-                      <wizard-simbolo></wizard-simbolo>
+                      
+                      <div class="wizarSimboloBoton">
+                          <wizard-simbolo ng-model="Diagnostico.objectHefesoftEvolucion"></wizard-simbolo>
+
+                          <superficie
+                            class="wizarSimboloPrev"
+                            simbolo="Diagnostico.objectHefesoftEvolucion.simbolo"                
+                            fuente="Diagnostico.objectHefesoftEvolucion.objectHefesoftFuente.fuente"
+                            path-imagen="Diagnostico.objectHefesoftEvolucion.pathImagen" 
+                            color="Diagnostico.objectHefesoftEvolucion.color">
+                        </superficie>
+                    </div>
+
+
                     </div>
                 </div>
             </div>

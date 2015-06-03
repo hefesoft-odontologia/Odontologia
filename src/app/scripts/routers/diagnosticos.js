@@ -30,7 +30,8 @@ function routesDiagnosticos($stateProvider, $ocLazyLoadProvider){
         fileInputDependencies(),
         azureDependencies(),
         cieCupsDependencies(),
-        fontDependencies()
+        fontDependencies(),
+        odontogramaDependencies()
       ]);
    }
 

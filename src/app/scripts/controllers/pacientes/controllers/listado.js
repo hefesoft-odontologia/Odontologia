@@ -16,6 +16,11 @@
 	var usuario = users.getCurrentUser();	
 	//validarNavegacionService.validarCaptcha();
 
+	$scope.navegarAdjuntos = function(item){
+		$scope.Paciente = item;
+		varsFactoryService.fijarPaciente(item.RowKey);		
+		$state.go("app.gallery");		
+	}
 
 	$scope.navegarOdontograma = function(item){
 		$scope.Paciente = item;

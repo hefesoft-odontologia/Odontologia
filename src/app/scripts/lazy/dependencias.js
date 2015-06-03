@@ -20,7 +20,7 @@ function wizardDependencies(){
 }
 
 function diagnosticosDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "odontologiaApp",
         cache: true,
@@ -35,11 +35,11 @@ function diagnosticosDependencies(){
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function cieCupsDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "odontologiaApp",
         cache: true,
@@ -49,11 +49,11 @@ function cieCupsDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 function tratamientosDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "odontologiaApp",
         cache: true,
@@ -65,11 +65,11 @@ function tratamientosDependencies(){
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function procedimientosDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "odontologiaApp",
         cache: true,
@@ -82,11 +82,11 @@ function procedimientosDependencies(){
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function utilDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "Util",
         cache: true,
@@ -96,11 +96,11 @@ function utilDependencies(){
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function fileInputDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "Util",
         cache: true,
@@ -110,16 +110,16 @@ function fileInputDependencies(){
             "../bower_components/bootstrap-fileinput/css/fileinput.min.css",
             "../bower_components/bootstrap-fileinput/js/fileinput.min.js",
              "../bower_components/bootstrap-fileinput/js/fileinput_locale_es.js",
-            "app/lib/hefesoft.standard/Directivas/fileUpload/directivas/imageWidget.js"
-
+            "app/lib/hefesoft.standard/Directivas/fileUpload/directivas/imageWidget.js",
+            "app/lib/hefesoft.standard/Directivas/fileUpload/directivas/imageMultipleWidget.js"
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function odontogramaDependencies(){
-	var diagnosticos = 
+	var dependencias = 
 	{
         name : "odontologiaApp",
         cache: true,
@@ -133,15 +133,16 @@ function odontogramaDependencies(){
             "app/scripts/controllers/odontograma/filter/textoDientePermanenteTemporal.js",
             "app/scripts/controllers/odontograma/directivas/superficies/directiva/superficie.js",
             "app/scripts/controllers/odontograma/directivas/superficies/filter/simbolo.js",
-            "app/scripts/controllers/odontograma/directivas/superficies/filter/colorSuperficie.js"
+            "app/scripts/controllers/odontograma/directivas/superficies/filter/colorSuperficie.js",
+            "app/scripts/controllers/odontograma/directivas/superficies/controller/superficie.js"
         ]
  	}
 
- 	return diagnosticos;
+ 	return dependencias;
 }
 
 function pacienteDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "odontologiaApp",
         cache: true,
@@ -149,15 +150,17 @@ function pacienteDependencies(){
         [            
             "app/scripts/controllers/pacientes/controllers/listado.js",
             "app/scripts/controllers/pacientes/services/inicializarListado.js",
-            "app/lib/hefesoft.standard/Directivas/Date-Picker/Directiva/datePicker.js"      
+            "app/lib/hefesoft.standard/Directivas/Date-Picker/Directiva/datePicker.js",
+            "app/scripts/controllers/pacientes/controllers/listado.js",
+            "app/lib/hefesoft.standard/Fixes/fixes.js"     
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 function formulaMedicaDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "odontologiaApp",
         cache: true,
@@ -169,11 +172,11 @@ function formulaMedicaDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 function azureDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "azure",
         cache: true,
@@ -187,12 +190,12 @@ function azureDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 
 function authDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "azure",
         cache: true,
@@ -208,11 +211,11 @@ function authDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 function stripeDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "Stripe",
         cache: true,
@@ -227,11 +230,11 @@ function stripeDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
 }
 
 function fontDependencies(){
-    var diagnosticos = 
+    var dependencias = 
     {
         name : "odontologiaApp",
         cache: true,
@@ -241,5 +244,24 @@ function fontDependencies(){
         ]
     }
 
-    return diagnosticos;
+    return dependencias;
+}
+
+function galleryDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie : true,
+        files: 
+        [
+            "../bower_components/angular-touch/angular-touch.min.js",
+            "../bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css",
+            "../bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js",
+            "app/lib/hefesoft.standard/Directivas/gallery/controller/list.js",
+            "app/lib/hefesoft.standard/Directivas/gallery/controller/add.js"
+        ]
+    }
+
+    return dependencias;
 }
