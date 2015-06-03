@@ -265,3 +265,36 @@ function galleryDependencies(){
 
     return dependencias;
 }
+
+function importIoDependencies(){
+    var dependencias = 
+    {
+        name : "importIo",
+        cache: true,        
+        files: 
+        [
+            "app/lib/hefesoft.standard/import.io/services/read.js"            
+        ]
+    }
+
+    return dependencias;
+}
+
+
+function newsDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,        
+        files: 
+        [
+            "app/scripts/controllers/Noticias/Controllers/odontologos.com.co.js",
+            "app/scripts/controllers/Noticias/Directivas/directive/odontologos.com.co.js",
+            "app/lib/hefesoft.standard/Directivas/nhRef/nhref.js"
+            
+        ]
+    }
+
+    return dependencias;
+}
+

@@ -11,3 +11,4 @@ angular.module('W8', []);
 angular.module('Upload', []);
 angular.module('Util', []);
 angular.module('providers', []);
+angular.module('importIo', []);

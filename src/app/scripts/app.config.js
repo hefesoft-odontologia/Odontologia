@@ -35,9 +35,23 @@ angular
         cache: false,
         views: {
             'menuContent': {
-                templateUrl: "app/views/main.html"
+                templateUrl: "app/views/main.html",
+                resolve :{
+                 controller : function($ocLazyLoad){
+                   return cargarMain($ocLazyLoad)
+                 }
+              }  
             }       
-            }
-      })
+          }
+      });
+
+   function cargarMain($ocLazyLoad){
+      return $ocLazyLoad.load
+      ([
+          newsDependencies(),
+          importIoDependencies()
+      ]);
+   }
+
    
   }])
