@@ -6,10 +6,25 @@ directive('superficie', function(){
    directiva.restrict = 'E';
 
    directiva.link = function(scope, element, attrs, ngModelCtrl) {
+
+    //cuando el valor cambia desde el modelo
+    /*
+    ngModelCtrl[0].$render = function(){
+      if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
+         var valor = ngModelCtrl[0].$viewValue;
+         scope.color = valor.color;
+         
+       }
+     }
+     */
+
+     //cambio de valor desde la directiva
+     //ngModelCtrl[0].$setViewValue(e);
       
    };
    
    directiva.scope = {
+      source : '=',
       color : '=',
       simbolo : '=',
       fuente : '=',

@@ -12,14 +12,19 @@ Hefesot.aListado = function(listado){
   }
 
 Hefesot.convertirListasAString = function(item){
-    for (var i in item)
-    {
-        var n = i.indexOf("arrayHefesoft");
-        var m = i.indexOf("objectHefesoft");
+    try{
+        for (var i in item)
+        {
+            var n = i.indexOf("arrayHefesoft");
+            var m = i.indexOf("objectHefesoft");
 
-        if(n >=0 || m >=0){
-            item[i] = JSON.stringify(item[i]);
-        }          
+            if(n >=0 || m >=0){
+                item[i] = JSON.stringify(item[i]);
+            }          
+        }
+    }
+    catch(ex){
+        throw('error al convertir array hefesoft');
     }
 
     return item;
