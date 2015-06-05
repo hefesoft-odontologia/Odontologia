@@ -8,7 +8,7 @@
   	function inicializar(){
       dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
       .success(function(data){          
-          $scope.Listado = data;        
+          $scope.Listado = data;
         }).error(function(error){
           console.log(error);          
         })
@@ -77,6 +77,10 @@
   };
  /*****************************************************/
 
-  	inicializar();
+ $scope.clickMenu = function(i, item){
+    
+ }
+ 
+  inicializar();
 
-  }])
+}])

@@ -298,3 +298,20 @@ function newsDependencies(){
     return dependencias;
 }
 
+function drillDownDependencies(){
+    var dependencias = 
+    {
+        name : "directivas",
+        cache: true,        
+        files: 
+        [
+            "app/lib/hefesoft.standard/Directivas/drillDown/controller/drillDownCtrl.js",
+            "app/lib/hefesoft.standard/Directivas/drillDown/directive/directive.js"            
+        ]
+    }
+
+    return dependencias;
+}
+
+
+

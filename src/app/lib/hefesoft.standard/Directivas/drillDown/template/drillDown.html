@@ -1,0 +1,13 @@
+ <ul>
+    <li ng-show="parentLevel">
+	    <a ng-click='getBack()'  href='#'>
+	    	<b>{{ parentLevel[title] }}...</b>
+	    </a>
+    </li>
+    <li ng-repeat="source in currentLevel">
+    	<a 
+	    	ng-click='displayNextLevel($index, source)' 
+	    	href='#'>{{ source[title] }}
+    	</a>
+    </li>
+  </ul>
