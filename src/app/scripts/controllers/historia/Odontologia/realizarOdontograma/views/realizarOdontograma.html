@@ -1,0 +1,19 @@
+<div ng-controller="realizarOdontogramaCtrl">
+	<div class="row">
+		
+		 <div class="col-sm-2">
+		 	<h3>Diagnosticos</h3>
+			<drill-down 
+				source="Diagnosticos" 
+				objeto-array="'arrayHefesoftTratamientos'" 
+				title="'nombre'">
+			</drill-down>
+		</div>
+
+		<div class="col-sm-8">			
+			<odontograma></odontograma>
+		</div>
+
+	</div>
+
+</div>

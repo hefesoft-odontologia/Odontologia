@@ -134,7 +134,9 @@ function odontogramaDependencies(){
             "app/scripts/controllers/odontograma/directivas/superficies/directiva/superficie.js",
             "app/scripts/controllers/odontograma/directivas/superficies/filter/simbolo.js",
             "app/scripts/controllers/odontograma/directivas/superficies/filter/colorSuperficie.js",
-            "app/scripts/controllers/odontograma/directivas/superficies/controller/superficie.js"
+            "app/scripts/controllers/odontograma/directivas/superficies/controller/superficie.js",
+            "app/scripts/controllers/odontograma/directivas/odontograma/directiva/odontograma.js"
+
         ]
  	}
 
@@ -312,6 +314,22 @@ function drillDownDependencies(){
 
     return dependencias;
 }
+
+function drillHistoria(){
+    var dependencias = 
+    {
+        name : "Historia",
+        cache: true,        
+        files: 
+        [
+            "app/scripts/controllers/historia/Odontologia/realizarOdontograma/controllers/realizarOdontograma.js"            
+        ]
+    }
+
+    return dependencias;
+}
+
+
 
 
 

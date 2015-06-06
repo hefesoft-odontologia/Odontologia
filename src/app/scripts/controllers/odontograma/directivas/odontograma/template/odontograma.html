@@ -1,0 +1,25 @@
+<div class="toggle-switch" data-ts-color="green">
+    <label 
+        for="ts2" 
+        class="ts-label">
+        {{piezasDentales.Permanente | textoDientePermanenteTemporal}}
+    </label>
+    <input 
+        id="ts2" 
+        type="checkbox" 
+        ng-model="piezasDentales.Permanente" hidden="hidden">
+    <label 
+        for="ts2" 
+        class="ts-helper">
+    </label>
+</div>
+
+</br>
+</br>
+</br>
+</br>
+
+<piezas-dentales 
+    	permanente="piezasDentales.Permanente" 
+    	ng-model="piezasDentales">
+</piezas-dentales>

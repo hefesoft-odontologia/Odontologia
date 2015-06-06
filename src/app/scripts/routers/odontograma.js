@@ -8,8 +8,7 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
         cache: false,
         views: {
             'menuContent': {
-                templateUrl: "app/scripts/controllers/odontograma/views/odontograma.html",
-                controller: 'odontogramaCtrl',
+                templateUrl: "app/scripts/controllers/historia/Odontologia/realizarOdontograma/views/realizarOdontograma.html",                
                 resolve :{
                    controller : function($ocLazyLoad){
                      return cargarOdontograma($ocLazyLoad)
@@ -23,8 +22,9 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
       return $ocLazyLoad.load
       ([
           odontogramaDependencies(),
-          azureDependencies()
+          azureDependencies(),
+          drillDownDependencies(),
+          drillHistoria()
       ]);
    }
-
 }

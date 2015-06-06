@@ -31,8 +31,7 @@ function routesDiagnosticos($stateProvider, $ocLazyLoadProvider){
         azureDependencies(),
         cieCupsDependencies(),
         fontDependencies(),
-        odontogramaDependencies(),
-        drillDownDependencies()
+        odontogramaDependencies()        
       ]);
    }
 
