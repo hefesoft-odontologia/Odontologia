@@ -16,8 +16,9 @@ angular.module('directivas')
 
 	$scope.parentLevel = null;
 	$scope.history = [];
-	
-	$scope.displayNextLevel = function(i, item) {
+  }
+
+  $scope.displayNextLevel = function(i, item) {
 		$scope.parentLevel = $scope.currentLevel[i];
 		$scope.currentLevel = $scope.currentLevel[i][$scope.objetoArray];
 		$scope.history.push(i);
@@ -25,7 +26,7 @@ angular.module('directivas')
 		$scope.$parent.clickMenu(i, item);		
 	}
 	
-		$scope.getBack = function() {
+  $scope.getBack = function() {
 		var historyLevel = angular.copy($scope.source);
 		var parentLevel;
 		for (var j = 0; j < $scope.history.length - 1; j++) {
@@ -35,6 +36,6 @@ angular.module('directivas')
 		$scope.currentLevel = historyLevel;
 		$scope.parentLevel = parentLevel;
 		$scope.history.pop();
-	}
   }
+
 });
