@@ -1,15 +1,20 @@
 angular.module('directivas').
-directive('piezaDental', function(){
+directive('piezaDental', function($parse){
 
    var directiva = {};
+   var fn;
+   
    directiva.require = ['ngModel'];
    directiva.restrict = 'E';
 
 
    directiva.link = function(scope, element, attrs, ngModelCtrl) {
 
-    scope.item = {};
-    scope.item.centro = {};
+    
+    var existClick = attrs['clickSuperficie'];
+    if(angular.isDefined(existClick)){
+      fn = $parse(attrs['clickSuperficie']);
+    }
 
   	ngModelCtrl[0].$render = function(){
         if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -18,8 +23,17 @@ directive('piezaDental', function(){
     		
       }
      }
+
+    scope.clickSuperficie = function(e){
+      var funcion = fn;
+      if(angular.isDefined(funcion)){
+        fn(scope.$parent,{'superficie' :e});
+      }
+    }
+
    };
-   
+
+      
    directiva.scope = {
       source : '='
    };   

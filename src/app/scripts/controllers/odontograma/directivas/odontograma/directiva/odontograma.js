@@ -7,6 +7,11 @@ directive('odontograma', [function () {
 			
 	}
 
+	directiva.scope = {
+		diagnosticoSeleccionado : "=",
+		tratamientoSeleccionado : "="
+	};
+
 	directiva.templateUrl = "app/scripts/controllers/odontograma/directivas/odontograma/template/odontograma.html";
 	directiva.controller = "odontogramaCtrl";
 

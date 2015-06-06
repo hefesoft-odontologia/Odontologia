@@ -21,7 +21,11 @@
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte1' | filter: textoBuscar">
-		<pieza-dental source="n" ng-model="n"></pieza-dental>
+		<pieza-dental 
+			ng-click="clickPiezaDental(n)" 
+			source="n" 
+			ng-model="n">
+		</pieza-dental>
 	</div>	
 </div>
 
@@ -29,7 +33,11 @@
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte2' | filter: textoBuscar">
-		<pieza-dental source="n" ng-model="n"></pieza-dental>
+		<pieza-dental 
+			ng-click="clickPiezaDental(n)" 
+			source="n" 
+			ng-model="n">
+		</pieza-dental>
 	</div>	
 </div>
 
@@ -37,7 +45,11 @@
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte3' | filter: textoBuscar">
-		<pieza-dental source="n" ng-model="n"></pieza-dental>
+		<pieza-dental 
+			ng-click="clickPiezaDental(n)" 
+			source="n" 
+			ng-model="n">
+		</pieza-dental>
 	</div>	
 </div>
 
@@ -45,6 +57,10 @@
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte4' | filter: textoBuscar">
-		<pieza-dental source="n" ng-model="n"></pieza-dental>
+		<pieza-dental 
+			ng-click="clickPiezaDental(n)" 
+			source="n" 
+			ng-model="n">
+		</pieza-dental>
 	</div>	
 </div>

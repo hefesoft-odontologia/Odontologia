@@ -24,7 +24,7 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
           odontogramaDependencies(),
           azureDependencies(),
           drillDownDependencies(),
-          drillHistoria()
+          historiaDependencies()
       ]);
    }
 }
