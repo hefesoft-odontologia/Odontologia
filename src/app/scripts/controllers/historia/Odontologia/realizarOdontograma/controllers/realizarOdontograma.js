@@ -7,6 +7,7 @@ angular.module('Historia')
 	$scope.tratamientoSeleccionado = {};
 
 	$scope.listadoTratamientosPorPiezaDental = [];
+	$scope.listadoProcedimientosPorPiezaDental = [];
 
 	function inicializarDatos(){
 		dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
@@ -26,6 +27,15 @@ angular.module('Historia')
  	$scope.fijarPiezaDental = function(item){
  		var listadoTratamientos = tratamientoServices.extraerTratamientos(item);
  		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos; 
+ 	}
+
+ 	$scope.eliminar = function(item, index){
+ 		console.log(item);
+ 	}
+
+ 	//Se dispara cuando un tratamiento se selecciona
+ 	$scope.tratamientoSeleccionada = function(e){
+ 		$scope.listadoProcedimientosPorPiezaDental = e;
  	}
 
  	function fijarDiagnosticoSeleccionado(item){

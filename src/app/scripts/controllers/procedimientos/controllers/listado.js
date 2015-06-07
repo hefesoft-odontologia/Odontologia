@@ -42,5 +42,10 @@ angular.module('odontologiaApp')
 
 	  $scope.eliminar = function(item, $index){
 	  	$scope.tratamientoSeleccionado.arrayHefesoftProcedimientos.splice($index, 1);
+
+	  	if(angular.isDefined(scope.fnEliminar)){
+       	 	scope.fnEliminar($scope.$parent, { 'item' : item, "index" : $index });
+       	}
+
 	  }
 }])

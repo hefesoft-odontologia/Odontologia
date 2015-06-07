@@ -8,7 +8,11 @@
 
     	//Aca llega diagnosticoSeleccionado $scope.diagnosticoSeleccionado     
        $scope.selected = function(item){
-       	 $scope.tratamientoSeleccionado = item;       	 
+       	 $scope.tratamientoSeleccionado = item;
+
+       	 if(angular.isDefined($scope.fnEdit)){
+       	 	$scope.fnEdit($scope.$parent, { 'item' : item });
+       	 }
        }
 
        /**************** Tratamientos *****************************/
@@ -47,7 +51,6 @@
 	  $scope.eliminar = function(data, $index){	      
 	      $scope.diagnosticoSeleccionado.arrayHefesoftTratamientos.splice($index, 1);	      	      
       }
-
 
 
 	  inicializarElementos();
