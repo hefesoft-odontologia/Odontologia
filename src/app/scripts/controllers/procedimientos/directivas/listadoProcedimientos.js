@@ -15,7 +15,8 @@ angular.module('odontologiaApp')
 		controller: 'listadoProcedimientosCtrl',
 		templateUrl : 'app/scripts/controllers/procedimientos/views/listado.html',
 		scope:{
-			dxSeleccionado : '='
+			dxSeleccionado : '=',
+			ocultarAddProcedimiento : '='
 		}
 	};
 }])

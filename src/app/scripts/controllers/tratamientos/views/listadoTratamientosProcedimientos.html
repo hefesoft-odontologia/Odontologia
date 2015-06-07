@@ -1,13 +1,15 @@
 <div class="row">
     <div class="col-sm-4">
-        <listado-tratamientos ng-model="diagnosticoSeleccionado"></listado-tratamientos>
+        <listado-tratamientos 
+        ng-model="diagnosticoSeleccionado.arrayHefesoftTratamientos">
+        </listado-tratamientos>
     </div>
     
     <div class="col-sm-8">
        
         <listado-procedimientos 
-        dx-seleccionado="diagnosticoSeleccionado" 
-        ng-model="tratamientoSeleccionado">
+	        dx-seleccionado="diagnosticoSeleccionado" 
+	        ng-model="tratamientoSeleccionado">
         </listado-procedimientos>
         
     </div>

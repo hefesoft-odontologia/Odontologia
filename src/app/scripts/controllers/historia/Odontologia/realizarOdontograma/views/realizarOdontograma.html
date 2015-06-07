@@ -13,11 +13,30 @@
 		<div class="col-sm-8">			
 			<odontograma
 				diagnostico-seleccionado="diagnosticoSeleccionado"
-				tratamiento-seleccionado="tratamientoSeleccionado"
-			>				
+				tratamiento-seleccionado="tratamientoSeleccionado">				
 			</odontograma>
 		</div>
 
+	</div>
+
+	<div class="row">
+		<div class="col-sm-2">
+		</div>
+
+		<div class="col-sm-4">
+	        <listado-tratamientos
+	        	ocultar-add-tratamiento="'true'"
+	        	ng-model="listadoTratamientosPorPiezaDental">
+	        </listado-tratamientos>
+    	</div>
+    
+	    <div class="col-sm-6">	       
+	        <listado-procedimientos
+	        	ocultar-add-procedimiento="'true'"
+		        ng-model="tratamientoSeleccionado">
+	        </listado-procedimientos>
+	        
+	    </div>
 	</div>
 
 </div>

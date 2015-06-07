@@ -1,9 +1,11 @@
  <div class="card">
     <div class="listview lv-bordered lv-lg">
           <div class="card-header ch-alt m-b-20">
-            <h2>Tratamientos <small> Listado de tratamientos </small></h2>                    
+            <h2>Tratamientos 
+            <small> Listado de tratamientos </small></h2>                    
             
-            <button ng-click="openTratamiento()" 
+            <button ng-click="openTratamiento()"
+                    ng-hide="ocultarAddTratamiento"
                     class="btn bgm-cyan btn-float waves-effect waves-button waves-float">
                     <i class="md md-add"></i>
             </button>

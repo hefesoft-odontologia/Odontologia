@@ -1,10 +1,12 @@
 angular.module('Historia')
-.controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 
-	function ($scope, dataTableStorageFactory) {
+.controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 'tratamientoServices',
+	function ($scope, dataTableStorageFactory, tratamientoServices) {
 
 	$scope.Diagnosticos = [];
 	$scope.diagnosticoSeleccionado = {};
 	$scope.tratamientoSeleccionado = {};
+
+	$scope.listadoTratamientosPorPiezaDental = [];
 
 	function inicializarDatos(){
 		dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
@@ -19,6 +21,11 @@ angular.module('Historia')
 	$scope.clickMenu = function(i, item){
 		fijarDiagnosticoSeleccionado(item);
 		fijarTratamientoSeleccionado(item)
+ 	}
+
+ 	$scope.fijarPiezaDental = function(item){
+ 		var listadoTratamientos = tratamientoServices.extraerTratamientos(item);
+ 		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos; 
  	}
 
  	function fijarDiagnosticoSeleccionado(item){

@@ -3,6 +3,9 @@
     function ($scope, $modal, dataTableStorageFactory, messageService) {
 
 
+    	$scope.diagnosticoSeleccionado = {};
+    	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = [];
+
     	//Aca llega diagnosticoSeleccionado $scope.diagnosticoSeleccionado     
        $scope.selected = function(item){
        	 $scope.tratamientoSeleccionado = item;       	 
@@ -30,6 +33,9 @@
 	      });
 	  };
 
+	  $scope.inicializarElementos = function(elementos){	  	
+	  	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = elementos;
+	  }
 
 	  function inicializarElementos(){
 	  	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = Hefesot.aListado($scope.diagnosticoSeleccionado.arrayHefesoftTratamientos);
@@ -40,7 +46,9 @@
 
 	  $scope.eliminar = function(data, $index){	      
 	      $scope.diagnosticoSeleccionado.arrayHefesoftTratamientos.splice($index, 1);	      	      
-      }    
+      }
+
+
 
 	  inicializarElementos();
 

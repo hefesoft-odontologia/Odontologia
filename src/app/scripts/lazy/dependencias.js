@@ -11,8 +11,6 @@ function wizardDependencies(){
             "app/scripts/controllers/tratamientos/directivas/wizardSimbolo/controller/wizardSimbolo.js",
             "app/scripts/controllers/tratamientos/directivas/wizardSimbolo/directiva/simbolo.js",
             "app/scripts/controllers/tratamientos/directivas/wizardSimbolo/directiva/wizardSimbolo.js"
-
-
         ]
  	}
 
@@ -61,7 +59,8 @@ function tratamientosDependencies(){
         [
             "app/scripts/controllers/tratamientos/controllers/listadoTratamientos.js", 
             "app/scripts/controllers/tratamientos/controllers/addTratamiento.js",
-            "app/scripts/controllers/tratamientos/directivas/listado.js"            
+            "app/scripts/controllers/tratamientos/directivas/listado.js",
+            "app/scripts/controllers/tratamientos/services/extraerTratamientos.js"
         ]
  	}
 

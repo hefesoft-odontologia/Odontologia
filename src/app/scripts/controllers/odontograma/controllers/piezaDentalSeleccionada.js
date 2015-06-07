@@ -3,6 +3,7 @@ angular.module('odontologiaApp')
 	function ($scope, $modalInstance, diagnostico, tratamiento, piezaDental) {
 
 	$scope.piezaDental = piezaDental;
+	
 
 	 /* 
 	 	Se le agregan a la superficie seleccionada los procedimientos y tratamientos

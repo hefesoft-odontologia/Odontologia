@@ -21,14 +21,21 @@
 
             <div class="form-group">
                 <div class="fg-line">
-                    <input type="text" name="nombre" class="form-control" placeholder="Nombre" ng-model="Diagnostico.nombre" required>
+                    <input type="text" 
+                    name="nombre" 
+                    class="form-control" 
+                    placeholder="Nombre" 
+                    ng-model="Diagnostico.nombre" 
+                    required>
                 </div>
             </div>
             
 
             <div class="checkbox m-b-15">
                 <label>
-                    <input type="checkbox" ng-model="Diagnostico.activo" ng-checked="Diagnostico.activo">
+                    <input type="checkbox"
+                    ng-model="Diagnostico.activo"
+                    ng-checked="Diagnostico.activo">
                     <i class="input-helper"></i>
                     Activo
                 </label>
@@ -40,9 +47,8 @@
                     <div class="select">
                        <select 
                             class="form-control" 
-                            ng-model="Diagnostico.objectHefesoftTipo"                            
-                            ng-options="tipo.nombre for tipo in Tipo"                           
-                            >
+                            ng-model="Diagnostico.objectHefesoftTipo"
+                            ng-options="tipo.nombre for tipo in Tipo">
                         </select>
                     </div>
                 </div>

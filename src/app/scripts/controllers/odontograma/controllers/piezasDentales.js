@@ -2,14 +2,23 @@ angular.module('odontologiaApp')
 .controller('piezasDentalesCtrl', ['$scope', 'odontogramaJsonServices', '$modal', 
 	function ($scope, odontogramaJsonServices, $modal) {
 
-	$scope.listado = [];
+	$scope.listado = [];	
+	$scope.tratamientoPiezaDental = [];
 
+
+	/* Elementos seleccionado del menu lateral */
 	$scope.clickPiezaDental = function(item){
 		var diagnosticoSeleccionado = $scope.$parent.diagnosticoSeleccionado;
 		var tratamientoSeleccionado = $scope.$parent.tratamientoSeleccionado;
+		
 		var piezaSeleccionada = item;
 		mostrarModalSeleccionado(piezaSeleccionada,diagnosticoSeleccionado, tratamientoSeleccionado);
+
+		//validar si es mejor cambiar por broadcast
+		$scope.$parent.$parent.fijarPiezaDental(item);
 	}
+
+	
 
 	function inicializar(){
 	 odontogramaJsonServices.obtenerOdontogramaBase().then(success);
