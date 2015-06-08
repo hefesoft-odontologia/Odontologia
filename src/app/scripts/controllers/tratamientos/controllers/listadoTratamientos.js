@@ -1,16 +1,14 @@
   angular.module('odontologiaApp')
   .controller('listadoTratamientosCtrl', ['$scope', '$modal', 'dataTableStorageFactory', 'messageService', 
     function ($scope, $modal, dataTableStorageFactory, messageService) {
-
-
-    	$scope.diagnosticoSeleccionado = {};
-    	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = [];
+    	
+    	$scope.listado = [];
 
     	//Aca llega diagnosticoSeleccionado $scope.diagnosticoSeleccionado     
        $scope.selected = function(item){
        	 $scope.tratamientoSeleccionado = item;
 
-       	 if(angular.isDefined($scope.fnEdit)){
+       	 if(angular.isDefined($scope.fnEdit) && angular.isFunction($scope.fnEdit)){
        	 	$scope.fnEdit($scope.$parent, { 'item' : item });
        	 }
        }
@@ -23,8 +21,8 @@
 	        controller: 'AddTratamientoCtrl',
 	        size: size,
 	        resolve: {
-	          dxSeleccionado : function () {
-	            return $scope.diagnosticoSeleccionado;
+	          listado : function () {
+	            return $scope.listado;
 	          }
 	        }
 	      });
@@ -33,26 +31,19 @@
 	        $scope.selected = selectedItem;
 	      }, 
 	      function (data) {	      	
-	       	inicializarElementos();
+	       
 	      });
 	  };
 
 	  $scope.inicializarElementos = function(elementos){	  	
-	  	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = elementos;
+	  	$scope.listado = Hefesot.aListado(elementos);
 	  }
 
-	  function inicializarElementos(){
-	  	$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = Hefesot.aListado($scope.diagnosticoSeleccionado.arrayHefesoftTratamientos);
-	  	if(angular.isUndefined($scope.diagnosticoSeleccionado.arrayHefesoftTratamientos)){
-	  		$scope.diagnosticoSeleccionado.arrayHefesoftTratamientos = [];
-	  	}	  
-	  }
+	  $scope.eliminar = function(item, $index){	      
+	    $scope.listado.splice($index, 1);
 
-	  $scope.eliminar = function(data, $index){	      
-	      $scope.diagnosticoSeleccionado.arrayHefesoftTratamientos.splice($index, 1);	      	      
+	    if(angular.isDefined($scope.fnEliminar) && angular.isFunction($scope.fnEliminar)){
+	   	 	$scope.fnEliminar($scope.$parent, { 'item' : item, "index" : $index });
+	   	}	      	      
       }
-
-
-	  inicializarElementos();
-
-  }])
+}])

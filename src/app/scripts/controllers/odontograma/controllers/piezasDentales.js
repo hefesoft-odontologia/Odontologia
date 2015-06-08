@@ -4,21 +4,30 @@ angular.module('odontologiaApp')
 
 	$scope.listado = [];	
 	$scope.tratamientoPiezaDental = [];
+	$scope.piezaSeleccionada = {};
 
+	$scope.dynamicPopover = {
+	    content: 'Hello, World!',
+	    templateUrl: 'myPopoverTemplate.html',
+	    title: 'Title'
+	};
 
-	/* Elementos seleccionado del menu lateral */
-	$scope.clickPiezaDental = function(item){
-		var diagnosticoSeleccionado = $scope.$parent.diagnosticoSeleccionado;
-		var tratamientoSeleccionado = $scope.$parent.tratamientoSeleccionado;
-		
-		var piezaSeleccionada = item;
-		mostrarModalSeleccionado(piezaSeleccionada,diagnosticoSeleccionado, tratamientoSeleccionado);
+	$scope.seleccionar = function(item){
+		$scope.piezaSeleccionada = item;
 
 		//validar si es mejor cambiar por broadcast
 		$scope.$parent.$parent.fijarPiezaDental(item);
 	}
 
-	
+	/* Elementos seleccionado del menu lateral */
+	$scope.clickPiezaDental = function(){
+		var piezaSeleccionada = $scope.piezaSeleccionada;
+		var diagnosticoSeleccionado = $scope.$parent.diagnosticoSeleccionado;
+		var tratamientoSeleccionado = $scope.$parent.tratamientoSeleccionado;
+				
+		hidePopOver();
+		mostrarModalSeleccionado(piezaSeleccionada,diagnosticoSeleccionado, tratamientoSeleccionado);
+	}
 
 	function inicializar(){
 	 odontogramaJsonServices.obtenerOdontogramaBase().then(success);
@@ -47,6 +56,11 @@ angular.module('odontologiaApp')
 	          }
 	        }
 	      });
+	}
+
+	//Oculta todos los pop over abiertos
+	function hidePopOver(){
+		$('.popover').hide();
 	}
 
 	inicializar();

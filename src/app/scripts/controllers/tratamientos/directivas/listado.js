@@ -10,6 +10,11 @@
           scope.fnEdit = $parse(attrs['seleccionadoCallback']);
        }
 
+       existClick = attrs['eliminarCallback'];
+       if(angular.isDefined(existClick)){
+          scope.fnEliminar = $parse(attrs['eliminarCallback']);
+       }
+
        var cargarTratamiento = scope.inicializarElementos;
        ngModelCtrl[0].$render = function(){
        if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -21,7 +26,9 @@
   		controller : 'listadoTratamientosCtrl',
   		templateUrl : 'app/scripts/controllers/tratamientos/views/listado.html',
       scope:{
-        ocultarAddTratamiento : '='
+        ocultarAddTratamiento : '=',
+        editable : '=',
+        verSuperficies: '='
       }
   	};
   }])

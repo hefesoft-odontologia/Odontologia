@@ -1,6 +1,6 @@
   angular.module('odontologiaApp')
-  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService',  '$modalInstance', 'dxSeleccionado',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  $modalInstance, dxSeleccionado) {
+  .controller('AddTratamientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService',  '$modalInstance', 'listado',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  $modalInstance, listado) {
 
     var esNuevo = true;
     $scope.Tratamiento = {};
@@ -13,7 +13,7 @@
 
 
    function agregarTratamiento(item){    
-     dxSeleccionado.arrayHefesoftTratamientos.push(item);     
+     listado.push(item);     
      $modalInstance.dismiss(); 
    }
 

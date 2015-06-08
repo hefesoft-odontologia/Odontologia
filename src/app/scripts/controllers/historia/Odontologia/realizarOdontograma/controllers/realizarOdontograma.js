@@ -1,11 +1,13 @@
 angular.module('Historia')
 .controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 'tratamientoServices',
 	function ($scope, dataTableStorageFactory, tratamientoServices) {
+	var Hefesoft  = window.Hefesot;
 
 	$scope.Diagnosticos = [];
 	$scope.diagnosticoSeleccionado = {};
 	$scope.tratamientoSeleccionado = {};
 
+	$scope.PiezaSeleccionada;
 	$scope.listadoTratamientosPorPiezaDental = [];
 	$scope.listadoProcedimientosPorPiezaDental = [];
 
@@ -18,15 +20,31 @@ angular.module('Historia')
         })
 	}
 
+	$scope.procedimientoEliminado = function(item){
+		console.log(item);
+	}
+
+	$scope.tratamientoEliminado = function(item){
+		var nombrePropiedad = item.superficie + '_arrayHefesoft';		
+		Hefesoft.eliminar(item, $scope.listadoTratamientosPorPiezaDental);
+		Hefesoft.eliminar(item, $scope.PiezaSeleccionada[nombrePropiedad]);
+		console.log(item);
+	}
+
 	//click sobre el drill down de diagnosticos
 	$scope.clickMenu = function(i, item){
 		fijarDiagnosticoSeleccionado(item);
 		fijarTratamientoSeleccionado(item)
  	}
 
+ 	//Ocurre cuando se hace click sobre  una pieza dental
  	$scope.fijarPiezaDental = function(item){
+ 		$scope.PiezaSeleccionada = item;
  		var listadoTratamientos = tratamientoServices.extraerTratamientos(item);
- 		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos; 
+ 		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos;
+
+ 		//Limpia el listado de los procedimientos
+ 		$scope.listadoProcedimientosPorPiezaDental = [];
  	}
 
  	$scope.eliminar = function(item, index){

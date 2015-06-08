@@ -21,8 +21,12 @@
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte1' | filter: textoBuscar">
-		<pieza-dental 
-			ng-click="clickPiezaDental(n)" 
+
+		<pieza-dental
+			ng-click ="seleccionar(n)"
+			popover-template="dynamicPopover.templateUrl" 
+			popover-title="{{dynamicPopover.title}}"
+			popover-trigger="click"			 
 			source="n" 
 			ng-model="n">
 		</pieza-dental>
@@ -34,7 +38,7 @@
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte2' | filter: textoBuscar">
 		<pieza-dental 
-			ng-click="clickPiezaDental(n)" 
+			ng-click="seleccionar(n)" 
 			source="n" 
 			ng-model="n">
 		</pieza-dental>
@@ -46,7 +50,7 @@
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte3' | filter: textoBuscar">
 		<pieza-dental 
-			ng-click="clickPiezaDental(n)" 
+			ng-click="seleccionar(n)" 
 			source="n" 
 			ng-model="n">
 		</pieza-dental>
@@ -58,9 +62,24 @@
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte4' | filter: textoBuscar">
 		<pieza-dental 
-			ng-click="clickPiezaDental(n)" 
+			ng-click="seleccionar(n)" 
 			source="n" 
 			ng-model="n">
 		</pieza-dental>
 	</div>	
 </div>
+
+
+
+<script type="text/ng-template" id="myPopoverTemplate.html">
+    <div>{{dynamicPopover.content}}</div>
+    <div class="form-group">
+      <label>Popup Title:</label>
+      <input type="text" ng-model="dynamicPopover.title" class="form-control">
+      <button        
+        ng-click="clickPiezaDental()" 
+        class="btn btn-info btn-sm waves-effect waves-button waves-float">
+            Seleccionar
+        </button>
+    </div>
+</script>

@@ -2,11 +2,10 @@ window.Hefesot = {};
 var Hefesoft  = window.Hefesot;
 
 Hefesot.aListado = function(listado){
-  	 var esString = (!angular.isUndefined(listado) && listado !== null && typeof listado === 'string');
-
-  	 if(esString){
-  	 	listado = JSON.parse(listado);
-  	 }
+  	 
+    if(angular.isString(listado)){
+        listado = validarYaEsObjeto(listado);
+    }
 
   	 return listado;
   }
@@ -96,6 +95,19 @@ Hefesot.listTostring = function(elemento, method){
 Hefesot.random = function(){
     var rString = random(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     return rString;    
+}
+
+// Elemento a eliminar array del que se eliminara
+Hefesoft.eliminar = function(item, array){
+
+    if(angular.isDefined(item) && angular.isDefined(array) && angular.isObject(item) && angular.isArray(array)){
+
+        var index = array.indexOf(item);
+
+        if (index > -1) {
+            array.splice(index, 1);
+        }
+    }
 }
 
 function random(length, chars) {

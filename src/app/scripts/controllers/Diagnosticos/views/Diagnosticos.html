@@ -27,8 +27,26 @@
                                 <i class="input-helper"></i>                                                                
                             </td>
                             <td>{{item.objectHefesoftTipo.nombre}}</td>
-                            <td>{{item.simboloDiagnostico}}</td>
-                            <td>{{item.simboloEvolucion}}</td>
+                            <td>                                
+                              <superficie
+                                ng-model='item.objectHefesoftDiagnostico'
+                                class="wizarSimboloPrev"
+                                simbolo="item.objectHefesoftDiagnostico.simbolo"
+                                fuente="item.objectHefesoftDiagnostico.fuente"
+                                path-imagen="item.objectHefesoftDiagnostico.pathImagen"
+                                color="item.objectHefesoftDiagnostico.color">
+                              </superficie>
+                            </td>
+                            <td>
+                            <superficie
+                                ng-model='item.objectHefesoftEvolucion'
+                                class="wizarSimboloPrev"
+                                simbolo="item.objectHefesoftEvolucion.simbolo"
+                                fuente="item.objectHefesoftEvolucion.fuente"
+                                path-imagen="item.objectHefesoftEvolucion.pathImagen"
+                                color="item.objectHefesoftEvolucion.color">
+                              </superficie>
+                            </td>
                             <td>{{item.idiceCie}}</td>
 
                             <td>

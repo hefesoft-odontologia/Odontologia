@@ -1,6 +1,6 @@
   angular.module('odontologiaApp')
-  .controller('AddProcedimientoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'tratamientoSeleccionado', 'seleccionado', '$modalInstance', 'dxSeleccionado',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService, tratamientoSeleccionado, seleccionado, $modalInstance, dxSeleccionado) {
+  .controller('AddProcedimientoCtrl', ['$scope', 'CieCupsServices', 'dataTableStorageFactory', 'messageService', '$modalInstance', 'listado', 'seleccionado',
+    function ($scope, CieCupsServices, dataTableStorageFactory, messageService, $modalInstance, listado, seleccionado) {
 
     var esNuevo = true;
     $scope.Procedimiento = {};
@@ -16,31 +16,10 @@
 
    $scope.adicionar = function(){
    	 var data = $scope.Procedimiento;     
-     agregarProcedimientos(data);
+     listado.push(data);     
+     $modalInstance.close();
    }
-
-    function agregarProcedimientos(item){
-     if(angular.isUndefined(tratamientoSeleccionado.arrayHefesoftProcedimientos)){
-        tratamientoSeleccionado.arrayHefesoftProcedimientos = [];
-     }
-
-     //Se agrega el procedimiento al treatamiento seleccionado
-     tratamientoSeleccionado.arrayHefesoftProcedimientos.push(item);
-     sumar(tratamientoSeleccionado);
-     $modalInstance.dismiss();     
-   }
-
-   function sumar(data){
-      var valor = 0;
-      for (var i = data.arrayHefesoftProcedimientos.length - 1; i >= 0; i--) {
-         //Decimal con 2 decimales
-         valor = parseFloat(valor) + parseFloat(data.arrayHefesoftProcedimientos[i].valor); 
-         valor = valor.toFixed(2);
-      };
-
-      data.valor = valor;
-   }
-
+    
     function inicializar(){
      CieCupsServices.listadoCup().then(success, error);
    }

@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th></th>
+                        <th ng-hide="editable"></th>
                         <th>Nombre de procedimiento</th>
                         <th>Especialidad</th>
                         <th>Indice de Cups</th>
@@ -23,12 +23,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in tratamientoSeleccionado.arrayHefesoftProcedimientos track by $index">
+                    <tr ng-repeat="item in listado track by $index">
                         <td>
                              <md-button ng-click="eliminar(item, $index)" class="md-delete"></md-button>
                         </td> 
-                        <td>
-                            <i class="md md-keyboard-arrow-right" ng-click="openProcedimientos('lg',item)">Editar</i>
+                        <td ng-hide="editable">
+                            <i 
+                                class="md md-keyboard-arrow-right" 
+                                ng-click="openProcedimientos('lg',item)">
+                                Editar
+                            </i>
                         </td>                      
                         <td>{{item.nombre}}</td>
                         <td>{{item.objectHefesoftEspecialidad.nombre}}</td>

@@ -2,6 +2,7 @@
   .controller('DxListadoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory',
     function ($scope, CieCupsServices, $modal, dataTableStorageFactory) {
 
+    var modalInstance;
     $scope.Listado = [];
     $scope.diagnosticoSeleccionado = {};
    
@@ -51,26 +52,26 @@
 
   /****************** Tratamientos pop up ******************/
   $scope.openTratamiento = function (size, seleccionado) {
-    $scope.diagnosticoSeleccionado = seleccionado;
-     var modalInstance = $modal.open({
-        animation: true,
-        templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
-        controller : 'listadoProcedimientosTratamientosCtrl',
-        size: size,
-        resolve: {
-          dxSeleccionado : function () {
-            return $scope.diagnosticoSeleccionado;
-          }
+      $scope.diagnosticoSeleccionado = seleccionado;
+      modalInstance = $modal.open({
+      animation: true,
+      templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
+      controller : 'listadoProcedimientosTratamientosCtrl',
+      size: size,
+      backdrop : 'static',
+      resolve: {
+        dxSeleccionado : function () {
+          return $scope.diagnosticoSeleccionado;
         }
-      });
+      }
+  });
 
-    modalInstance.result.then(function (selectedItem) {
-        $scope.selected = selectedItem;
-      }, 
-      function (data) {
-        dataTableStorageFactory.saveStorage($scope.diagnosticoSeleccionado);
-      });
+    modalInstance.result.then(closed);   
   };
+
+  function closed(data){    
+    dataTableStorageFactory.saveStorage($scope.diagnosticoSeleccionado);
+  }
 
   $scope.toggleAnimation = function () {
     $scope.animationsEnabled = !$scope.animationsEnabled;

@@ -25,7 +25,9 @@
 
 		<div class="col-sm-4">
 	        <listado-tratamientos
-	        	seleccionado-callback="tratamientoSeleccionada(item)"
+	        	ver-superficies="'true'"
+	        	eliminar-callback="tratamientoEliminado(item)"
+	        	seleccionado-callback="tratamientoSeleccionada(item)"	        	
 	        	ocultar-add-tratamiento="'true'"
 	        	ng-model="listadoTratamientosPorPiezaDental">
 	        </listado-tratamientos>
@@ -33,9 +35,11 @@
     
 	    <div class="col-sm-6">	       
 	        <listado-procedimientos
+	        	eliminar-callback="procedimientoEliminado(item)"
 	        	ocultar-add-procedimiento="'true'"
+	        	editable="'false'"
 	        	eliminar-callback="eliminar(item,index)"
-		        ng-model="listadoProcedimientosPorPiezaDental">
+		        ng-model="listadoProcedimientosPorPiezaDental.arrayHefesoftProcedimientos">
 	        </listado-procedimientos>
 	        
 	    </div>

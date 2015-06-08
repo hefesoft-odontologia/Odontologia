@@ -17,6 +17,11 @@ angular.module('odontologiaApp')
 	          scope.fnEliminar = $parse(attrs['eliminarCallback']);
 	       }
 
+	       existClick = attrs['adicionadoCallback'];
+	       if(angular.isDefined(existClick)){
+	          scope.fnAdicionado = $parse(attrs['adicionadoCallback']);
+	       }
+
 
 		   ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -29,7 +34,8 @@ angular.module('odontologiaApp')
 		templateUrl : 'app/scripts/controllers/procedimientos/views/listado.html',
 		scope:{
 			dxSeleccionado : '=',
-			ocultarAddProcedimiento : '='
+			ocultarAddProcedimiento : '=',
+			editable : '='
 		}
 	};
 }])
