@@ -10,6 +10,7 @@ angular.module('Historia')
 	$scope.PiezaSeleccionada;
 	$scope.listadoTratamientosPorPiezaDental = [];
 	$scope.listadoProcedimientosPorPiezaDental = [];
+	$scope.listadoDiagnosticos = [];
 
 	function inicializarDatos(){
 		dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
@@ -40,8 +41,8 @@ angular.module('Historia')
  	//Ocurre cuando se hace click sobre  una pieza dental
  	$scope.fijarPiezaDental = function(item){
  		$scope.PiezaSeleccionada = item;
- 		var listadoDiagnosticos = tratamientoServices.extraerDiagnosticos(item);
- 		var listadoTratamientos = tratamientoServices.extraerTratamientosDeDiagnosticos(listadoDiagnosticos);
+ 		$scope.listadoDiagnosticos = tratamientoServices.extraerDiagnosticos(item);
+ 		var listadoTratamientos = tratamientoServices.extraerTratamientosDeDiagnosticos($scope.listadoDiagnosticos);
  		
  		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos;
 

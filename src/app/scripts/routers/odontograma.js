@@ -21,6 +21,7 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
   function cargarOdontograma($ocLazyLoad){
       return $ocLazyLoad.load
       ([
+          diagnosticosDependencies(),
           odontogramaDependencies(),
           azureDependencies(),
           drillDownDependencies(),

@@ -24,26 +24,17 @@
 		<div class="col-sm-2">
 		</div>
 
-		<div class="col-sm-4">
-	        <listado-tratamientos
-	        	ver-superficies="'true'"
-	        	eliminar-callback="tratamientoEliminado(item)"
-	        	seleccionado-callback="tratamientoSeleccionada(item)"	        	
-	        	ocultar-add-tratamiento="'true'"
-	        	ng-model="listadoTratamientosPorPiezaDental">
-	        </listado-tratamientos>
-    	</div>
-    
-	    <div class="col-sm-6">	       
-	        <listado-procedimientos
-	        	eliminar-callback="procedimientoEliminado(item)"
-	        	ocultar-add-procedimiento="'true'"
-	        	editable="'false'"
-	        	eliminar-callback="eliminar(item,index)"
-		        ng-model="listadoProcedimientosPorPiezaDental.arrayHefesoftProcedimientos">
-	        </listado-procedimientos>
-	        
-	    </div>
+		<div class="col-sm-10">
+		 <div style="overflow: auto;">
+			<listados-diagnosticos				
+				modo-lectura="'true'"
+				tratamientos-callback="openTratamiento(item)"
+				new-callback="open()"
+				edit-callback="open(item)"
+				eliminar-eliminar="eliminar(item, $index)"
+				source="listadoDiagnosticos">
+			</listados-diagnosticos>
+		 </div>
+		</div>		
 	</div>
-
 </div>
