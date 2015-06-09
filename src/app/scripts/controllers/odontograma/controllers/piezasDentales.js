@@ -7,9 +7,9 @@ angular.module('odontologiaApp')
 	$scope.piezaSeleccionada = {};
 
 	$scope.dynamicPopover = {
-	    content: 'Hello, World!',
+	    content: 'Acciones sobre la pieza dental',
 	    templateUrl: 'myPopoverTemplate.html',
-	    title: 'Title'
+	    title: 'Pieza dental'
 	};
 
 	$scope.seleccionar = function(item){
@@ -56,6 +56,13 @@ angular.module('odontologiaApp')
 	          }
 	        }
 	      });
+
+		//El primero es cerrar el segundo es dimiss
+		 modalInstance.result.then(
+		 	function(data){},
+		 	function (data) {
+       	 		$scope.fnModificado($scope.$parent, { 'item' : item });
+	     });
 	}
 
 	//Oculta todos los pop over abiertos

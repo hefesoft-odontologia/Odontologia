@@ -10,36 +10,77 @@ angular.module('odontologiaApp')
 	 */
 
 	 $scope.clickSuperficie = function(superficie){
- 	 	var diagnosticoPintar = diagnostico.objectHefesoftDiagnostico;
-	 	var superficieNombre = superficie + "_objectHefesoft";
-	 	var arrayNombre = superficie + "_arrayHefesoft";
-	 	var tratamientoAdicionar = angular.copy(tratamiento);
-		
-		if(angular.isDefined(diagnosticoPintar))
-	 	{
-			$scope.piezaDental[superficieNombre] = diagnosticoPintar;
+ 	 	var diagnosticoAdicionar = angular.copy(diagnostico);	 	
 
-			/*se agregan los tratamientos a la superficie seleccionada*/
-			if(angular.isDefined(tratamientoAdicionar)){
-				tratamientoAdicionar.superficie = superficie;
-				$scope.piezaDental[arrayNombre].push(tratamientoAdicionar);
-				agregarElementoDiagnosticoASuperficie(superficie);
-			}
-	    }
+ 	 	if(validarYaExisteDiagnostico(superficie,diagnosticoAdicionar)){
+
+			agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar);
+			$scope.piezaDental = extraerDesdeDiagnostico($scope.piezaDental);		    
+		}
 	 }
 
 	 /*
 		Se agrega el elemento diagnostico a la superficies para cuando se persista
 		quede guarado el diagnostico que se realizo
 	 */
-	 function agregarElementoDiagnosticoASuperficie(superficie){
+	 function agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar){
 	 	var arrayNombre = superficie + "Diagnosticos_arrayHefesoft";
 
 	 	if(angular.isUndefined($scope.piezaDental[arrayNombre])){
 	 		$scope.piezaDental[arrayNombre] = [];
 	 	}
 
-	 	$scope.piezaDental[arrayNombre].push(diagnostico);
+	 	$scope.piezaDental[arrayNombre].push(diagnosticoAdicionar);
 	 }
+
+	 /*
+		Valida si ya existe el diagnostico
+	 */
+	 function validarYaExisteDiagnostico(superficie, diagnosticoAdicionar){
+	 	var arrayNombre = superficie + "Diagnosticos_arrayHefesoft";
+
+	 	if(angular.isUndefined($scope.piezaDental[arrayNombre])){
+	 		return true;
+	 	}
+	 	
+	 	var result = _.findIndex($scope.piezaDental[arrayNombre], { 'RowKey': diagnosticoAdicionar.RowKey });
+
+	 	if(result >= 0){
+	 		return false;
+	 	}
+	 	else{
+	 		return true;
+	 	}
+	 }
+
+    function extraerDesdeDiagnostico(item){
+
+    var elementoDevolver = item;
+    var partes = ['centro','izquierda','derecha','abajo','arriba','inferior','superior'];
+
+    for (var i = partes.length - 1; i >= 0; i--) {
+        var arrayNombre = partes[i] + "Diagnosticos_arrayHefesoft";
+
+        if(angular.isDefined(item[arrayNombre])){
+
+            //Eje item.centro_objectHefesoft.color
+            var nombreObjetoCrear = partes[i] + "_objectHefesoft";
+            var itemsEnSupericie = item[arrayNombre];
+            //saca el ultimo diagnostico para esta superficie
+            var diagnostico = itemsEnSupericie[0];
+
+            if(angular.isUndefined(elementoDevolver[nombreObjetoCrear])){
+            	elementoDevolver[nombreObjetoCrear] = {};
+        	}
+
+            elementoDevolver[nombreObjetoCrear].color = diagnostico.objectHefesoftDiagnostico.color;
+            elementoDevolver[nombreObjetoCrear].simbolo = diagnostico.objectHefesoftDiagnostico.simbolo;
+            elementoDevolver[nombreObjetoCrear].fuente = diagnostico.objectHefesoftDiagnostico.fuente;
+            elementoDevolver[nombreObjetoCrear].pathImagen = diagnostico.objectHefesoftDiagnostico.pathImagen;
+        }      
+    };
+
+    return elementoDevolver;
+   }
 	
 }])

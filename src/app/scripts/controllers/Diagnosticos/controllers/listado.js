@@ -25,12 +25,12 @@
     /***************** Modal /***********************/
 
     /****************** Editar ******************/
-   $scope.open = function (size, seleccionado) {
+   $scope.open = function (seleccionado) {
      var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'app/scripts/controllers/Diagnosticos/views/addDiagnostico.html',
         controller: 'AddDxCtrl',
-        size: size,
+        size: 'lg',
         resolve: {
           dxSeleccionado : function () {
             return seleccionado;
@@ -51,13 +51,13 @@
   };
 
   /****************** Tratamientos pop up ******************/
-  $scope.openTratamiento = function (size, seleccionado) {
+  $scope.openTratamiento = function (seleccionado) {
       $scope.diagnosticoSeleccionado = seleccionado;
       modalInstance = $modal.open({
       animation: true,
       templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
       controller : 'listadoProcedimientosTratamientosCtrl',
-      size: size,
+      size: 'lg',
       backdrop : 'static',
       resolve: {
         dxSeleccionado : function () {

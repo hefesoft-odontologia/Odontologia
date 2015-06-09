@@ -26,6 +26,7 @@ function diagnosticosDependencies(){
         [
             "app/scripts/controllers/Diagnosticos/controllers/listado.js",
             "app/scripts/controllers/Diagnosticos/controllers/addDiagnostico.js",
+            "app/scripts/controllers/Diagnosticos/directivas/directivas/list.js",
             "app/Template/vendors/farbtastic/farbtastic.css",
             "app/Template/vendors/farbtastic/farbtastic.min.js",
             "app/lib/hefesoft.standard/Directivas/colorPicker/directiva/colorPicker.js",            

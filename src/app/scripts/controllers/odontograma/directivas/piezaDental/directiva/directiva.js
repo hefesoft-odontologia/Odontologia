@@ -19,8 +19,7 @@ directive('piezaDental', function($parse){
   	ngModelCtrl[0].$render = function(){
         if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
     		var valor = ngModelCtrl[0].$viewValue;
-        scope.item = valor;
-    		
+        scope.item = valor;    		
       }
      }
 
@@ -31,7 +30,7 @@ directive('piezaDental', function($parse){
       }
     }
 
-   };
+   }; // Fin de la directiva
 
       
    directiva.scope = {

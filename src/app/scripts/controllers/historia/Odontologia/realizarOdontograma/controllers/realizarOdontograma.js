@@ -40,7 +40,9 @@ angular.module('Historia')
  	//Ocurre cuando se hace click sobre  una pieza dental
  	$scope.fijarPiezaDental = function(item){
  		$scope.PiezaSeleccionada = item;
- 		var listadoTratamientos = tratamientoServices.extraerTratamientos(item);
+ 		var listadoDiagnosticos = tratamientoServices.extraerDiagnosticos(item);
+ 		var listadoTratamientos = tratamientoServices.extraerTratamientosDeDiagnosticos(listadoDiagnosticos);
+ 		
  		$scope.listadoTratamientosPorPiezaDental = listadoTratamientos;
 
  		//Limpia el listado de los procedimientos
@@ -56,6 +58,11 @@ angular.module('Historia')
  		$scope.listadoProcedimientosPorPiezaDental = e;
  	}
 
+ 	//Ocurre cuando se hace algo dentro del modal de la pieza dental
+ 	$scope.piezaModificada = function(item){
+ 		$scope.fijarPiezaDental(item); 		
+ 	}
+
  	function fijarDiagnosticoSeleccionado(item){
  		//Fijar el diagnostio seleccionado
 		if(!angular.isUndefined(item.nombreTabla) && item.nombreTabla == "TmDiagnosticos"){
@@ -69,6 +76,8 @@ angular.module('Historia')
 			$scope.tratamientoSeleccionado = item;
 		}
  	}
+
+
 
 	inicializarDatos();
 	

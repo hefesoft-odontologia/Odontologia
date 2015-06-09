@@ -1,11 +1,17 @@
 angular.module('directivas').
-directive('piezasDentales', function(){
+directive('piezasDentales', function($parse){
 
    var directiva = {};
    directiva.require = ['ngModel'];
    directiva.restrict = 'E';
 
    directiva.link = function(scope, element, attrs, ngModelCtrl) {
+
+      var existClick = attrs['modificado'];
+       if(angular.isDefined(existClick)){
+         scope.fnModificado = $parse(attrs['modificado']);
+       }
+
       ngModel(ngModelCtrl, scope);
    };
 

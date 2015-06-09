@@ -8,7 +8,7 @@ function routesDiagnosticos($stateProvider, $ocLazyLoadProvider){
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/Diagnosticos/views/Diagnosticos.html",
-                controller: "DxListadoCtrl",
+                controller: "DxListadoCtrl",                
                 resolve :{
                    controller : function($ocLazyLoad){
                      return cargarDiagnosticos($ocLazyLoad)

@@ -1,10 +1,16 @@
 angular.module('directivas').
-directive('odontograma', [function () {
+directive('odontograma', ['$parse',
+	function ($parse) {
 
 	var directiva = {};
 	directiva.restrict = 'E';
-	directiva.link = function (scope, iElement, iAttrs) {
-			
+	directiva.link = function (scope, iElement, attrs) {
+		
+	  var existClick = attrs['piezaModificada'];
+      if(angular.isDefined(existClick)){
+         scope.fnModificado = $parse(attrs['piezaModificada']);
+      }
+
 	}
 
 	directiva.scope = {
