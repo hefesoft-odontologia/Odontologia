@@ -10,7 +10,8 @@ angular.module('odontologiaApp')
 	 */
 
 	 $scope.clickSuperficie = function(superficie){
- 	 	var diagnosticoAdicionar = angular.copy(diagnostico);	 	
+ 	 	var diagnosticoAdicionar = angular.copy(diagnostico);
+ 	 	diagnosticoAdicionar.superficie = superficie;
 
  	 	if(validarYaExisteDiagnostico(superficie,diagnosticoAdicionar)){
 

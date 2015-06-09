@@ -37,7 +37,7 @@ angular.module('odontologiaApp')
 		function sumar(data){
 		 var valor = 0;
 
-		 if(angular.isArray(data) && data.length > 0){	      
+		 if(angular.isDefined(data) && angular.isDefined(data.arrayHefesoftProcedimientos) && angular.isArray(data.arrayHefesoftProcedimientos) && data.arrayHefesoftProcedimientos.length > 0){	      
 	      for (var i = data.arrayHefesoftProcedimientos.length - 1; i >= 0; i--) {
 	         //Decimal con 2 decimales
 	         valor = parseFloat(valor) + parseFloat(data.arrayHefesoftProcedimientos[i].valor); 

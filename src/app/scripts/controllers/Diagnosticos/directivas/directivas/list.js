@@ -1,5 +1,6 @@
 angular.module('odontologiaApp')
-.directive('listadosDiagnosticos', ['$parse', function ($parse) {
+.directive('listadosDiagnosticos', ['$parse', 
+	function ($parse) {
 
 	var directiva = {};
 	
@@ -8,7 +9,8 @@ angular.module('odontologiaApp')
 	
 	directiva.scope = {
 		modoLectura : "=",
-		source : "="
+		source : "=",
+    verSuperficie : '='
 	};
 
 	directiva.controller = "listadosDiagnosticosCtrl";
@@ -18,6 +20,11 @@ angular.module('odontologiaApp')
 	   var existClick = attrs['tratamientosCallback'];
        if(angular.isDefined(existClick)){
           scope.fnTratamientos = $parse(attrs['tratamientosCallback']);
+       }
+
+       var existClick = attrs['modificadoCallback'];
+       if(angular.isDefined(existClick)){
+          scope.fnFinModificado = $parse(attrs['modificadoCallback']);
        }
 
        existClick = attrs['editCallback'];
@@ -40,24 +47,33 @@ angular.module('odontologiaApp')
 	return directiva;	
 }])
 
-.controller('listadosDiagnosticosCtrl', ['$scope', function ($scope) {
+.controller('listadosDiagnosticosCtrl', ['$scope', '$modal', 
+	function ($scope, $modal) {
 	
+	$scope.diagnosticoSeleccionado;
+
 	$scope.openTratamiento = function(item){
 		if(angular.isDefined($scope.fnTratamientos) && angular.isFunction($scope.fnTratamientos)){
 			$scope.fnTratamientos($scope.$parent, { 'item' : item });
 		}
+
+		$scope.openTratamiento(item);
 	}
 
 	$scope.open = function(item){
 		if(angular.isDefined($scope.fnEdit) && angular.isFunction($scope.fnEdit)){
 			$scope.fnEdit($scope.$parent, { 'item' : item });
 		}
+
+		$scope.openEdit(item);
 	}
 
 	$scope.new = function(){
 		if(angular.isDefined($scope.fnNew) && angular.isFunction($scope.fnNew)){
 			$scope.fnEdit($scope.$parent);
 		}
+
+		$scope.openEdit();
 	}
 
 	$scope.eliminar = function(item, $index){
@@ -65,5 +81,66 @@ angular.module('odontologiaApp')
 			$scope.fnEliminar($scope.$parent, { 'item' : item, '$index' : $index });
 		}
 	}
+
+	/****************** Tratamientos pop up ******************/
+  $scope.openTratamiento = function (seleccionado) {
+      $scope.diagnosticoSeleccionado = seleccionado;
+      modalInstance = $modal.open({
+      animation: true,
+      templateUrl: 'app/scripts/controllers/tratamientos/views/listadoTratamientosProcedimientos.html',
+      controller : 'listadoProcedimientosTratamientosCtrl',
+      size: 'lg',
+      backdrop : 'static',
+      resolve: {
+        dxSeleccionado : function () {
+          return $scope.diagnosticoSeleccionado;
+        }
+      }
+  });
+
+    modalInstance.result.then(closed);   
+  };
+
+  function closed(data){
+    if(angular.isDefined($scope.fnFinModificado) && angular.isFunction($scope.fnFinModificado)){
+		$scope.fnFinModificado($scope.$parent, { 'item' : $scope.diagnosticoSeleccionado });
+	}
+  }
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
+ /*****************************************************/
+
+/****************** Editar ******************/
+$scope.openEdit = function (seleccionado) {
+ var modalInstance = $modal.open({
+    animation: true,
+    templateUrl: 'app/scripts/controllers/Diagnosticos/views/addDiagnostico.html',
+    controller: 'AddDxCtrl',
+    size: 'lg',
+    resolve: {
+      dxSeleccionado : function () {
+        return seleccionado;
+      }
+    }
+  });
+
+modalInstance.result.then(function (selectedItem) {
+    $scope.selected = selectedItem;
+  }, 
+  function (data) {
+    console.log('Modal dismissed at: ' + new Date());
+
+    if(data !==  "backdrop click" && !angular.isUndefined(data)){
+      $scope.source.push(data);
+
+      if(angular.isDefined($scope.fnFinModificado) && angular.isFunction($scope.fnFinModificado)){
+		$scope.fnFinModificado($scope.$parent, { 'item' : $scope.diagnosticoSeleccionado });
+	  }          
+    }
+  });
+};
+
 
 }])
