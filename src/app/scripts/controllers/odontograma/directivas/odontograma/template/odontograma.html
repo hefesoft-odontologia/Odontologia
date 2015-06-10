@@ -19,8 +19,12 @@
 </br>
 </br>
 
-<piezas-dentales 
+<piezas-dentales
+        click-callback="clickPiezaDental(item)"
+        numero-pieza-modificada="numeroPiezaModificada"
     	permanente="piezasDentales.Permanente"
         modificado="modificado(item)"
-    	ng-model="piezasDentales">
+    	ng-model="piezasDentales"
+        contexto="piezasDentalesScope"
+        >
 </piezas-dentales>

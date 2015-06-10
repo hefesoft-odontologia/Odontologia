@@ -1,6 +1,6 @@
 angular.module('Historia')
-.controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 'tratamientoServices',
-	function ($scope, dataTableStorageFactory, tratamientoServices) {
+.controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices',
+	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices) {
 	var Hefesoft  = window.Hefesot;
 
 	$scope.Diagnosticos = [];
@@ -11,14 +11,31 @@ angular.module('Historia')
 	$scope.listadoTratamientosPorPiezaDental = [];
 	$scope.listadoProcedimientosPorPiezaDental = [];
 	$scope.listadoDiagnosticos = [];
+	$scope.numeroPiezaModificada = {};
+	$scope.contextoOdontograma = {};
+
 
 	function inicializarDatos(){
-		dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
+	  //Carga de diagnosticos
+	  dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
       .success(function(data){          
-          $scope.Diagnosticos = data;
-        }).error(function(error){
-          console.log(error);          
-        })
+      	$scope.Diagnosticos = data;
+   	  }).error(function(error){
+      	console.log(error);          
+      })
+
+      //Carga de Odontograma
+      dataTableStorageFactory.getTableByPartition('TmOdontograma', 'pruebas')
+      .success(function(data){
+      	
+      	var item = $scope.contextoOdontograma();
+ 		var piezaDental = item.piezasDentalesScope();
+ 		piezaDental.listado = data;
+
+   	  }).error(function(error){
+      	console.log(error);          
+      })
+
 	}
 
 	$scope.procedimientoEliminado = function(item){
@@ -39,7 +56,7 @@ angular.module('Historia')
  	}
 
  	//Ocurre cuando se hace click sobre  una pieza dental
- 	$scope.fijarPiezaDental = function(item){
+ 	$scope.piezaDentalSeleccionada = function(item){
  		$scope.PiezaSeleccionada = item;
  		$scope.listadoDiagnosticos = tratamientoServices.extraerDiagnosticos(item);
  		var listadoTratamientos = tratamientoServices.extraerTratamientosDeDiagnosticos($scope.listadoDiagnosticos);
@@ -51,7 +68,7 @@ angular.module('Historia')
  	}
 
  	$scope.eliminar = function(item, index){
- 		console.log(item);
+ 		$scope.numeroPiezaModificada = item;
  	}
 
  	//Se dispara cuando un tratamiento se selecciona
@@ -61,7 +78,23 @@ angular.module('Historia')
 
  	//Ocurre cuando se hace algo dentro del modal de la pieza dental
  	$scope.piezaModificada = function(item){
- 		$scope.fijarPiezaDental(item); 		
+ 		$scope.piezaDentalSeleccionada(item); 		
+ 	}
+
+ 	$scope.guardarCommand = function(){
+ 		var item = $scope.contextoOdontograma();
+ 		var piezaDental = item.piezasDentalesScope();
+
+ 		var listadoGuardar = piezaDental.listado;
+
+ 		//Datos, Nombre tabla, partition key, y campo que servira como row key
+        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  'pruebas', 'codigo')
+        .success(function (data) {           
+			piezaDental.listado = data;			           
+        })
+        .error(function (error) {           
+            console.log(error);                    
+        });
  	}
 
  	function fijarDiagnosticoSeleccionado(item){
@@ -78,7 +111,10 @@ angular.module('Historia')
 		}
  	}
 
-
+ 	//Se obtiene el odontograma desde un objeto json que esta en la carpeta data
+	function obtenerOdontogramaBase(){
+		odontogramaJsonServices.obtenerOdontogramaBase().then(success);
+	}
 
 	inicializarDatos();
 	

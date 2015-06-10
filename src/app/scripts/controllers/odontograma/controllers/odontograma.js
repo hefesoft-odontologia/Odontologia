@@ -4,9 +4,23 @@ angular.module('odontologiaApp')
 
 	$scope.piezasDentales = { Permanente : true };
 	$scope.permanente = false;
+	$scope.numeroPiezaModificada = {};
+	$scope.piezasDentalesScope = {};
+
+	//Propaga el elemento hacia abajo
+	$scope.$watch('numeroPiezaModificada', function(e) {      
+      if(e){
+      	$scope.numeroPiezaModificada = e;      	
+      } 
+    });
 
 	$scope.modificado = function(item){		
 		$scope.fnModificado($scope.$parent, { 'item' : item });
 	}
 
+	$scope.clickPiezaDental = function(item){
+		if(angular.isDefined($scope.fnClick) && angular.isFunction($scope.fnClick)){
+			$scope.fnClick($scope.$parent, { 'item' : item });
+		}
+	}
 }])

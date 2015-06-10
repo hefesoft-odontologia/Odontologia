@@ -11,11 +11,24 @@ directive('odontograma', ['$parse',
          scope.fnModificado = $parse(attrs['piezaModificada']);
       }
 
+      existClick = attrs['clickCallback'];
+      if(angular.isDefined(existClick)){
+         scope.fnClick = $parse(attrs['clickCallback']);
+      }
+
+      if(scope.contexto){
+      	scope.contexto = function(){
+      	  return scope;
+      	}
+      }
+
 	}
 
 	directiva.scope = {
 		diagnosticoSeleccionado : "=",
-		tratamientoSeleccionado : "="
+		tratamientoSeleccionado : "=",
+		numeroPiezaModificada : '=',
+		contexto : '='
 	};
 
 	directiva.templateUrl = "app/scripts/controllers/odontograma/directivas/odontograma/template/odontograma.html";

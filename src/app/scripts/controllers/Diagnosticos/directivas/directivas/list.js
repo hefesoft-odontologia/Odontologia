@@ -10,7 +10,8 @@ angular.module('odontologiaApp')
 	directiva.scope = {
 		modoLectura : "=",
 		source : "=",
-    verSuperficie : '='
+    verSuperficie : '=',
+    ocultarEliminar : "="
 	};
 
 	directiva.controller = "listadosDiagnosticosCtrl";
@@ -77,6 +78,9 @@ angular.module('odontologiaApp')
 	}
 
 	$scope.eliminar = function(item, $index){
+
+    $scope.source.splice($index, 1);
+    
 		if(angular.isDefined($scope.fnEliminar) && angular.isFunction($scope.fnEliminar)){
 			$scope.fnEliminar($scope.$parent, { 'item' : item, '$index' : $index });
 		}

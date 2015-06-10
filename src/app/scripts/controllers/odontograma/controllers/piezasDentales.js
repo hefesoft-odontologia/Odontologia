@@ -1,22 +1,33 @@
 angular.module('odontologiaApp')
-.controller('piezasDentalesCtrl', ['$scope', 'odontogramaJsonServices', '$modal', 
-	function ($scope, odontogramaJsonServices, $modal) {
+.controller('piezasDentalesCtrl', ['$scope', 'odontogramaJsonServices', '$modal', 'diagnosticoServices',
+	function ($scope, odontogramaJsonServices, $modal, diagnosticoServices) {
 
 	$scope.listado = [];	
 	$scope.tratamientoPiezaDental = [];
 	$scope.piezaSeleccionada = {};
 
+	var Hefesoft  = window.Hefesot;
+
+
+	//Hasta aca se propaga el evento
+    $scope.$watch('numeroPiezaModificada', function(e) {      
+      if(e){
+      	modificado(e);      	
+      } 
+    });
+
 	$scope.dynamicPopover = {
 	    content: 'Acciones sobre la pieza dental',
-	    templateUrl: 'myPopoverTemplate.html',
+	    templateUrl: 'opcionesPiezaDental.html',
 	    title: 'Pieza dental'
 	};
 
 	$scope.seleccionar = function(item){
 		$scope.piezaSeleccionada = item;
 
-		//validar si es mejor cambiar por broadcast
-		$scope.$parent.$parent.fijarPiezaDental(item);
+		if(angular.isDefined($scope.fnClick) && angular.isFunction($scope.fnClick)){
+			$scope.fnClick($scope.$parent, { 'item' : item });
+		}
 	}
 
 	/* Elementos seleccionado del menu lateral */
@@ -35,6 +46,24 @@ angular.module('odontologiaApp')
 
 	function success(data){
 		$scope.listado = data;
+	}
+
+	function modificado(item){
+		var pieza = _.find($scope.listado, { 'numeroPiezaDental': item.numeroPiezaDental});
+		var index = _.findIndex($scope.listado, { 'numeroPiezaDental': item.numeroPiezaDental});
+
+		//Cuando se guarda en azure los enteros se vuelven string por eso se hace esta validacion
+		if(angular.isUndefined(pieza)){
+			var numeroPiezaDental = String(item.numeroPiezaDental);
+			pieza = _.find($scope.listado, { 'numeroPiezaDental': numeroPiezaDental});
+			index = _.findIndex($scope.listado, { 'numeroPiezaDental': numeroPiezaDental});
+		}
+
+		if(index >=0){
+			var nombreDiagnostico = item.superficie + 'Diagnosticos_arrayHefesoft';
+			Hefesoft.eliminar(item, $scope.listado[index][nombreDiagnostico]);
+			diagnosticoServices.extraerUltimoDiagnosticoPorSuperficie($scope.listado[index]);
+		}
 	}
 
 	/**************** Mostrar pieza dental seleccionada *****************/

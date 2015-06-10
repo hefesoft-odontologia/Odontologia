@@ -17,8 +17,7 @@
 
     $scope.eliminar = function(data, $index){
       data.Estado_Entidad = "2";    
-      dataTableStorageFactory.saveStorage(data);
-      $scope.Listado.splice($index, 1);
+      dataTableStorageFactory.saveStorage(data);      
     }
 
     $scope.modificado = function(item){
