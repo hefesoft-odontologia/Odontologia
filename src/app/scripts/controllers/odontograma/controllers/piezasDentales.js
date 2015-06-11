@@ -6,6 +6,9 @@ angular.module('odontologiaApp')
 	$scope.tratamientoPiezaDental = [];
 	$scope.piezaSeleccionada = {};
 
+	var piezaBaseSupernumerario = {};
+	var index = {};
+
 	var Hefesoft  = window.Hefesot;
 
 
@@ -22,7 +25,8 @@ angular.module('odontologiaApp')
 	    title: 'Pieza dental'
 	};
 
-	$scope.seleccionar = function(item){
+	$scope.seleccionar = function(item, $index){
+		index = $index;
 		$scope.piezaSeleccionada = item;
 
 		if(angular.isDefined($scope.fnClick) && angular.isFunction($scope.fnClick)){
@@ -40,11 +44,51 @@ angular.module('odontologiaApp')
 		mostrarModalSeleccionado(piezaSeleccionada,diagnosticoSeleccionado, tratamientoSeleccionado);
 	}
 
+	$scope.supernumerario = function(posicion){
+		var numero = $scope.piezaSeleccionada.numeroPiezaDental + "+";
+		agregarSupernumerario(index, numero, posicion);		
+	}
+
+	$scope.ausente = function(){
+		$scope.piezaSeleccionada.numeroPiezaDental = eliminarTextosNumeros($scope.piezaSeleccionada.numeroPiezaDental);
+		$scope.piezaSeleccionada.numeroPiezaDental = "tachados-" + $scope.piezaSeleccionada.numeroPiezaDental;
+	}
+
+	$scope.implante = function(){
+		$scope.piezaSeleccionada.numeroPiezaDental = eliminarTextosNumeros($scope.piezaSeleccionada.numeroPiezaDental);
+		$scope.piezaSeleccionada.numeroPiezaDental = "tornillo-" + $scope.piezaSeleccionada.numeroPiezaDental;	
+	}
+
+	function agregarSupernumerario(index, numero, posicision){
+		
+		var elementoInsertar = angular.copy(piezaBaseSupernumerario);
+		elementoInsertar.numeroPiezaDental = numero;
+
+		if(posicision == "right"){
+			index = index +1;
+			$scope.listado.splice(index, 0, elementoInsertar);
+		}
+		else if(posicision == "left"){			
+			$scope.listado.splice(index, 0, elementoInsertar);
+		}
+	}
+
+	//elimina los textos tachado y tornillo del numero
+	function eliminarTextosNumeros(item){
+		item = String(item);
+		item = item.replace("tachados-", "");
+		item = item.replace("tornillo-", "");
+		return item; 
+	}
+
 	function inicializar(){
 	 odontogramaJsonServices.obtenerOdontogramaBase().then(success);
 	}
 
 	function success(data){
+		//Se usa una pieza dental como base para cuando se neceite agregar
+		//Un diente supernumerario
+		piezaBaseSupernumerario = data[0];
 		$scope.listado = data;
 	}
 

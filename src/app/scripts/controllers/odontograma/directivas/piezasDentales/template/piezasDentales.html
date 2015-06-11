@@ -35,14 +35,14 @@
 
 		<img 
 			class="imagen-diente"			 
-			ng-src="assets/img/Periodontograma/periodontograma-dientes-arriba-{{n.numeroPiezaDental}}.png" 
-			alt="Description"
+			ng-src="assets/img/Periodontograma/periodontograma-dientes-arriba-{{n.numeroPiezaDental | piezaDentalImage}}.png"
 		/>
 
 		<pieza-dental
-			ng-click ="seleccionar(n)"
+			ng-click ="seleccionar(n, $index)"
 			popover-template="dynamicPopover.templateUrl" 
 			popover-title="{{dynamicPopover.title}}"
+			popover-placement="right"
 			popover-trigger="click"			
 			ng-model="n">
 		</pieza-dental>
@@ -55,9 +55,10 @@
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte2' | filter: textoBuscar">
 		<pieza-dental 
-			ng-click="seleccionar(n)"
+			ng-click="seleccionar(n, $index)"
 			popover-template="dynamicPopover.templateUrl" 
 			popover-title="{{dynamicPopover.title}}"
+			popover-placement="right"
 			popover-trigger="click" 			
 			ng-model="n">
 		</pieza-dental>
@@ -69,9 +70,10 @@
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte3' | filter: textoBuscar">
 		<pieza-dental 
-			ng-click="seleccionar(n)"
+			ng-click="seleccionar(n, $index)"
 			popover-template="dynamicPopover.templateUrl" 
 			popover-title="{{dynamicPopover.title}}"
+			popover-placement="right"
 			popover-trigger="click"			
 			ng-model="n">
 		</pieza-dental>
@@ -85,14 +87,15 @@
 		
 		<img 
 			class="imagen-diente"			 
-			ng-src="assets/img/Periodontograma/periodontograma-dientes-abajo-{{n.numeroPiezaDental}}.png" 
-			alt="Description"
+			ng-src="assets/img/Periodontograma/periodontograma-dientes-abajo-{{n.numeroPiezaDental | piezaDentalImage}}.png" 
+			
 		/>
 
 		<pieza-dental 
-			ng-click="seleccionar(n)"
+			ng-click="seleccionar(n, $index)"
 			popover-template="dynamicPopover.templateUrl" 
 			popover-title="{{dynamicPopover.title}}"
+			popover-placement="right"
 			popover-trigger="click" 			
 			ng-model="n">
 		</pieza-dental>
@@ -100,15 +103,53 @@
 </div>
 
 
-
 <script type="text/ng-template" id="opcionesPiezaDental.html">
     <div>{{dynamicPopover.content}}</div>
     <div class="form-group">      
       <input type="text" ng-model="dynamicPopover.title" class="form-control">
-      <button        
+       
+
+       <div class="row">
+       <button        
         ng-click="clickPiezaDental()" 
         class="btn btn-info btn-sm waves-effect waves-button waves-float">
             Editar
-        </button>
+       </button>
+       </div>
+
+       </br>
+       
+       <p>Supernumerario</p>
+       <div class="row">
+			
+			<button
+			class="btn btn-info btn-sm waves-effect waves-button waves-float"
+			ng-click="supernumerario('left')">
+			<<
+		    </button>
+
+		    <button
+			class="btn btn-info btn-sm waves-effect waves-button waves-float"
+			ng-click="supernumerario('right')">
+			>>
+		    </button>
+	   </div>
+
+	   </br>   
+
+	   <div class="row">
+		   <button
+		   class="btn btn-info btn-sm waves-effect waves-button waves-float"
+		   ng-click="ausente()">
+				Ausente
+		   </button>
+
+		   <button
+		   class="btn btn-info btn-sm waves-effect waves-button waves-float" 
+		   ng-click="implante()">
+				Implante
+		   </button>
+	   </div>
+
     </div>
 </script>

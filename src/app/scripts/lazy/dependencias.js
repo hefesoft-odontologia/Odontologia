@@ -125,6 +125,7 @@ function odontogramaDependencies(){
         cache: true,
         files: 
         [
+            "app/scripts/controllers/odontograma/directivas/piezasDentales/filters/pezaDentalImage.js",
             "app/scripts/controllers/odontograma/services/diagnosticos/diagnosticos.js",
             "app/scripts/controllers/odontograma/directivas/piezaDental/directiva/directiva.js",
             "app/scripts/controllers/odontograma/directivas/piezasDentales/directiva/directiva.js",
