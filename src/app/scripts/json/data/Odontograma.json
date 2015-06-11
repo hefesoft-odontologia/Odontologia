@@ -1,6 +1,7 @@
 [
 	{
 	"codigo":1,	
+	"id": "1",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":18,
@@ -21,6 +22,7 @@
 	},
 	{
 	"codigo":2,	
+	"id": "2",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":17,
@@ -41,6 +43,7 @@
 	},
 	{
 	"codigo":3,	
+	"id": "3",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":16,
@@ -61,6 +64,7 @@
 	},
 	{
 	"codigo":4,	
+	"id": "4",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":15,
@@ -81,6 +85,7 @@
 	},
 	{
 	"codigo":5,	
+	"id": "5",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":14,
@@ -101,6 +106,7 @@
 	},
 	{
 	"codigo":6,	
+	"id": "6",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":13,
@@ -121,6 +127,7 @@
 	},
 	{
 	"codigo":7,	
+	"id": "7",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":12,
@@ -141,6 +148,7 @@
 	},
 	{
 	"codigo":8,	
+	"id": "8",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":11,
@@ -161,6 +169,7 @@
 	},
 	{
 	"codigo":9,	
+	"id": "9",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":21,
@@ -181,6 +190,7 @@
 	},
 	{
 	"codigo":10,
+	"id": "10",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":22,
@@ -201,6 +211,7 @@
 	},
 	{
 	"codigo":11,
+	"id": "11",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":23,
@@ -221,6 +232,7 @@
 	},
 	{
 	"codigo":12,
+	"id": "12",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":24,
@@ -241,6 +253,7 @@
 	},
 	{
 	"codigo":13,
+	"id": "13",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":25,
@@ -261,6 +274,7 @@
 	},
 	{
 	"codigo":14,
+	"id": "14",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":26,
@@ -281,6 +295,7 @@
 	},
 	{
 	"codigo":15,
+	"id": "15",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":27,
@@ -301,6 +316,7 @@
 	},
 	{
 	"codigo":16,
+	"id": "16",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":28,
@@ -321,6 +337,7 @@
 	},
 	{
 	"codigo":17,
+	"id": "17",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":55,
@@ -341,6 +358,7 @@
 	},
 	{
 	"codigo":18,
+	"id": "18",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":54,
@@ -361,6 +379,7 @@
 	},
 	{
 	"codigo":19,
+	"id": "19",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":53,
@@ -381,6 +400,7 @@
 	},
 	{
 	"codigo":20,
+	"id": "20",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":52,
@@ -401,6 +421,7 @@
 	},
 	{
 	"codigo":21,
+	"id": "21",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":51,
@@ -421,6 +442,7 @@
 	},
 	{
 	"codigo":22,
+	"id": "22",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":61,
@@ -441,6 +463,7 @@
 	},
 	{
 	"codigo":23,
+	"id": "23",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":62,
@@ -461,6 +484,7 @@
 	},
 	{
 	"codigo":24,
+	"id": "24",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":63,
@@ -481,6 +505,7 @@
 	},	
 	{
 	"codigo":25,
+	"id": "25",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":64,
@@ -501,6 +526,7 @@
 	},
 	{
 	"codigo":26,
+	"id": "26",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Superior",
 	"numeroPiezaDental":65,
@@ -521,6 +547,7 @@
 	},
 	{
 	"codigo":27,
+	"id": "27",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":85,
@@ -541,6 +568,7 @@
 	},
 	{
 	"codigo":28,
+	"id": "28",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":84,
@@ -561,6 +589,7 @@
 	},
 	{
 	"codigo":29,
+	"id": "29",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":83,
@@ -581,6 +610,7 @@
 	},
 	{
 	"codigo":30,
+	"id": "30",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":82,
@@ -601,6 +631,7 @@
 	},
 	{
 	"codigo":31,
+	"id": "31",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":81,
@@ -621,6 +652,7 @@
 	},
 	{
 	"codigo":32,
+	"id": "32",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":71,
@@ -641,6 +673,7 @@
 	},
 	{
 	"codigo":33,
+	"id": "33",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":72,
@@ -661,6 +694,7 @@
 	},
 	{
 	"codigo":34,
+	"id": "34",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":73,
@@ -681,6 +715,7 @@
 	},
 	{
 	"codigo":35,
+	"id": "35",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":74,
@@ -701,6 +736,7 @@
 	},
 	{
 	"codigo":36,
+	"id": "36",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":75,
@@ -721,6 +757,7 @@
 	},
 	{
 	"codigo":37,
+	"id": "37",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":48,
@@ -741,6 +778,7 @@
 	},
 	{
 	"codigo":38,
+	"id": "38",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":47,
@@ -761,6 +799,7 @@
 	},
 	{
 	"codigo":39,
+	"id": "39",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":46,
@@ -781,6 +820,7 @@
 	},
 	{
 	"codigo":40,
+	"id": "40",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":45,
@@ -801,6 +841,7 @@
 	},
 	{
 	"codigo":41,
+	"id": "41",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":44,
@@ -821,6 +862,7 @@
 	},
 	{
 	"codigo":42,
+	"id": "42",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":43,
@@ -841,6 +883,7 @@
 	},
 	{
 	"codigo":43,
+	"id": "43",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":42,
@@ -861,6 +904,7 @@
 	},
 	{
 	"codigo":44,
+	"id": "44",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":41,
@@ -881,6 +925,7 @@
 	},
 	{
 	"codigo":45,
+	"id": "45",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":31,
@@ -901,6 +946,7 @@
 	},
 	{
 	"codigo":46,
+	"id": "46",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":32,
@@ -921,6 +967,7 @@
 	},
 	{
 	"codigo":47,
+	"id": "47",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":33,
@@ -941,6 +988,7 @@
 	},
 	{
 	"codigo":48,
+	"id": "48",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":34,
@@ -961,6 +1009,7 @@
 	},
 	{
 	"codigo":49,
+	"id": "49",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":35,
@@ -981,6 +1030,7 @@
 	},
 	{
 	"codigo":50,
+	"id": "50",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":36,
@@ -991,7 +1041,7 @@
 	"IndiceCOPElementos" : "[]",
 	"parte":"parte4",
 	"centro_objectHefesoft": "{}",
-"izquierdantaectHefesoft": "{}",
+	"izquierdantaectHefesoft": "{}",
 	"derecha_objectHefesoft": "{}",
 	"abajo_objectHefesoft": "{}",
 	"arriba_objectHefesoft": "{}",
@@ -1001,6 +1051,7 @@
 	},
 	{
 	"codigo":51,
+	"id": "51",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":37,
@@ -1021,6 +1072,7 @@
 	},
 	{
 	"codigo":52,
+	"id": "52",
 	"posicionHorizontal" : "Derecha",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental":38,
@@ -1041,6 +1093,7 @@
 	},
 	{
 	"codigo":53,
+	"id": "53",
 	"posicionHorizontal" : "Izquierda",
 	"posicionVertical" : "Inferior",
 	"numeroPiezaDental": "Boca",
