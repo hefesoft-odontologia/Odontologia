@@ -39,7 +39,8 @@
 
 	<div class="elementos-container">
 		<div class="elemento-invisible"><p></p></div>
-		<div ng-click="clickSuperficie('arriba')" class="elemento">
+		<div ng-hide="esBoca" 
+		ng-click="clickSuperficie('arriba')" class="elemento">
 			<superficie
 				color="item.arriba_objectHefesoft.color"
 				simbolo="item.arriba_objectHefesoft.simbolo"
@@ -52,7 +53,9 @@
 	</div>
 
 	<div class="elementos-container">
-		<div ng-click="clickSuperficie('izquierda')" class="elemento">
+		<div
+		ng-hide="esBoca" 
+		ng-click="clickSuperficie('izquierda')" class="elemento">
 			<superficie
 				color="item.izquierda_objectHefesoft.color"
 				simbolo="item.izquierda_objectHefesoft.simbolo"
@@ -62,7 +65,9 @@
 			</superficie>
 		</div>
 
-		<div ng-click="clickSuperficie('centro')" class="elemento-centro">
+		<div 
+
+		ng-click="clickSuperficie('centro')" class="elemento-centro">
 			<superficie
 				color="item.centro_objectHefesoft.color"
 				simbolo="item.centro_objectHefesoft.simbolo"
@@ -71,7 +76,9 @@
 			</superficie>
 		</div>
 
-		<div ng-click="clickSuperficie('derecha')" class="elemento">
+		<div 
+		ng-hide="esBoca"
+		ng-click="clickSuperficie('derecha')" class="elemento">
 			<superficie
 				color="item.derecha_objectHefesoft.color"
 				simbolo="item.derecha_objectHefesoft.simbolo"
@@ -84,7 +91,9 @@
 
 	<div class="elementos-container">
 		<div class="elemento-invisible"><p></p></div>
-		<div ng-click="clickSuperficie('abajo')" class="elemento">
+		<div 
+		ng-hide="esBoca"
+		ng-click="clickSuperficie('abajo')" class="elemento">
 			<superficie
 				color="item.abajo_objectHefesoft.color"
 				simbolo="item.abajo_objectHefesoft.simbolo"

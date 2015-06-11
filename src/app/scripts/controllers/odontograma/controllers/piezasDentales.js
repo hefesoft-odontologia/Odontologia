@@ -5,7 +5,9 @@ angular.module('odontologiaApp')
 	$scope.listado = [];	
 	$scope.tratamientoPiezaDental = [];
 	$scope.piezaSeleccionada = {};
-
+	$scope.esBoca = true;
+	$scope.esSupernumerario = false;
+	
 	var piezaBaseSupernumerario = {};
 	var index = {};
 
@@ -32,6 +34,29 @@ angular.module('odontologiaApp')
 		if(angular.isDefined($scope.fnClick) && angular.isFunction($scope.fnClick)){
 			$scope.fnClick($scope.$parent, { 'item' : item });
 		}
+
+		//Activa o inactiva las opciones para la boca
+ 		if(item.parte == "boca"){
+ 			$scope.esBoca = true;
+ 		}
+ 		else{
+ 			$scope.esBoca = false;	
+ 		}
+
+ 		//Activa o inactiva las opciones de eliminar
+ 		if(angular.isDefined(item.esSupernumerario)){
+ 			
+ 			var supernumerario = (item.esSupernumerario == "True" || item.esSupernumerario == "true" || item.esSupernumerario == true);  
+ 			if(supernumerario){
+ 				$scope.esSupernumerario = true;
+ 			}
+ 			else{
+ 				$scope.esSupernumerario = false;	
+ 			}
+ 		}
+ 		else{
+ 			$scope.esSupernumerario = false;	
+ 		}
 	}
 
 	/* Elementos seleccionado del menu lateral */
@@ -59,18 +84,41 @@ angular.module('odontologiaApp')
 		$scope.piezaSeleccionada.numeroPiezaDental = "tornillo-" + $scope.piezaSeleccionada.numeroPiezaDental;	
 	}
 
+	$scope.normal = function(){
+		$scope.piezaSeleccionada.numeroPiezaDental = eliminarTextosNumeros($scope.piezaSeleccionada.numeroPiezaDental);			
+	}
+
+	$scope.eliminar = function(){
+		$scope.listado.splice(index, 1);
+	}
+
 	function agregarSupernumerario(index, numero, posicision){
 		
 		var elementoInsertar = angular.copy(piezaBaseSupernumerario);
+		elementoInsertar.codigo = randomCodigo();
+
 		elementoInsertar.numeroPiezaDental = numero;
+		elementoInsertar['esSupernumerario'] = true;
 
 		if(posicision == "right"){
 			index = index +1;
+			//Se usa para al guardar quede a la izquierda o derecha
+			//De la pieza dental
+			var id = parseFloat(piezaBaseSupernumerario.id + 0.001);
+			elementoInsertar.id = String(id);
 			$scope.listado.splice(index, 0, elementoInsertar);
 		}
-		else if(posicision == "left"){			
+		else if(posicision == "left"){
+			var id = parseFloat(piezaBaseSupernumerario.id - 0.001);
+			//Se usa para al guardar quede a la izquierda o derecha
+			//De la pieza dental
+			elementoInsertar.id = String(id);
 			$scope.listado.splice(index, 0, elementoInsertar);
 		}
+	}
+
+	function randomCodigo(){
+		return Math.floor((Math.random() * 1000) + 1000);
 	}
 
 	//elimina los textos tachado y tornillo del numero

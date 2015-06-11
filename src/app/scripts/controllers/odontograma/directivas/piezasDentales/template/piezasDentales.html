@@ -21,6 +21,17 @@
     margin-bottom: 10px;
 }
 
+.imagen-boca{
+	margin-top: 30%;
+    height: 40px;    
+  	margin-left: 10%;
+}
+
+.boca-item{
+	margin-top: 62%;
+  	margin-left: 10%;
+}
+
 </style>
 
 <!-- 
@@ -34,16 +45,17 @@
 	ng-repeat="n in listado | filter:'parte1' | filter: textoBuscar">
 
 		<img 
-			class="imagen-diente"			 
+			ng-click="seleccionar(n, $index)"
+			class="imagen-diente"
+			popover-template="dynamicPopover.templateUrl" 
+			popover-title="{{dynamicPopover.title}}"
+			popover-placement="right"
+			popover-trigger="click"
 			ng-src="assets/img/Periodontograma/periodontograma-dientes-arriba-{{n.numeroPiezaDental | piezaDentalImage}}.png"
 		/>
 
 		<pieza-dental
-			ng-click ="seleccionar(n, $index)"
-			popover-template="dynamicPopover.templateUrl" 
-			popover-title="{{dynamicPopover.title}}"
-			popover-placement="right"
-			popover-trigger="click"			
+			ng-click ="seleccionar(n, $index)"						
 			ng-model="n">
 		</pieza-dental>
 
@@ -77,30 +89,74 @@
 			popover-trigger="click"			
 			ng-model="n">
 		</pieza-dental>
-	</div>	
+	</div>
+
+	<div  
+	class="contenedor-pieza-dental"
+	style="margin-left: 1%;" 
+	ng-repeat="n in listado | filter:'boca' | filter: textoBuscar">
+		
+		
+	<div style="margin-top: 5%;">
+		<pieza-dental			
+			ng-click="seleccionar(n, $index)"			 			
+			ng-model="n">
+		</pieza-dental>
+	</div>
+
+	</div>
 </div>
 
 <div ng-show="permanente" class="contenedor-fila-piezas-dentales">
+
+	
+
 	<div 
 	class="contenedor-pieza-dental" 
 	ng-repeat="n in listado | filter:'parte4' | filter: textoBuscar">
 		
-		<img 
-			class="imagen-diente"			 
-			ng-src="assets/img/Periodontograma/periodontograma-dientes-abajo-{{n.numeroPiezaDental | piezaDentalImage}}.png" 
-			
-		/>
-
-		<pieza-dental 
-			ng-click="seleccionar(n, $index)"
+		<img
+			ng-click="seleccionar(n, $index)" 
+			class="imagen-diente"
 			popover-template="dynamicPopover.templateUrl" 
 			popover-title="{{dynamicPopover.title}}"
 			popover-placement="right"
-			popover-trigger="click" 			
+			popover-trigger="click"			 
+			ng-src="assets/img/Periodontograma/periodontograma-dientes-abajo-{{n.numeroPiezaDental | piezaDentalImage}}.png"
+		/>
+
+		<pieza-dental
+			ng-click="seleccionar(n, $index)"			 			
 			ng-model="n">
 		</pieza-dental>
-	</div>	
+	</div>
+
+	<div 
+	class="contenedor-pieza-dental"
+	style="margin-left: 1%;" 
+	ng-repeat="n in listado | filter:'boca' | filter: textoBuscar">
+		
+		<div>		
+			<img
+				ng-click="seleccionar(n, $index)" 
+				class="imagen-boca"
+				popover-template="dynamicPopover.templateUrl" 
+				popover-title="{{dynamicPopover.title}}"
+				popover-placement="right"
+				popover-trigger="click"			 
+				ng-src="assets/img/Periodontograma/periodontograma-dientes-abajo-{{n.numeroPiezaDental | piezaDentalImage}}.png"
+			/>
+		</div>
+
+		<div class="boca-item">
+			<pieza-dental			
+				ng-click="seleccionar(n, $index)"			 			
+				ng-model="n">
+			</pieza-dental>
+		</div>
+	</div>
 </div>
+
 
 
 <script type="text/ng-template" id="opcionesPiezaDental.html">
@@ -119,8 +175,8 @@
 
        </br>
        
-       <p>Supernumerario</p>
-       <div class="row">
+       <p ng-hide="esBoca">Supernumerario</p>
+       <div ng-hide="esBoca" class="row">
 			
 			<button
 			class="btn btn-info btn-sm waves-effect waves-button waves-float"
@@ -137,7 +193,7 @@
 
 	   </br>   
 
-	   <div class="row">
+	   <div ng-hide="esBoca" class="row">
 		   <button
 		   class="btn btn-info btn-sm waves-effect waves-button waves-float"
 		   ng-click="ausente()">
@@ -149,6 +205,20 @@
 		   ng-click="implante()">
 				Implante
 		   </button>
+
+		   <button
+		   class="btn btn-info btn-sm waves-effect waves-button waves-float" 
+		   ng-click="normal()">
+				normal
+		   </button>
+	   </div>
+
+	   <div ng-show="esSupernumerario" class="row">
+		   <button
+		   class="btn btn-danger btn-sm waves-effect waves-button waves-float"
+		   ng-click="eliminar()">
+				Eliminar
+		   </button>		   
 	   </div>
 
     </div>

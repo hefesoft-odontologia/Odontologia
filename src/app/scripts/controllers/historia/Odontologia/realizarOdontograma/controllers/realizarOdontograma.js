@@ -6,6 +6,7 @@ angular.module('Historia')
 	$scope.Diagnosticos = [];
 	$scope.diagnosticoSeleccionado = {};
 	$scope.tratamientoSeleccionado = {};
+	
 
 	$scope.PiezaSeleccionada;
 	$scope.listadoTratamientosPorPiezaDental = [];
@@ -27,10 +28,17 @@ angular.module('Historia')
       //Carga de Odontograma
       dataTableStorageFactory.getTableByPartition('TmOdontograma', 'pruebas')
       .success(function(data){
-      	
-      	var item = $scope.contextoOdontograma();
- 		var piezaDental = item.piezasDentalesScope();
- 		piezaDental.listado = data;
+
+      	if(angular.isDefined(data) && data.length > 0){
+	      	//Ordenarlos deacuerdo al codigo como en la nube se guardan en string no los ordena bien
+	        data = _.sortBy(data, function(item) {
+	           return parseFloat(item.id);
+	        });
+	      	
+	      	var item = $scope.contextoOdontograma();
+	 		var piezaDental = item.piezasDentalesScope();
+	 		piezaDental.listado = data;
+ 		}
 
    	  }).error(function(error){
       	console.log(error);          
