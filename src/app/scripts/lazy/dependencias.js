@@ -332,7 +332,16 @@ function historiaDependencies(){
     return dependencias;
 }
 
+function clinicaDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,        
+        files: 
+        [
+            "app/scripts/controllers/Clinica/Controller/datosClinica.js"
+        ]
+    }
 
-
-
-
+    return dependencias;
+}

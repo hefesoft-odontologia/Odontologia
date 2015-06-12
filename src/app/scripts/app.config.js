@@ -14,6 +14,7 @@ angular
       routesFormulaMedica($stateProvider, $ocLazyLoadProvider);
       authOdontograma($stateProvider, $ocLazyLoadProvider);
       routesGallery($stateProvider, $ocLazyLoadProvider);
+      routesClinica($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
