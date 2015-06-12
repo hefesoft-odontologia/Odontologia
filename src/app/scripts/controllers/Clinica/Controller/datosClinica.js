@@ -3,6 +3,15 @@ angular.module('odontologiaApp')
 	function ($scope, dataTableStorageFactory) {
 	
 	$scope.clinica = {};
+	$scope.cambiarImagen = false;
+
+	$scope.cancelarClick = function(){
+		$scope.cambiarImagen = false;
+	}
+
+	$scope.cambiarImagenClick = function(){
+		$scope.cambiarImagen = true;		
+	}
 
 	$scope.guardar = function(){
 
@@ -11,6 +20,11 @@ angular.module('odontologiaApp')
 		$scope.clinica['RowKey'] = "1";
 		
 		dataTableStorageFactory.saveStorage($scope.clinica);        
+	}
+
+	$scope.fileUpload = function(item){
+		$scope.cambiarImagen = false;
+		$scope.guardar();	
 	}
 
 	function inicializarElementos(){

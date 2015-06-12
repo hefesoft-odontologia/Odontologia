@@ -267,14 +267,16 @@
             <aside id="sidebar">
                 <div class="sidebar-inner">
                     <div class="si-inner">
-                        <div class="profile-menu">
+                        
+
+                        <div ng-controller="datosClinicaCtrl as vmClinica" class="profile-menu">
                             <a href="">
                                 <div class="profile-pic">
-                                    <img src="assets/img/profile-pics/1.jpg" alt="">
+                                    <img src="{{clinica.pathImagen}}" alt="">
                                 </div>
                                 
                                 <div class="profile-info">
-                                    Malinda Hollaway
+                                    {{clinica.nombreEntidad}}
                                     
                                     <i class="md md-arrow-drop-down"></i>
                                 </div>
@@ -282,7 +284,7 @@
                             
                             <ul class="main-menu">
                                 <li>
-                                    <a href="profile-about.html"><i class="md md-person"></i> View Profile</a>
+                                    <a ui-sref="app.datosclinica"><i class="md md-person"></i> Clinica</a>
                                 </li>
                                 <li>
                                     <a href=""><i class="md md-settings-input-antenna"></i> Privacy Settings</a>

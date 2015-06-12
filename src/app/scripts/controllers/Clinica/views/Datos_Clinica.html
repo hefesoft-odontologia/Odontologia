@@ -1,13 +1,50 @@
 <div class="card">
     <div class="listview lv-bordered lv-lg">
           <div class="card-header ch-alt m-b-20">
-            <h2>Datos clinica <small> ------- </small></h2>
+            <h2>Datos clinica <small> Datos referentes al consultorio o clinica </small></h2>
           </div>
     </div>            
-    <div class="card-body m-t-0">        
+    <div class="card-body m-t-0 m-10">
         <div class="row">
 
         <div class="col-sm-4">
+         
+          <div class="form-group" ng-hide="cambiarImagen">
+            <div  class="fg-line">
+              <img ng-src="{{clinica.pathImagen}}" style="max-width: 300px;">
+            </div>
+         </div>    
+
+          <div class="form-group" ng-show="cambiarImagen">
+            <div  class="fg-line">
+              <file-upload-image-widget 
+                 ng-model="clinica.pathImagen"
+                 file-upload="fileUpload(item)"
+                 >
+              </file-upload-image-widget>
+            </div>
+          </div>
+
+          <div class="form-group" ng-hide="cambiarImagen">
+                <div class="fg-line">
+                    <button 
+                        ng-click="cambiarImagenClick()" 
+                        class="btn btn-info btn-sm waves-effect waves-button waves-float">
+                        Modificar imagen
+                    </button>    
+                </div>
+          </div>
+
+          <div class="form-group" ng-show="cambiarImagen">
+                <div class="fg-line">
+                    <button 
+                        ng-click="cancelarClick()" 
+                        class="btn btn-info btn-sm waves-effect waves-button waves-float">
+                        Cancelar
+                    </button>    
+                </div>
+          </div>
+
         </div>
 
         <div class="col-sm-8">
@@ -64,16 +101,7 @@
                            placeholder="Sitio web" 
                            ng-model="clinica.sitioWeb">
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="fg-line">
-                    <input type="text" 
-                           class="form-control" 
-                           placeholder="Sitio web" 
-                           ng-model="clinica.sitioWeb">
-                </div>
-            </div>
+            </div>            
 
             <div class="form-group">
                 <div class="fg-line">

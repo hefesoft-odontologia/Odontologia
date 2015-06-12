@@ -50,7 +50,9 @@ angular
       return $ocLazyLoad.load
       ([
           newsDependencies(),
-          importIoDependencies()
+          importIoDependencies(),
+          clinicaDependencies(),
+          azureDependencies()
       ]);
    }
 
