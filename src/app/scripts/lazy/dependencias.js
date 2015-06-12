@@ -345,3 +345,33 @@ function clinicaDependencies(){
 
     return dependencias;
 }
+
+function pdfDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [
+            "../bower_components/jspdf/dist/jspdf.debug.js",
+            "../bower_components/jspdf-autotable/jspdf.plugin.autotable.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+function imageDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,        
+        files: 
+        [
+            "app/lib/hefesoft.standard/services/convertToImage64.js"            
+        ]
+    }
+
+    return dependencias;
+}

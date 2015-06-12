@@ -24,7 +24,9 @@ function routesClinica($stateProvider, $ocLazyLoadProvider){
       ([
         fileInputDependencies(),
         azureDependencies(),
-        clinicaDependencies()
+        clinicaDependencies(),
+        pdfDependencies(),
+        imageDependencies()
       ]);
    }
 }
