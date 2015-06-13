@@ -43,7 +43,6 @@ angular.module('Historia')
    	  }).error(function(error){
       	console.log(error);          
       })
-
 	}
 
 	$scope.procedimientoEliminado = function(item){

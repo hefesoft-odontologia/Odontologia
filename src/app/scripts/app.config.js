@@ -15,6 +15,7 @@ angular
       authOdontograma($stateProvider, $ocLazyLoadProvider);
       routesGallery($stateProvider, $ocLazyLoadProvider);
       routesClinica($stateProvider, $ocLazyLoadProvider);
+      routesPeriodontograma($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
@@ -49,9 +50,10 @@ angular
    function cargarMain($ocLazyLoad){
       return $ocLazyLoad.load
       ([
-          newsDependencies(),
-          importIoDependencies(),
+          imageDependencies(),
           clinicaDependencies(),
+          newsDependencies(),
+          importIoDependencies(),          
           azureDependencies()
       ]);
    }

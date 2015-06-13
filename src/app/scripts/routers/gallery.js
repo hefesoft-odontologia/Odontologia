@@ -23,6 +23,8 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
   function cargarDependencias($ocLazyLoad){
       return $ocLazyLoad.load
       ([
+          imageDependencies(),
+          clinicaDependencies(),
           galleryDependencies(),
           fileInputDependencies(),
           azureDependencies()

@@ -456,6 +456,8 @@ $(document).ready(function(){
      * Input Slider
      */ 
     //Basic
+    
+    /*
     if($('.input-slider')[0]) {
         $('.input-slider').each(function(){
             var isStart = $(this).data('is-start');
@@ -469,7 +471,9 @@ $(document).ready(function(){
             });
         });
     }
+    */
 	
+    /*
     //Range slider
     if($('.input-slider-range')[0]) {
 	$('.input-slider-range').noUiSlider({
@@ -481,7 +485,9 @@ $(document).ready(function(){
 	    connect: true
 	});
     }
+    */
     
+    /*
     //Range slider with value
     if($('.input-slider-values')[0]) {
 	$('.input-slider-values').noUiSlider({
@@ -494,10 +500,13 @@ $(document).ready(function(){
 		    'max': 100
 	    }
 	});
+    */
 
+    /*
 	$('.input-slider-values').Link('lower').to($('#value-lower'));
         $('.input-slider-values').Link('upper').to($('#value-upper'), 'html');
     }
+    */
     
     /*
      * Input Mask

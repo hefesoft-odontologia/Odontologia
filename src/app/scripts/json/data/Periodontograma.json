@@ -1,5 +1,6 @@
 [
 	{
+		"codigo": "1",
 		"numeroPiezaDental":18,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -25,6 +26,7 @@
 	},
 
 	{
+		"codigo": "2",
 		"numeroPiezaDental":17,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -49,6 +51,7 @@
 		"parte":"parte1"
 	},
 	{
+		"codigo": "3",
 		"numeroPiezaDental":16,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -74,6 +77,7 @@
 	},
 	{
 
+		"codigo": "4",
 		"numeroPiezaDental":15,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -99,6 +103,7 @@
 	},
 
 	{
+		"codigo": "5",
 		"numeroPiezaDental":14,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -123,6 +128,7 @@
 		"parte":"parte1"
 	},
 	{
+		"codigo": "6",
 		"numeroPiezaDental":13,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -148,6 +154,7 @@
 	},
 
 	{
+		"codigo": "7",
 		"numeroPiezaDental":12,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -172,6 +179,7 @@
 		"parte":"parte1"
 	},
 	{
+		"codigo": "8",
 		"numeroPiezaDental":11,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -197,6 +205,7 @@
 	},
 
 	{
+		"codigo": "9",
 		"numeroPiezaDental":21,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -222,6 +231,7 @@
 	},
 
 	{
+		"codigo": "10",
 		"numeroPiezaDental":22,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -247,6 +257,7 @@
 	},
 
 	{
+		"codigo": "11",
 		"numeroPiezaDental":23,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -272,6 +283,7 @@
 	},
 
 	{
+		"codigo": "12",
 		"numeroPiezaDental":24,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -297,6 +309,7 @@
 	},
 
 	{
+		"codigo": "13",
 		"numeroPiezaDental":25,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -322,6 +335,7 @@
 	},
 
 	{
+		"codigo": "14",
 		"numeroPiezaDental":26,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -347,6 +361,7 @@
 	},
 
 	{
+		"codigo": "15",
 		"numeroPiezaDental":27,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -372,6 +387,7 @@
 	},
 
 	{
+		"codigo": "16",
 		"numeroPiezaDental":28,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -397,32 +413,8 @@
 	},
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	{
+		"codigo": "17",
 		"numeroPiezaDental":"18b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -448,6 +440,7 @@
 	},
 
 	{
+		"codigo": "18",
 		"numeroPiezaDental":"17b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -472,6 +465,7 @@
 		"parte":"parte2"
 	},
 	{
+		"codigo": "19",
 		"numeroPiezaDental":"16b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -497,6 +491,7 @@
 	},
 	{
 
+		"codigo": "20",
 		"numeroPiezaDental":"15b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -522,6 +517,7 @@
 	},
 
 	{
+		"codigo": "21",
 		"numeroPiezaDental":"14b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -546,6 +542,7 @@
 		"parte":"parte2"
 	},
 	{
+		"codigo": "22",
 		"numeroPiezaDental":"13b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -571,6 +568,7 @@
 	},
 
 	{
+		"codigo": "23",
 		"numeroPiezaDental":"12b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -595,6 +593,7 @@
 		"parte":"parte2"
 	},
 	{
+		"codigo": "24",
 		"numeroPiezaDental":"11b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -620,6 +619,7 @@
 	},
 
 	{
+		"codigo": "25",
 		"numeroPiezaDental":"21b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -645,6 +645,7 @@
 	},
 
 	{
+		"codigo": "26",
 		"numeroPiezaDental":"22b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -670,6 +671,7 @@
 	},
 
 	{
+		"codigo": "27",
 		"numeroPiezaDental":"23b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -695,6 +697,7 @@
 	},
 
 	{
+		"codigo": "28",
 		"numeroPiezaDental":"24b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -720,6 +723,7 @@
 	},
 
 	{
+		"codigo": "29",
 		"numeroPiezaDental":"25b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -745,6 +749,7 @@
 	},
 
 	{
+		"codigo": "30",
 		"numeroPiezaDental":"26b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -770,6 +775,7 @@
 	},
 
 	{
+		"codigo": "31",
 		"numeroPiezaDental":"27b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -795,6 +801,7 @@
 	},
 
 	{
+		"codigo": "32",
 		"numeroPiezaDental":"28b",
 		"mostrarFurca":true,
 		"lado":"b",
@@ -820,27 +827,8 @@
 	},
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	{
+		"codigo": "33",
 		"numeroPiezaDental":48,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -866,6 +854,7 @@
 	},
 
 	{
+		"codigo": "34",
 		"numeroPiezaDental":47,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -890,6 +879,7 @@
 		"parte":"parte3"
 	},
 	{
+		"codigo": "35",
 		"numeroPiezaDental":46,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -915,6 +905,7 @@
 	},
 	{
 
+		"codigo": "36",
 		"numeroPiezaDental":45,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -940,6 +931,7 @@
 	},
 
 	{
+		"codigo": "37",
 		"numeroPiezaDental":44,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -964,6 +956,7 @@
 		"parte":"parte3"
 	},
 	{
+		"codigo": "38",
 		"numeroPiezaDental":43,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -989,6 +982,7 @@
 	},
 
 	{
+		"codigo": "39",
 		"numeroPiezaDental":42,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1013,6 +1007,7 @@
 		"parte":"parte3"
 	},
 	{
+		"codigo": "40",
 		"numeroPiezaDental":41,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1038,6 +1033,7 @@
 	},
 
 	{
+		"codigo": "41",
 		"numeroPiezaDental":31,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1063,6 +1059,7 @@
 	},
 
 	{
+		"codigo": "42",
 		"numeroPiezaDental":32,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1088,6 +1085,7 @@
 	},
 
 	{
+		"codigo": "43",
 		"numeroPiezaDental":33,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1113,6 +1111,7 @@
 	},
 
 	{
+		"codigo": "44",
 		"numeroPiezaDental":34,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1138,6 +1137,7 @@
 	},
 
 	{
+		"codigo": "45",
 		"numeroPiezaDental":35,
 		"mostrarFurca":false,
 		"lado":"a",
@@ -1163,6 +1163,7 @@
 	},
 
 	{
+		"codigo": "46",
 		"numeroPiezaDental":36,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -1188,6 +1189,7 @@
 	},
 
 	{
+		"codigo": "47",
 		"numeroPiezaDental":37,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -1213,6 +1215,7 @@
 	},
 
 	{
+		"codigo": "48",
 		"numeroPiezaDental":38,
 		"mostrarFurca":true,
 		"lado":"a",
@@ -1237,33 +1240,8 @@
 		"parte":"parte3"
 	},
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	{
+		"codigo": "49",
 		"numeroPiezaDental":"48b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1289,6 +1267,7 @@
 	},
 
 	{
+		"codigo": "50",
 		"numeroPiezaDental":"47b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1313,6 +1292,7 @@
 		"parte":"parte4"
 	},
 	{
+		"codigo": "51",
 		"numeroPiezaDental":"46b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1338,6 +1318,7 @@
 	},
 	{
 
+		"codigo": "52",
 		"numeroPiezaDental":"45b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1363,6 +1344,7 @@
 	},
 
 	{
+		"codigo": "53",
 		"numeroPiezaDental":"44b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1387,6 +1369,7 @@
 		"parte":"parte4"
 	},
 	{
+		"codigo": "54",
 		"numeroPiezaDental":"43b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1412,6 +1395,7 @@
 	},
 
 	{
+		"codigo": "55",
 		"numeroPiezaDental":"42b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1436,6 +1420,7 @@
 		"parte":"parte4"
 	},
 	{
+		"codigo": "56",
 		"numeroPiezaDental":"41b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1461,6 +1446,7 @@
 	},
 
 	{
+		"codigo": "57",
 		"numeroPiezaDental":"31b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1486,6 +1472,7 @@
 	},
 
 	{
+		"codigo": "58",
 		"numeroPiezaDental":"32b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1511,6 +1498,7 @@
 	},
 
 	{
+		"codigo": "59",
 		"numeroPiezaDental":"33b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1536,6 +1524,7 @@
 	},
 
 	{
+		"codigo": "60",
 		"numeroPiezaDental":"34b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1561,6 +1550,7 @@
 	},
 
 	{
+		"codigo": "61",
 		"numeroPiezaDental":"35b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1586,6 +1576,7 @@
 	},
 
 	{
+		"codigo": "62",
 		"numeroPiezaDental":"36b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1611,6 +1602,7 @@
 	},
 
 	{
+		"codigo": "63",
 		"numeroPiezaDental":"37b",
 		"mostrarFurca":false,
 		"lado":"b",
@@ -1636,6 +1628,7 @@
 	},
 
 	{
+		"codigo": "64",
 		"numeroPiezaDental":"38b",
 		"mostrarFurca":false,
 		"lado":"b",

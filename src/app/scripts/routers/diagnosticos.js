@@ -22,6 +22,8 @@ function routesDiagnosticos($stateProvider, $ocLazyLoadProvider){
    function cargarDiagnosticos($ocLazyLoad){
       return $ocLazyLoad.load
       ([
+        imageDependencies(),
+        clinicaDependencies(),
         diagnosticosDependencies(), 
         wizardDependencies(), 
         tratamientosDependencies(),

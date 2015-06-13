@@ -33,6 +33,8 @@ function routesPacientes($stateProvider, $ocLazyLoadProvider){
        function cargarPacientes($ocLazyLoad){
       return $ocLazyLoad.load
       ([
+        imageDependencies(),
+        clinicaDependencies(),
         pacienteDependencies(),
         azureDependencies(),
         authDependencies()

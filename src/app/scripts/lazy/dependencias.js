@@ -375,3 +375,39 @@ function imageDependencies(){
 
     return dependencias;
 }
+
+function periodontogramaDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,        
+        files: 
+        [
+            "app/scripts/controllers/historia/Odontologia/realizarPeriodontograma/controller/realizarPeriodontograma.js",
+            "app/scripts/controllers/periodontograma/piezaDental/controller/periodontogramaPiezaDentalCtrl.js",
+            "app/scripts/controllers/periodontograma/piezaDental/directive/piezaDental.js",
+            "app/scripts/controllers/periodontograma/piezasDentales/controller/piezasDentales.js",
+            "app/scripts/controllers/periodontograma/piezasDentales/directive/piezas_dentales.js",
+            "app/scripts/controllers/periodontograma/piezasDentales/filters/implante.js",
+            "app/scripts/controllers/periodontograma/piezaDental/directive/ngpoint.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+function noUiSliderDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,        
+        files: 
+        [            
+            "app/Template/vendors/noUiSlider/jquery.nouislider.all.min.js",
+            "../bower_components/angular-nouislider/src/nouislider.min.js", 
+        ]
+    }
+
+    return dependencias;
+}

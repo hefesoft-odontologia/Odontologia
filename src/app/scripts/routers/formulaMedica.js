@@ -22,6 +22,8 @@ function routesFormulaMedica($stateProvider, $ocLazyLoadProvider){
   function cargarFormulaMedica($ocLazyLoad){
       return $ocLazyLoad.load
       ([
+          imageDependencies(),
+          clinicaDependencies(),
           formulaMedicaDependencies(),
           azureDependencies(),
           cieCupsDependencies()
