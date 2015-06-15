@@ -411,3 +411,37 @@ function noUiSliderDependencies(){
 
     return dependencias;
 }
+
+function calendarDependencies(){
+    var dependencias = 
+    {
+        name : "hefesoft.google",
+        cache: true,
+        serie: true,
+        files: 
+        [   
+            "app/Template/vendors/fullcalendar/fullcalendar.css",
+            "app/Template/vendors/fullcalendar/fullcalendar.min.js",
+            "app/Template/vendors/fullcalendar/gcal.js",
+            "app/lib/hefesoft.standard/google/services/calendar.js",
+            "app/lib/hefesoft.standard/Directivas/fullCalendar/directiva/calendar.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+function agendaDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,        
+        files: 
+        [            
+            "app/scripts/controllers/Agenda/controller/agenda.js"            
+        ]
+    }
+
+    return dependencias;
+}
+

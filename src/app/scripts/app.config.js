@@ -16,6 +16,7 @@ angular
       routesGallery($stateProvider, $ocLazyLoadProvider);
       routesClinica($stateProvider, $ocLazyLoadProvider);
       routesPeriodontograma($stateProvider, $ocLazyLoadProvider);
+      agendaClinica($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 

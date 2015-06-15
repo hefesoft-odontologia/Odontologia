@@ -211,6 +211,8 @@ $(document).ready(function(){
     /*
      * Calendar Widget
      */
+
+     /*
     if($('#calendar-widget')[0]) {
         (function(){
             $('#calendar-widget').fullCalendar({
@@ -273,6 +275,7 @@ $(document).ready(function(){
             });
         })();
     }
+    */
     
     /*
      * Weather Widget
