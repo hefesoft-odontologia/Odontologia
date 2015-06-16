@@ -4,6 +4,8 @@ angular.module('odontologiaApp')
 	 
 	$scope.mostrarBotonAutorizar = false;
 	$scope.listadoEventos = [];
+	$scope.contextoCalendar = {};
+
 	var listadoGoogleCalendar = [];
 
 	var event = {
@@ -39,7 +41,13 @@ angular.module('odontologiaApp')
 	}
 
 	$scope.adicionado = function(item){
-		//calendarGetData.insert(event);
+		var result = procesarAdicionado(item);
+		calendarGetData.insert(result).then(
+		 function(insertado){
+		 	var contexto = $scope.contextoCalendar();
+		 	insertado = procesarDato(insertado);
+		 	contexto.adicionarEvento(insertado);			
+		 });
 	}
 
 	$scope.modificado = function(item){
@@ -48,6 +56,22 @@ angular.module('odontologiaApp')
 
 	$scope.eliminado = function(item){
 		
+	}
+
+	function procesarAdicionado(item){
+
+		var start = moment(item.inicio).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
+		var end = moment(item.fin).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
+
+		start = moment(item.inicio).add(5, 'h');
+		end = moment(item.fin).add(5, 'h');
+
+		var elementoRetornar = {};
+		elementoRetornar['summary'] = item.title;
+		elementoRetornar['start'] = { dateTime : start};
+		elementoRetornar['end'] = { dateTime : end};
+		elementoRetornar['description'] = item.title;
+		return elementoRetornar;
 	}
 
 	function inicializar(){
@@ -76,17 +100,24 @@ angular.module('odontologiaApp')
 
 	function procesarDatos(data){
 		for (var i = data.length - 1; i >= 0; i--) {
-			data[i]['title'] = data[i].summary;
-			data[i].start = data[i].start.dateTime;
-			data[i].end = data[i].end.dateTime;
-
-			/*
-			if(angular.isDefined(data[i].colorId)){
-				var color = gapi.client.calendar.colors.get(data[i].colorId);
-				data[i]['eventBackgroundColor'] = "red";
-			}
-			*/
+			data[i] = procesarDato(data[i]);
 		};
+	}
+
+	function procesarDato(item){
+
+		item['title'] = item.summary;
+		item.start = item.start.dateTime;
+		item.end = item.end.dateTime;
+
+		/*
+		if(angular.isDefined(item.colorId)){
+			var color = gapi.client.calendar.colors.get(item.colorId);
+			item['eventBackgroundColor'] = "red";
+		}
+		*/
+
+		return item;
 	}
     
 	inicializar();

@@ -10,11 +10,13 @@ directive('fullCalendar',
 	directiva.link = function(scope, element, attrs, ngModelCtrl){        
 
 		var events = element[0];
+        scope.element = events;
+
 		inicializarControl(events);
 
         var existClick = attrs['eventoAdicionado'];
         if(angular.isDefined(existClick)){
-          scope.fnEventoAdicionado = $parse(attrs['eventoAdicinado']);
+          scope.fnEventoAdicionado = $parse(attrs['eventoAdicionado']);
         }
 
         existClick = attrs['eventoModificado'];
@@ -26,6 +28,12 @@ directive('fullCalendar',
         if(angular.isDefined(existClick)){
           scope.fnEventoEliminado = $parse(attrs['eventoEliminado']);
         }
+
+        if(scope.contexto){
+        scope.contexto = function(){
+          return scope;
+        }
+      }
 
 		ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -40,7 +48,7 @@ directive('fullCalendar',
 	}
 
     directiva.scope ={
-        modo : "="
+        contexto : "="
     };
 
 	directiva.templateUrl = "app/lib/hefesoft.standard/Directivas/fullCalendar/template/calendar.html";
@@ -149,20 +157,10 @@ directive('fullCalendar',
             var modo = $('#addEvent').text();
                 
             if ($scope.titulo != '' && modo == "Adicionar") {
-                //Render Event
-                $(element).find('.hefesoft-full-calendar').fullCalendar('renderEvent',{
-                    title: $scope.titulo,
-                    start: $scope.inicio,
-                    end:  $scope.fin,
-                    allDay: $scope.todoElDia,
-                    className: tagColor                    
-                },true ); //Stick the event
-                
+
                 if(angular.isDefined($scope.fnEventoAdicionado) && angular.isFunction($scope.fnEventoAdicionado)){
                     $scope.fnEventoAdicionado($scope.$parent, { 'item' : { title: $scope.titulo, inicio: $scope.inicio, fin: $scope.fin } });
                 }
-
-                cerrarModal();
             }
             else if($scope.titulo != '' && modo == "Modificar"){
 
@@ -212,5 +210,29 @@ directive('fullCalendar',
         }
 	}
 
+    directiva.controller = "fullCalendarCtrl";
+
 	return directiva;
+}])
+
+.controller('fullCalendarCtrl', ['$scope', function ($scope) {
+    
+    $scope.adicionarEvento = function(item){
+        //Render Event
+        $($scope.element).find('.hefesoft-full-calendar').fullCalendar('renderEvent',
+        {
+           title: item.titulo,
+           start: item.start,
+           end:  item.end,
+           id: item.id
+        },true ); 
+
+        cerrarModal();
+    }
+
+    function cerrarModal(){
+        $('#addNew-event form')[0].reset();
+        $('#addNew-event').modal('hide');
+    }
+
 }])
