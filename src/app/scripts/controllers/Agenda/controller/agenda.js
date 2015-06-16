@@ -46,16 +46,29 @@ angular.module('odontologiaApp')
 		 function(insertado){
 		 	var contexto = $scope.contextoCalendar();
 		 	insertado = procesarDato(insertado);
-		 	contexto.adicionarEvento(insertado);			
+		 	contexto.adicionarEvento(insertado);
+		 	listadoGoogleCalendar.push(insertado);
 		 });
 	}
 
 	$scope.modificado = function(item){
+		var index = _.findIndex(listadoGoogleCalendar, { 'id': item.id});
+		var elementoActualizar = listadoGoogleCalendar[index];
 
+		var start = moment(item.inicio).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
+		var end = moment(item.fin).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
+		
+		elementoActualizar['summary'] = item.title;
+		elementoActualizar['start'] = { dateTime : start};
+		elementoActualizar['end'] = { dateTime : end};
+		elementoActualizar['description'] = item.title;
+		calendarGetData.update('primary', elementoActualizar.id, elementoActualizar);
 	}
 
 	$scope.eliminado = function(item){
-		
+		var index = _.findIndex(listadoGoogleCalendar, { 'id': item.id});
+		var elementoEliminar = listadoGoogleCalendar[index];
+		calendarGetData.deleteEvent('primary', elementoEliminar.id);
 	}
 
 	function procesarAdicionado(item){

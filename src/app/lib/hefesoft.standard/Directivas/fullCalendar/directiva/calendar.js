@@ -97,7 +97,9 @@ directive('fullCalendar',
                 $('#addEvent').text("Modificar");
 
                 $scope.inicio = calEvent.start;
-                $scope.fin = calEvent.end;                
+                $scope.fin = calEvent.end;
+                $scope.titulo = calEvent.title;
+
                 $('#addNew-event #eventName').val(calEvent.title);
                 $('#addNew-event #horaInicial input:text').val(calEvent.start.format('HH:mm'));
                 $('#addNew-event #horaFinal input:text').val(calEvent.end.format('HH:mm'));
@@ -221,7 +223,7 @@ directive('fullCalendar',
         //Render Event
         $($scope.element).find('.hefesoft-full-calendar').fullCalendar('renderEvent',
         {
-           title: item.titulo,
+           title: item.summary,
            start: item.start,
            end:  item.end,
            id: item.id
