@@ -1,14 +1,31 @@
 angular.module('directivas').
-directive('fullCalendar', [function () {
+directive('fullCalendar', 
+    ['$parse', function ($parse) {
 
 	var directiva = {};
+    var $scope;
 
 	directiva.require  = ['ngModel'];
 	directiva.restrict = "E";
-	directiva.link = function(scope, element, iAttrs, ngModelCtrl){
-		
+	directiva.link = function(scope, element, attrs, ngModelCtrl){        
+
 		var events = element[0];
 		inicializarControl(events);
+
+        var existClick = attrs['eventoAdicionado'];
+        if(angular.isDefined(existClick)){
+          scope.fnEventoAdicionado = $parse(attrs['eventoAdicinado']);
+        }
+
+        existClick = attrs['eventoModificado'];
+        if(angular.isDefined(existClick)){
+          scope.fnEventoModificado = $parse(attrs['eventoModificado']);
+        }
+
+        existClick = attrs['eventoEliminado'];
+        if(angular.isDefined(existClick)){
+          scope.fnEventoEliminado = $parse(attrs['eventoEliminado']);
+        }
 
 		ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -18,18 +35,21 @@ directive('fullCalendar', [function () {
 		  		$(events).find('.hefesoft-full-calendar').fullCalendar( 'addEventSource', valor );
             }
 		}
+
+        $scope = scope;
 	}
+
+    directiva.scope ={
+        modo : "="
+    };
 
 	directiva.templateUrl = "app/lib/hefesoft.standard/Directivas/fullCalendar/template/calendar.html";
 
 	function inicializarControl(element){
 
-		var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
-
+		
         var cId = $(element).find('.hefesoft-full-calendar'); //Change the name if you want. I'm also using thsi add button for more actions
+        var SelectedEvent;
 
         //Generate the Calendar
         cId.fullCalendar({
@@ -42,15 +62,49 @@ directive('fullCalendar', [function () {
             theme: true, //Do not remove this as it ruin the design
             selectable: true,
             selectHelper: true,
-            editable: true,
-            className: 'gcal-event',
-             
+            editable: true,            
+            defaultView: 'agendaDay',
+            lang: 'es',
+
             //On Day Select
             select: function(start, end, allDay) {
-                $('#addNew-event').modal('show');   
-                $('#addNew-event input:text').val('');
-                $('#getStart').val(start);
-                $('#getEnd').val(end);
+                $scope.inicio = start;
+                $('#addNew-event').modal('show');                
+                $('#deleteEvent').hide();
+                $('#addEvent').text("Adicionar");
+
+                $scope.titulo = "";                
+                $('#addNew-event #eventName').val('');
+
+                $scope.inicio = start;
+                $scope.fin = end;
+                $('#addNew-event #horaInicial input:text').val(start.format('HH:mm'));
+                $('#addNew-event #horaFinal input:text').val(end.format('HH:mm'));
+            },
+
+            eventClick: function(calEvent, jsEvent, view) {
+                SelectedEvent = calEvent;
+                $('#addNew-event').modal('show');
+                $('#deleteEvent').show();
+                $('#addEvent').text("Modificar");
+
+                $scope.inicio = calEvent.start;
+                $scope.fin = calEvent.end;                
+                $('#addNew-event #eventName').val(calEvent.title);
+                $('#addNew-event #horaInicial input:text').val(calEvent.start.format('HH:mm'));
+                $('#addNew-event #horaFinal input:text').val(calEvent.end.format('HH:mm'));
+            },
+            eventResize: function(event, delta, revertFunc) {
+
+                if(angular.isDefined($scope.fnEventoModificado) && angular.isFunction($scope.fnEventoModificado)){
+                    $scope.fnEventoModificado($scope.$parent, { 'item' : event });
+                }
+            },
+            eventDragStop: function(event, jsEvent, ui, view) {
+                
+                if(angular.isDefined($scope.fnEventoModificado) && angular.isFunction($scope.fnEventoModificado)){
+                    $scope.fnEventoModificado($scope.$parent, { 'item' : event });
+                }
             }
         });
 
@@ -60,19 +114,19 @@ directive('fullCalendar', [function () {
                                 '<a href="" data-toggle="dropdown"><i class="md md-more-vert"></i></a>' +
                                 '<ul class="dropdown-menu dropdown-menu-right">' +
                                     '<li class="active">' +
-                                        '<a data-view="month" href="">Month View</a>' +
+                                        '<a data-view="month" href="">Mensual</a>' +
                                     '</li>' +
                                     '<li>' +
-                                        '<a data-view="basicWeek" href="">Week View</a>' +
+                                        '<a data-view="basicWeek" href="">Semanal</a>' +
                                     '</li>' +
                                     '<li>' +
-                                        '<a data-view="agendaWeek" href="">Agenda Week View</a>' +
+                                        '<a data-view="agendaWeek" href="">Agenda semanal</a>' +
                                     '</li>' +
                                     '<li>' +
-                                        '<a data-view="basicDay" href="">Day View</a>' +
+                                        '<a data-view="basicDay" href="">Dia</a>' +
                                     '</li>' +
                                     '<li>' +
-                                        '<a data-view="agendaDay" href="">Agenda Day View</a>' +
+                                        '<a data-view="agendaDay" href="">Agenda Dia</a>' +
                                     '</li>' +
                                 '</ul>' +
                             '</div>' +
@@ -91,28 +145,56 @@ directive('fullCalendar', [function () {
         
         //Add new Event
         $(element).on('click', '#addEvent', function(){
-            var eventName = $('#eventName').val();
             var tagColor = $('.event-tag > span.selected').attr('data-tag');
+            var modo = $('#addEvent').text();
                 
-            if (eventName != '') {
+            if ($scope.titulo != '' && modo == "Adicionar") {
                 //Render Event
                 $(element).find('.hefesoft-full-calendar').fullCalendar('renderEvent',{
-                    title: eventName,
-                    start: $('#getStart').val(),
-                    end:  $('#getEnd').val(),
-                    allDay: true,
-                    className: tagColor
-                    
+                    title: $scope.titulo,
+                    start: $scope.inicio,
+                    end:  $scope.fin,
+                    allDay: $scope.todoElDia,
+                    className: tagColor                    
                 },true ); //Stick the event
                 
-                $('#addNew-event form')[0].reset()
-                $('#addNew-event').modal('hide');
+                if(angular.isDefined($scope.fnEventoAdicionado) && angular.isFunction($scope.fnEventoAdicionado)){
+                    $scope.fnEventoAdicionado($scope.$parent, { 'item' : { title: $scope.titulo, inicio: $scope.inicio, fin: $scope.fin } });
+                }
+
+                cerrarModal();
+            }
+            else if($scope.titulo != '' && modo == "Modificar"){
+
+                SelectedEvent.title = $scope.titulo;
+                SelectedEvent.start = $scope.inicio;
+                SelectedEvent.end = $scope.fin;
+                SelectedEvent.allDay = $scope.todoElDia;
+                SelectedEvent.className = $scope.tagColor;
+
+                $(element).find('.hefesoft-full-calendar').fullCalendar('updateEvent', SelectedEvent);
+                
+                if(angular.isDefined($scope.fnEventoModificado) && angular.isFunction($scope.fnEventoModificado)){
+                    $scope.fnEventoModificado($scope.$parent, { 'item' : SelectedEvent });
+                }
+                             
+                cerrarModal();                
             }
             
             else {
                 $('#eventName').closest('.form-group').addClass('has-error');
             }
-        });   
+        });
+
+        $(element).on('click', '#deleteEvent', function(){
+            $(element).find('.hefesoft-full-calendar').fullCalendar( 'removeEvents', SelectedEvent._id);
+
+            if(angular.isDefined($scope.fnEventoEliminado) && angular.isFunction($scope.fnEventoEliminado)){
+                $scope.fnEventoEliminado($scope.$parent, { 'item' : SelectedEvent });
+            }
+
+            cerrarModal();
+        });
 
         //Calendar views
         $(element).on('click', '#fc-actions [data-view]', function(e){
@@ -123,6 +205,11 @@ directive('fullCalendar', [function () {
             $(this).parent().addClass('active');
             cId.fullCalendar('changeView', dataView);  
         });
+
+        function cerrarModal(){
+            $('#addNew-event form')[0].reset();
+            $('#addNew-event').modal('hide');
+        }
 	}
 
 	return directiva;

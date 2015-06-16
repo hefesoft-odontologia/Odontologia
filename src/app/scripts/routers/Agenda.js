@@ -22,6 +22,7 @@ function agendaClinica($stateProvider, $ocLazyLoadProvider){
   function cargarAgenda($ocLazyLoad){
       return $ocLazyLoad.load
       ([        
+        dateDependencies(),
         azureDependencies(),
         clinicaDependencies(),
         imageDependencies(),

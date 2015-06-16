@@ -36,6 +36,7 @@ function routesPacientes($stateProvider, $ocLazyLoadProvider){
         imageDependencies(),
         clinicaDependencies(),
         pacienteDependencies(),
+        dateDependencies(),
         azureDependencies(),
         authDependencies()
       ]);

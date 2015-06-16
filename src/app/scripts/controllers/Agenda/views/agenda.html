@@ -4,4 +4,9 @@ ng-show="mostrarBotonAutorizar">
 	Autenticar	
 </button>
 
-<full-calendar ng-model="listadoEventos"></full-calendar>
+<full-calendar
+	evento-adicionado="adicionado(item)"
+	evento-modificado="modificado(item)"
+	evento-eliminado="eliminado(item)" 
+	ng-model="listadoEventos">
+</full-calendar>

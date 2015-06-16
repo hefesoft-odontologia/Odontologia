@@ -3,7 +3,8 @@ angular.module('odontologiaApp')
 	['$scope', 'calendarGetData', function ($scope, calendarGetData) {
 	 
 	$scope.mostrarBotonAutorizar = false;
-	$scope.listadoEventos = {};
+	$scope.listadoEventos = [];
+	var listadoGoogleCalendar = [];
 
 	var event = {
 	  'summary': 'Google I/O 2015',
@@ -37,6 +38,18 @@ angular.module('odontologiaApp')
 		calendarGetData.auth().then(autorizado, noAutorizado);
 	}
 
+	$scope.adicionado = function(item){
+		//calendarGetData.insert(event);
+	}
+
+	$scope.modificado = function(item){
+
+	}
+
+	$scope.eliminado = function(item){
+		
+	}
+
 	function inicializar(){
 		calendarGetData.getAuth().then(autorizado, noAutorizado);
 	}
@@ -54,11 +67,10 @@ angular.module('odontologiaApp')
 	}
 
 	function eventosCargados(data){
-
+		listadoGoogleCalendar = data;
 		procesarDatos(data);
-		$scope.listadoEventos = data;
+		$scope.listadoEventos = data;		
 		
-		//calendarGetData.insert(event);
 		//calendarGetData.deleteEvent('primary', eventoPrueba.id);
 	}
 

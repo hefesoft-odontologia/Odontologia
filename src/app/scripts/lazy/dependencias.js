@@ -154,10 +154,26 @@ function pacienteDependencies(){
         files: 
         [            
             "app/scripts/controllers/pacientes/controllers/listado.js",
-            "app/scripts/controllers/pacientes/services/inicializarListado.js",
-            "app/lib/hefesoft.standard/Directivas/Date-Picker/Directiva/datePicker.js",
+            "app/scripts/controllers/pacientes/services/inicializarListado.js",            
             "app/scripts/controllers/pacientes/controllers/listado.js",
             "app/lib/hefesoft.standard/Fixes/fixes.js"     
+        ]
+    }
+
+    return dependencias;
+}
+
+function dateDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "app/Template/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js",
+            "app/lib/hefesoft.standard/Directivas/Date-Picker/Directiva/datePicker.js",
+            "app/lib/hefesoft.standard/Directivas/Time-Picker/directiva/timePicker.js"
         ]
     }
 
@@ -422,6 +438,7 @@ function calendarDependencies(){
         [   
             "app/Template/vendors/fullcalendar/fullcalendar.css",
             "app/Template/vendors/fullcalendar/fullcalendar.min.js",
+            "app/Template/vendors/fullcalendar/lang-all.js",
             "app/Template/vendors/fullcalendar/gcal.js",
             "app/lib/hefesoft.standard/google/services/calendar.js",
             "app/lib/hefesoft.standard/Directivas/fullCalendar/directiva/calendar.js"
