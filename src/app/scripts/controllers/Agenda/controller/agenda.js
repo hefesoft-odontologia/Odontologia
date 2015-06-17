@@ -1,10 +1,11 @@
 angular.module('odontologiaApp')
 .controller('AgendaCtrl', 
-	['$scope', 'calendarGetData', function ($scope, calendarGetData) {
+	['$scope', 'calendarGetData', 'agendaHelperService', function ($scope, calendarGetData, agendaHelperService) {
 	 
 	$scope.mostrarBotonAutorizar = false;
 	$scope.listadoEventos = [];
 	$scope.contextoCalendar = {};
+	$scope.calendarId = 'primary';
 
 	var listadoGoogleCalendar = [];
 
@@ -41,11 +42,11 @@ angular.module('odontologiaApp')
 	}
 
 	$scope.adicionado = function(item){
-		var result = procesarAdicionado(item);
-		calendarGetData.insert(result).then(
+		var elementoProcesado = agendaHelperService.procesarAdicionado(item);
+		calendarGetData.insert(elementoProcesado, $scope.calendarId).then(
 		 function(insertado){
 		 	var contexto = $scope.contextoCalendar();
-		 	insertado = procesarDato(insertado);
+		 	insertado = agendaHelperService.procesarDato(insertado);
 		 	contexto.adicionarEvento(insertado);
 		 	listadoGoogleCalendar.push(insertado);
 		 });
@@ -55,37 +56,15 @@ angular.module('odontologiaApp')
 		var index = _.findIndex(listadoGoogleCalendar, { 'id': item.id});
 		var elementoActualizar = listadoGoogleCalendar[index];
 
-		var start = moment(item.inicio).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
-		var end = moment(item.fin).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
-		
-		elementoActualizar['summary'] = item.title;
-		elementoActualizar['start'] = { dateTime : start};
-		elementoActualizar['end'] = { dateTime : end};
-		elementoActualizar['description'] = item.title;
-		calendarGetData.update('primary', elementoActualizar.id, elementoActualizar);
+		elementoActualizar = agendaHelperService.procesarDato.actualizar(elementoActualizar, item);		
+		calendarGetData.update($scope.calendarId, elementoActualizar.id, elementoActualizar);
 	}
 
 	$scope.eliminado = function(item){
 		var index = _.findIndex(listadoGoogleCalendar, { 'id': item.id});
 		var elementoEliminar = listadoGoogleCalendar[index];
-		calendarGetData.deleteEvent('primary', elementoEliminar.id);
-	}
-
-	function procesarAdicionado(item){
-
-		var start = moment(item.inicio).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
-		var end = moment(item.fin).format("YYYY-MM-DDTHH:MM:SS.SSSZ");
-
-		start = moment(item.inicio).add(5, 'h');
-		end = moment(item.fin).add(5, 'h');
-
-		var elementoRetornar = {};
-		elementoRetornar['summary'] = item.title;
-		elementoRetornar['start'] = { dateTime : start};
-		elementoRetornar['end'] = { dateTime : end};
-		elementoRetornar['description'] = item.title;
-		return elementoRetornar;
-	}
+		calendarGetData.deleteEvent($scope.calendarId, elementoEliminar.id);
+	}	
 
 	function inicializar(){
 		calendarGetData.getAuth().then(autorizado, noAutorizado);
@@ -100,37 +79,13 @@ angular.module('odontologiaApp')
 	}
 
 	function eventApiCargada(){
-		calendarGetData.getCalendar().then(eventosCargados);
+		calendarGetData.getCalendar($scope.calendarId).then(eventosCargados);
 	}
 
 	function eventosCargados(data){
 		listadoGoogleCalendar = data;
-		procesarDatos(data);
-		$scope.listadoEventos = data;		
-		
-		//calendarGetData.deleteEvent('primary', eventoPrueba.id);
-	}
-
-	function procesarDatos(data){
-		for (var i = data.length - 1; i >= 0; i--) {
-			data[i] = procesarDato(data[i]);
-		};
-	}
-
-	function procesarDato(item){
-
-		item['title'] = item.summary;
-		item.start = item.start.dateTime;
-		item.end = item.end.dateTime;
-
-		/*
-		if(angular.isDefined(item.colorId)){
-			var color = gapi.client.calendar.colors.get(item.colorId);
-			item['eventBackgroundColor'] = "red";
-		}
-		*/
-
-		return item;
+		agendaHelperService.procesarDatos(data);
+		$scope.listadoEventos = data;
 	}
     
 	inicializar();

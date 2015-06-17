@@ -19,10 +19,20 @@ angular.module('hefesoft.google')
           scope.fnSigIn = $parse(attrs['sigIn']);
        }
 
-       function onSuccess(googleUser) {      
+       function onSuccess(googleUser) {
+       	var profile = googleUser.getBasicProfile();
+       	var item = {
+       		type : googleUser.B.idpId,
+       		id_token : googleUser.B.id_token,
+       		access_token : googleUser.B.access_token,
+       		email: profile.G,
+       		name : profile.ha,
+       		id :  profile.B,
+       		urlImage : profile.wc
+       	};
 
       	if(angular.isDefined(scope.fnSigIn) && angular.isFunction(scope.fnSigIn)){
-            scope.fnSigIn(scope, { 'item' : googleUser.getBasicProfile() });
+            scope.fnSigIn(scope, { 'item' : item });
         }
 	  }
 

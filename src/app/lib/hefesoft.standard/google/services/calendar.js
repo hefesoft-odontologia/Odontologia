@@ -6,10 +6,10 @@ angular.module('hefesoft.google')
     var SCOPES = ["https://www.googleapis.com/auth/calendar"];
 	var dataFactory = {};
 
-	dataFactory.getCalendar = function(){
+	dataFactory.getCalendar = function(calendarId){
         var deferred = $q.defer();
         var request = gapi.client.calendar.events.list({
-          'calendarId': 'primary',
+          'calendarId': calendarId,
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
@@ -70,10 +70,10 @@ angular.module('hefesoft.google')
      return deferred.promise;
   }
 
-  dataFactory.insert = function(event){
+  dataFactory.insert = function(event, calendarId){
     var deferred = $q.defer();
     var request = gapi.client.calendar.events.insert({
-      'calendarId': 'primary',
+      'calendarId': calendarId,
       'resource': event
     });
 

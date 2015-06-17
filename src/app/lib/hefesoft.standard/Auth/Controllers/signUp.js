@@ -5,7 +5,7 @@ angular.module('auth')
 	//validarNavegacionService.validarCaptcha();
 	$scope.loginData= {};
 
-	$scope.sigIn = function sigIn(item){
+	$scope.onSign = function(item){
 		console.log(item);
 	}
 

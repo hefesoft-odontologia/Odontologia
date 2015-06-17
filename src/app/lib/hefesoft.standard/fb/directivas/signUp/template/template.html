@@ -1,4 +1,11 @@
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<div id="fb-root"></div>
+
+<fb:login-button 
+	data-size="large"
+	data-show-faces="false"
+	scope="public_profile,email" 
+	data-auto-logout-link="true"
+	onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">

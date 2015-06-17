@@ -232,7 +232,8 @@ function authDependencies(){
             "app/lib/hefesoft.standard/Auth/transformPost.js",
             "https://apis.google.com/js/platform.js",
             "app/lib/hefesoft.standard/google/directivas/signUp/directive/directive.js",
-            "app/lib/hefesoft.standard/fb/directivas/signUp/directive/directive.js"
+            "app/lib/hefesoft.standard/fb/directivas/signUp/directive/directive.js",
+            "app/lib/hefesoft.standard/Directivas/social-login/directiva/directiva.js"
         ]
     }
 
@@ -459,7 +460,8 @@ function agendaDependencies(){
         cache: true,        
         files: 
         [            
-            "app/scripts/controllers/Agenda/controller/agenda.js"            
+            "app/scripts/controllers/Agenda/controller/agenda.js",
+            "app/scripts/controllers/Agenda/services/agenta.helpers.js"
         ]
     }
 
