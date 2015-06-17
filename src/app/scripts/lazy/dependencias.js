@@ -220,6 +220,7 @@ function authDependencies(){
     {
         name : "azure",
         cache: true,
+        serie: true,
         files: 
         [
             "app/lib/hefesoft.standard/Auth/usuario.js",
@@ -228,7 +229,10 @@ function authDependencies(){
             "app/lib/hefesoft.standard/Auth/sign.js",
             "app/lib/hefesoft.standard/Auth/inicializarServicios.js",
             "app/lib/hefesoft.standard/Auth/token.js",
-            "app/lib/hefesoft.standard/Auth/transformPost.js"
+            "app/lib/hefesoft.standard/Auth/transformPost.js",
+            "https://apis.google.com/js/platform.js",
+            "app/lib/hefesoft.standard/google/directivas/signUp/directive/directive.js",
+            "app/lib/hefesoft.standard/fb/directivas/signUp/directive/directive.js"
         ]
     }
 

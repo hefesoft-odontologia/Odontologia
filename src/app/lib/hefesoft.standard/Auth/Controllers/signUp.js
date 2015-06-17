@@ -5,6 +5,10 @@ angular.module('auth')
 	//validarNavegacionService.validarCaptcha();
 	$scope.loginData= {};
 
+	$scope.sigIn = function sigIn(item){
+		console.log(item);
+	}
+
 	$scope.doSignUp = function(){
 		if(connectionMode.conexionStatus()){
 			$ionicLoading.show();
