@@ -6,7 +6,10 @@ angular.module('auth')
 	$scope.loginData= {};
 
 	$scope.onSign = function(item){
-		console.log(item);
+		 $scope.$apply(function () {
+            $scope.loginData.username = item.email.split('@')[0];
+			$scope.loginData.email = item.email;
+        });
 	}
 
 	$scope.doSignUp = function(){
