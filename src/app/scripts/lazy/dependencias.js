@@ -233,7 +233,10 @@ function authDependencies(){
             "https://apis.google.com/js/platform.js",
             "app/lib/hefesoft.standard/google/directivas/signUp/directive/directive.js",
             "app/lib/hefesoft.standard/fb/directivas/signUp/directive/directive.js",
-            "app/lib/hefesoft.standard/Directivas/social-login/directiva/directiva.js"
+            "app/lib/hefesoft.standard/Directivas/social-login/directiva/directiva.js",
+            "app/lib/hefesoft.standard/Directivas/external-login/directive/directive.js",
+            "app/lib/hefesoft.standard/Directivas/external-login/controller/externalLogin.js"
+
         ]
     }
 
