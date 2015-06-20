@@ -1,5 +1,5 @@
 angular.module('hefesoft.google')
-.service('driveData', 
+.service('driveApi', 
 	['$q', function ($q) {
 	
 	var CLIENT_ID = '505952414500-c04fnrdu3njem1cl2ug9h5gbd6rs025k.apps.googleusercontent.com';
@@ -36,7 +36,7 @@ angular.module('hefesoft.google')
 
   dataFactory.loadApi = function(){
       var deferred = $q.defer();
-      gapi.client.load('calendar', 'v3').
+      gapi.client.load('drive', 'v2').
         then(function(){ 
             console.log('loaded.');
             deferred.resolve(); 

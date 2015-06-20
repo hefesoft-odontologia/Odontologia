@@ -467,6 +467,7 @@ function pickerDependencies(){
         cache: true,        
         files: 
         [   
+            "app/lib/hefesoft.standard/google/services/drive.js",
             "app/lib/hefesoft.standard/google/directivas/picker/directiva/directiva.js",
             "app/lib/hefesoft.standard/google/directivas/picker/controller/picker.js",
             "app/lib/hefesoft.standard/google/services/picker.js"

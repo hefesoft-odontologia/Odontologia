@@ -1,6 +1,6 @@
 angular.module('hefesoft.google')
 .controller('googlePickerCtrl', 
-	['$scope', 'googlePickerService', '$q', function ($scope, googlePickerService, $q) {
+	['$scope', 'googlePickerService', 'driveApi', '$q', function ($scope, googlePickerService, driveApi, $q) {
 
 	$scope.mostrarBotonAutorizar = false;
 	var developerKey = 'AIzaSyDqLLd0jtzOSqJzZcXVeB70-72PmoBwjRE';
@@ -23,6 +23,9 @@ angular.module('hefesoft.google')
 	function autorizado(data){
 		oauthToken = data.access_token;
 		googlePickerService.load(callback);
+		driveApi.loadApi().then(function(result){
+			console.log(result);
+		})
 	}
 
 	function callback(){
@@ -38,9 +41,11 @@ angular.module('hefesoft.google')
 
     	//la carpeta no ha sido creada
     	if(angular.isDefined(result.error) && result.error.code == 404){
+    		/*
     		createFolder(carpeta).then(function(){
         		createPicker();	
         	})
+			*/
     	}
     	else{
     		createPicker();
@@ -110,7 +115,7 @@ angular.module('hefesoft.google')
 
 	   var deferred = $q.defer();
 	   var request = gapi.client.request({
-	       'path': '/drive/v2/files/'+ nombreFolder,
+	       'path': '/drive/v2/files/root/children',
 	       'method': 'GET',
 	       'headers': {
 	           'Content-Type': 'application/json',
