@@ -17,6 +17,21 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
                 }  
             }       
        }
+})
+
+.state('app.picker', {
+        url: "/picker",
+        cache: false,
+        views: {
+            'menuContent': {
+                templateUrl: "app/lib/hefesoft.standard/google/directivas/picker/views/picker.html",                
+                resolve :{
+                   controller : function($ocLazyLoad){
+                     return pickerDependencias($ocLazyLoad)
+                   }
+                }  
+            }       
+       }
 });
 
 
@@ -27,7 +42,17 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
           clinicaDependencies(),
           galleryDependencies(),
           fileInputDependencies(),
-          azureDependencies()
+          azureDependencies()          
+      ]);
+   }
+
+   function pickerDependencias($ocLazyLoad){
+      return $ocLazyLoad.load
+      ([
+          imageDependencies(),
+          clinicaDependencies(),
+          azureDependencies(),
+          pickerDependencies()
       ]);
    }
 

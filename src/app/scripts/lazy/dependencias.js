@@ -460,6 +460,24 @@ function calendarDependencies(){
     return dependencias;
 }
 
+function pickerDependencies(){
+    var dependencias = 
+    {
+        name : "hefesoft.google",
+        cache: true,        
+        files: 
+        [   
+            "app/lib/hefesoft.standard/google/directivas/picker/directiva/directiva.js",
+            "app/lib/hefesoft.standard/google/directivas/picker/controller/picker.js",
+            "app/lib/hefesoft.standard/google/services/picker.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+
+
 function agendaDependencies(){
     var dependencias = 
     {

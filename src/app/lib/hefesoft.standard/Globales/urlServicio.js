@@ -6,9 +6,9 @@ angular.module('Global')
 	urlFactory.getUrlService = function(){
 
 		//Produccion
-	    //var urlBase = 'https://hefesoftdynamicbackend.azurewebsites.net/api/';
+	    var urlBase = 'https://hefesoftdynamicbackend.azurewebsites.net/api/';
 	    //Pruebas
-	    var urlBase = 'http://localhost:3481/api/'
+	    //var urlBase = 'http://localhost:3481/api/'
 	    return urlBase;
 
 	}
