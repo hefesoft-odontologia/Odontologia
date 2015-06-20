@@ -223,6 +223,9 @@ function authDependencies(){
         serie: true,
         files: 
         [
+            "app/lib/hefesoft.standard/Auth/External/Services/authService.js",
+            "app/lib/hefesoft.standard/constants/External.js/constant.js",
+            "app/Template/vendors/local-storage/angular-local-storage.min.js",
             "app/lib/hefesoft.standard/Auth/usuario.js",
             "app/lib/hefesoft.standard/Auth/Controllers/signIn.js",
             "app/lib/hefesoft.standard/Auth/Controllers/signUp.js",
@@ -235,7 +238,8 @@ function authDependencies(){
             "app/lib/hefesoft.standard/fb/directivas/signUp/directive/directive.js",
             "app/lib/hefesoft.standard/Directivas/social-login/directiva/directiva.js",
             "app/lib/hefesoft.standard/Directivas/external-login/directive/directive.js",
-            "app/lib/hefesoft.standard/Directivas/external-login/controller/externalLogin.js"
+            "app/lib/hefesoft.standard/Directivas/external-login/controller/externalLogin.js",
+            "app/lib/hefesoft.standard/Directivas/external-login/controller/associateController.js"
 
         ]
     }

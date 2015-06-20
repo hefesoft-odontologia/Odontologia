@@ -5,6 +5,7 @@ angular
       $httpProvider.defaults.withCredentials = true;
       $httpProvider.interceptors.push('authInterceptorService');
 
+
   		$urlRouterProvider.otherwise('/login');
 
       configureLazy($ocLazyLoadProvider);
@@ -17,6 +18,7 @@ angular
       routesClinica($stateProvider, $ocLazyLoadProvider);
       routesPeriodontograma($stateProvider, $ocLazyLoadProvider);
       agendaClinica($stateProvider, $ocLazyLoadProvider);
+      externalLogin($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
