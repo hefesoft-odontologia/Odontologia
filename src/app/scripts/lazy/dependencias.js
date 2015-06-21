@@ -229,6 +229,7 @@ function authDependencies(){
             "app/lib/hefesoft.standard/Auth/usuario.js",
             "app/lib/hefesoft.standard/Auth/Controllers/signIn.js",
             "app/lib/hefesoft.standard/Auth/Controllers/signUp.js",
+            "app/lib/hefesoft.standard/Auth/Controllers/logOut.js",
             "app/lib/hefesoft.standard/Auth/sign.js",
             "app/lib/hefesoft.standard/Auth/inicializarServicios.js",
             "app/lib/hefesoft.standard/Auth/token.js",

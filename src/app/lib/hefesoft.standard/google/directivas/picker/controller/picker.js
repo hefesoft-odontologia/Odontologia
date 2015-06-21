@@ -7,6 +7,8 @@ angular.module('hefesoft.google')
 	var pickerApiLoaded;
 	var oauthToken;
 	var carpeta = "odontologia_usuario";
+	var idFolder;
+	var picker;
 
 	function inicializar(){
 		googlePickerService.getAuth().then(autorizado, noAutorizado);
@@ -37,17 +39,20 @@ angular.module('hefesoft.google')
         getFolder(carpeta).then(carpetaExiste);
     }
 
+    $scope.mostrarPicker = function(){
+    	picker.setVisible(true);
+    }
+
     function carpetaExiste(result){
 
     	//la carpeta no ha sido creada
-    	if(angular.isDefined(result.error) && result.error.code == 404){
-    		/*
+    	if(result.items.length === 0){
     		createFolder(carpeta).then(function(){
         		createPicker();	
         	})
-			*/
     	}
     	else{
+    		idFolder = result.items[0].id;
     		createPicker();
     	}
 
@@ -56,14 +61,14 @@ angular.module('hefesoft.google')
 
     function createPicker() {
        if (pickerApiLoaded && oauthToken) {
-       	 var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true);
-       	 var photoView = new google.picker.PhotosView().setParent(carpeta);
-       	 var webCamView = new google.picker.WebCamView().setParent(carpeta);
+       	 var uploadView = new google.picker.DocsUploadView().setParent(idFolder);
+       	 var docsView = new google.picker.DocsView().setParent(idFolder).setMode(google.picker.DocsViewMode.GRID);       	 
+       	 var webCamView = new google.picker.WebCamView().setParent(idFolder);
 
-         var picker = new google.picker.PickerBuilder().
-         	 enableFeature(google.picker.Feature.MULTISELECT_ENABLED).
+         	picker = new google.picker.PickerBuilder().
+         	 enableFeature(google.picker.Feature.MULTISELECT_ENABLED).                          
+             addView(docsView).
              addView(uploadView).
-             addView(photoView).
              addView(webCamView).             
              setLocale('es').
              setOAuthToken(oauthToken).
@@ -77,12 +82,14 @@ angular.module('hefesoft.google')
 
      function pickerCallback(data) {
         var url = 'nothing';
-        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+        if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED && data.viewToken[0] == "all") {
           var doc = data[google.picker.Response.DOCUMENTS][0];
           url = doc[google.picker.Document.URL];
+
+          window.open(url);
         }
-        var message = 'You picked: ' + url;
-        document.getElementById('result').innerHTML = message;
+        //var message = 'You picked: ' + url;
+        //document.getElementById('result').innerHTML = message;
      }
 
      function createFolder(nombreFolder) {
@@ -102,9 +109,9 @@ angular.module('hefesoft.google')
 	       }
 	   });
 
-	   request.execute(function(resp) { 
-	       console.log(resp);
+	   request.execute(function(resp) {
 	       deferred.resolve(resp);
+	       idFolder = resp.id;
 	   });
 
 	   return deferred.promise;
@@ -112,10 +119,10 @@ angular.module('hefesoft.google')
 
   	function getFolder(nombreFolder) {
 	   var access_token = oauthToken;
-
+	   var query = "/drive/v2/files?maxResults=5&q=mimeType%3D'application%2Fvnd.google-apps.folder'and(title%3D+'" + nombreFolder+"')andtrashed+%3D+false&fields=items(alternateLink%2Cid%2CwebViewLink%2Ctitle)";
 	   var deferred = $q.defer();
 	   var request = gapi.client.request({
-	       'path': '/drive/v2/files/root/children',
+	       'path': query,
 	       'method': 'GET',
 	       'headers': {
 	           'Content-Type': 'application/json',
@@ -123,8 +130,7 @@ angular.module('hefesoft.google')
 	       }
 	   });
 
-	   request.execute(function(resp) { 
-	       console.log(resp);
+	   request.execute(function(resp) { 	       
 	       deferred.resolve(resp);
 	   });
 

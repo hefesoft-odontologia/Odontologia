@@ -42,7 +42,8 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
           clinicaDependencies(),
           galleryDependencies(),
           fileInputDependencies(),
-          azureDependencies()          
+          azureDependencies(),
+          authDependencies()
       ]);
    }
 
@@ -52,7 +53,8 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
           imageDependencies(),
           clinicaDependencies(),
           azureDependencies(),
-          pickerDependencies()
+          pickerDependencies(),
+          authDependencies()
       ]);
    }
 
