@@ -1,6 +1,6 @@
 angular.module('directivas')
 .controller('externalLoginCtrl', 
-	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', function ($scope, urlServicioFactory, location, authService, $state) {
+	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', 'tokenService', '$localstorage', 'inicializarServicios',  function ($scope, urlServicioFactory, location, authService, $state, tokenService, $localstorage, inicializarServicios) {
 	
 
 	 $scope.authExternalProvider = function (provider) {
@@ -35,7 +35,12 @@ angular.module('directivas')
             else {
                 //Obtain access token and redirect to orders
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
+                authService.getProfileInfo(externalData.provider, externalData.externalAccessToken);
                 authService.obtainAccessToken(externalData).then(function (response) {
+                $localstorage.setObject('authorizationData', response);
+                $localstorage.setObject('user', response);
+                tokenService.setTokenDocument(response.access_token);
+                inicializarServicios.inicializar(response.username);
 
                 $state.go("app.main");
                 //$location.path('/orders');

@@ -4,6 +4,13 @@
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var authServiceFactory = {};
 
+     var SCOPES = [
+      'https://www.googleapis.com/auth/photos', 
+      'https://www.googleapis.com/auth/drive',
+      "https://www.googleapis.com/auth/photos.upload",
+      "https://www.googleapis.com/auth/plus.login"
+     ];
+
     var _authentication = {
         isAuth: false,
         userName: "",
@@ -129,9 +136,72 @@
         });
 
         return deferred.promise;
-
     };
 
+    var _getProfileInfo = function(provider, token){
+
+        var deferred = $q.defer();
+        if(provider == "Facebook"){                      
+
+            $.ajax({
+              url: "https://graph.facebook.com/me",
+              type: "get", //send it through get method
+              data:{ access_token: token, fields : 'id,name,picture,email' },
+              success: function(response) {
+                deferred.resolve(response);
+              },
+              error: function(xhr) {
+               deferred.reject(err);
+              }
+            });
+
+            return deferred.promise;
+        }
+        if(provider == "Google")
+        {
+            autoGoogleLogin(deferred);
+            return deferred.promise;
+        }
+    }
+
+
+    function autoGoogleLogin(deferred){
+        gapi.auth.authorize({
+        client_id: "505952414500-c04fnrdu3njem1cl2ug9h5gbd6rs025k.apps.googleusercontent.com",
+          immediate: true,
+          scope: SCOPES
+        }, function(response) {
+          if (response.status.signed_in) {
+            connectGoogleSuccess(response, deferred);
+          } else {
+            connectGoogle(deferred);
+          }
+       });
+    }
+
+    function connectGoogle(deferred) {
+      gapi.auth.authorize({
+        client_id: _googleClientId,
+        immediate: false,
+        scope: 'https://www.googleapis.com/auth/plus.login'
+      }, function(response) {
+        if (response.status.signed_in) {
+          connectGoogleSuccess(response, deferred);
+        }
+      });
+     };
+
+     function connectGoogleSuccess(result, deferred){
+         // Carga las bibliotecas oauth2 para habilitar los métodos userinfo.
+        gapi.client.load('oauth2', 'v2', function() {
+          var request = gapi.client.oauth2.userinfo.get();
+          request.execute(function(data){             
+             deferred.resolve(data);
+          });
+        });
+     }
+   
+ 
     var _registerExternal = function (registerExternalData) {
 
         var deferred = $q.defer();
@@ -165,6 +235,7 @@
     authServiceFactory.obtainAccessToken = _obtainAccessToken;
     authServiceFactory.externalAuthData = _externalAuthData;
     authServiceFactory.registerExternal = _registerExternal;
+    authServiceFactory.getProfileInfo = _getProfileInfo;
 
     return authServiceFactory;
 }]);
