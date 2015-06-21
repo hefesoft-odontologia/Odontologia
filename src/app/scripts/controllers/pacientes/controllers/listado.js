@@ -19,7 +19,8 @@
 	$scope.navegarAdjuntos = function(item){
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);		
-		$state.go("app.gallery");		
+		//$state.go("app.gallery");
+		$state.go("app.picker");		
 	}
 
 	$scope.navegarOdontograma = function(item){
