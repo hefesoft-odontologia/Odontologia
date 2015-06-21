@@ -239,8 +239,8 @@ function authDependencies(){
             "app/lib/hefesoft.standard/Directivas/social-login/directiva/directiva.js",
             "app/lib/hefesoft.standard/Directivas/external-login/directive/directive.js",
             "app/lib/hefesoft.standard/Directivas/external-login/controller/externalLogin.js",
-            "app/lib/hefesoft.standard/Directivas/external-login/controller/associateController.js"
-
+            "app/lib/hefesoft.standard/Directivas/external-login/controller/associateController.js",
+            "app/lib/hefesoft.standard/Auth/Controllers/logOut.js"
         ]
     }
 

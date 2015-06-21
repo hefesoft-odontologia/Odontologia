@@ -28,3 +28,9 @@
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail());
 }
+
+function onLoadPLatform(platform){
+  gapi.load('auth2', function() {
+      gapi.auth2.init();
+  });
+}

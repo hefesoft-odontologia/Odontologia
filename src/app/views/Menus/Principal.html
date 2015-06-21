@@ -293,7 +293,7 @@
                                     <a href=""><i class="md md-settings"></i> Settings</a>
                                 </li>
                                 <li>
-                                    <a ui-sref="login"><i class="md md-history"></i> Salir</a>
+                                    <a ng-controller="signOutCtrl" ng-click="logOut()" ui-sref="login"><i class="md md-history"></i> Salir</a>
                                 </li>
                             </ul>
                         </div>
