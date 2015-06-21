@@ -1,6 +1,7 @@
  angular.module('odontologiaApp')
-.controller('pacientesController', ['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices',
-	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices) {
+.controller('pacientesController', 
+	['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices', '$rootScope',
+	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices, $rootScope) {
 	
 	$scope.Paciente = {fecha : new Date(), color : '#000000'};	
 
@@ -13,10 +14,8 @@
 	inicializarTratamientosServices.inicializar();
 
 	
-	var usuario = users.getCurrentUser();	
-	//validarNavegacionService.validarCaptcha();
-
 	$scope.navegarAdjuntos = function(item){
+		$rootScope.currentPacient = item;
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);		
 		//$state.go("app.gallery");
@@ -24,12 +23,14 @@
 	}
 
 	$scope.navegarOdontograma = function(item){
+		$rootScope.currentPacient = item;
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);		
 		$state.go("app.odontograma");
 	}
 
 	$scope.navegarPeriododntograma = function(item){
+		$rootScope.currentPacient = item;
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);
 		$state.go("app.periodontograma", { "pacienteId": item.RowKey});
@@ -39,7 +40,7 @@
 	$scope.addPaciente = function(){
 
 		var data = $scope.Paciente;		
-		data.PartitionKey = usuario.username;
+		data.PartitionKey = $rootScope.currentUser.id;
 
 		//Cuando es un nuevo paciente el otro caso es cuando se edita un registro
 		if(angular.isUndefined(data.RowKey)){
@@ -77,6 +78,7 @@
 	}
 
 	$scope.edit = function(item){
+		$rootScope.currentPacient = item;
 		varsFactoryService.fijarPaciente(item.RowKey);
 		$scope.Paciente = item;
 		$scope.Imagen = item.urlImagen;
@@ -101,7 +103,7 @@
 
 	function obtenerPacientes(){
 		$ionicLoading.show();
-		dataTableStorageFactory.getTableByPartition('TmPacientes', usuario.username)
+		dataTableStorageFactory.getTableByPartition('TmPacientes', $rootScope.currentUser.id)
 		.success(function(data){
       		$scope.Pacientes = data;
       		$ionicLoading.hide();
@@ -144,7 +146,7 @@
       			tipo : 1, 
       			ImagenString : data, 
       			folder: 'imagenes', 
-      			name: usuario.username + $scope.Paciente.nombre + $scope.Paciente.cedula + '.jpg'
+      			name: $rootScope.currentUser.id + $scope.Paciente.nombre + $scope.Paciente.cedula + '.jpg'
   		};
 
 		imagesStorageFactory.postImage(datos)

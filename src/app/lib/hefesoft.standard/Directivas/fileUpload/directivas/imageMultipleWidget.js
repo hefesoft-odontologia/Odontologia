@@ -6,8 +6,8 @@
 
 angular.module('directivas')
 .directive('fileUploadMultipleImageWidget', 
-	['uploadService', '$timeout', 'dataTableStorageFactory', '$parse',
-	function (uploadService, $timeout, dataTableStorageFactory, $parse) {
+	['uploadService', '$timeout', 'dataTableStorageFactory', '$parse', '$rootScope',
+	function (uploadService, $timeout, dataTableStorageFactory, $parse, $rootScope) {
 
 	var urlUploadFiles = "http://hefesoft.blob.core.windows.net/files/files?sv=2014-02-14&sr=c&sig=RqRcu1vwp56UdXTdRpZfEEWzv7rYrDT87B5iZafAOS4%3D&st=2015-05-15T05%3A00%3A00Z&se=2030-12-02T05%3A00%3A00Z&sp=rwl";       
     var path = "http://hefesoft.blob.core.windows.net/files/files/";
@@ -87,7 +87,7 @@ angular.module('directivas')
      function salvarEnStorage(data){
 
      	if(angular.isUndefined(partitionKey)){
-     		partitionKey = 'pruebas';
+     		partitionKey = $rootScope.currentUser.id;
      	}       
 
         var imagen = {};

@@ -1,6 +1,7 @@
 angular.module('directivas').
-controller('listGalleryCtrl', ['$scope', 'Lightbox', 'dataTableStorageFactory', '$modal',
-	function ($scope, Lightbox, dataTableStorageFactory, $modal) {
+controller('listGalleryCtrl', 
+  ['$scope', 'Lightbox', 'dataTableStorageFactory', '$modal', '$rootScope',
+	function ($scope, Lightbox, dataTableStorageFactory, $modal, $rootScope) {
 
   $scope.images = [];
 
@@ -20,7 +21,7 @@ controller('listGalleryCtrl', ['$scope', 'Lightbox', 'dataTableStorageFactory', 
   }
 
   function inicializar(){
-  	dataTableStorageFactory.getTableByPartition('TmArchivosAdjuntos', 'pruebas') 
+  	dataTableStorageFactory.getTableByPartition('TmArchivosAdjuntos', $rootScope.currentUser.id) 
 		.success(success)
         .error(error);
   }

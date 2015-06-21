@@ -1,6 +1,7 @@
 angular.module('auth')
-.service('inicializarServicios', ['users', 'stripeService', 'platformService', 'conexionSignalR', 'messageService', 'dataTableStorageFactory',
-	function (users, stripeService, platformService, conexionSignalR, messageService, dataTableStorageFactory) {
+.service('inicializarServicios', 
+	['users', 'stripeService', 'platformService', 'conexionSignalR', 'messageService', 'dataTableStorageFactory', '$rootScope',
+	function (users, stripeService, platformService, conexionSignalR, messageService, dataTableStorageFactory, $rootScope) {
 
 		var dataFactory = {};
 		
@@ -54,9 +55,8 @@ angular.module('auth')
 			}
 		}
 
-		function datosActualizadosPrestador(){
-			var usuario = users.getCurrentUser();
-	    	dataTableStorageFactory.getTableByPartitionAndRowKey('TmPrestador', 'PrestadoresOdontologia', usuario.username)
+		function datosActualizadosPrestador(){			
+	    	dataTableStorageFactory.getTableByPartitionAndRowKey('TmPrestador', 'PrestadoresOdontologia', $rootScope.currentUser.id)
 		  	.success(function(data){
 		  		if(data == null){
 		  			var msj = "Estimado usuario recuerde actualizar sus datos en el apartado 'Mis datos' de esta manera sera visible para que sus pacientes soliciten citas en el sistema";

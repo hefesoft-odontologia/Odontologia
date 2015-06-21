@@ -6,6 +6,10 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
 .state('app.odontograma', {
         url: "/odontograma",
         cache: false,
+        data: {
+          requireLogin: true,
+          requirePacient : true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/historia/Odontologia/realizarOdontograma/views/realizarOdontograma.html",                

@@ -5,6 +5,9 @@ function routesPacientes($stateProvider, $ocLazyLoadProvider){
     .state('app.listadoPacientes', {
         url: "/listadoPacientes",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/views/pacientes/listado.html",
@@ -21,6 +24,9 @@ function routesPacientes($stateProvider, $ocLazyLoadProvider){
       .state('app.paciente', {
         url: "/paciente",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/views/pacientes/paciente.html",
@@ -41,6 +47,4 @@ function routesPacientes($stateProvider, $ocLazyLoadProvider){
         authDependencies()
       ]);
    }
-
-	
 }

@@ -1,7 +1,7 @@
 angular.module('odontologiaApp')
 .controller('piezasDentalesPeriodontogramaCtrl', 
-	['$scope', 'dataTableStorageFactory', 
-	function ($scope, dataTableStorageFactory) {
+	['$scope', 'dataTableStorageFactory', '$rootScope',
+	function ($scope, dataTableStorageFactory, $rootScope) {
 
 	var i = 0;	
     $scope.zoom = 0.7;
@@ -26,7 +26,7 @@ angular.module('odontologiaApp')
 
     function obtenerPeriodontogramaBlob(){
         var usuario = users.getCurrentUser();
-        dataTableStorageFactory.getTableByPartition('TmPeriodontograma', usuario.username+'paciente'+pacienteId)
+        dataTableStorageFactory.getTableByPartition('TmPeriodontograma', $rootScope.currentUser.id +'paciente'+pacienteId)
         .success(success)
         .error(error);
     }

@@ -5,6 +5,9 @@ function routesDiagnosticos($stateProvider, $ocLazyLoadProvider){
 	.state('app.listadoDiagnosticos', {
         url: "/listadoDiagnosticos",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/Diagnosticos/views/Diagnosticos.html",

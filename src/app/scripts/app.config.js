@@ -1,5 +1,5 @@
-angular
-  .module('odontologiaApp').config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ocLazyLoadProvider',
+angular.module('odontologiaApp')
+.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$ocLazyLoadProvider',
   	function ($stateProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider) {
 
       $httpProvider.defaults.withCredentials = true;
@@ -38,6 +38,9 @@ angular
       .state('app.main', {
         url: "/main",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/views/main.html",
@@ -60,6 +63,24 @@ angular
           azureDependencies()
       ]);
    }
+}])
 
-   
-  }])
+.run(function ($rootScope, $state) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    if(angular.isDefined(toState.data)){
+      var requireLogin = toState.data.requireLogin;
+      var requirePacient = toState.data.requirePacient;
+    }
+
+    if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+      event.preventDefault();
+      $state.go('login');
+    }
+
+    else if (requirePacient && typeof $rootScope.currentPacient === 'undefined') {
+      event.preventDefault();
+      $state.go('app.listadoPacientes');
+    }
+
+  })
+})

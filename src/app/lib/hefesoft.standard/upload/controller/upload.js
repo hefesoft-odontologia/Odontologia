@@ -36,7 +36,7 @@ angular.module('Upload')
             //Se debe garantizar que para un mismo usuario y paciente no se sobrescribar archivos
             //Por eso se le agrega el nombre del paciente y el usuario logueado
             for (var i = $scope.files.length - 1; i >= 0; i--) {
-                $scope.files[i]["blobname"] = usuario.username + "_" + pacienteId.RowKey + "_"+ $scope.files[i].name;
+                $scope.files[i]["blobname"] = $rootScope.currentUser.id + "_" + pacienteId.RowKey + "_"+ $scope.files[i].name;
             };
 
 
@@ -93,7 +93,7 @@ angular.module('Upload')
 
         var imagen = {};
         imagen.nombreTabla = 'TmArchivosAdjuntos';        
-        imagen.PartitionKey = usuario.username+ "paciente" + pacienteId.RowKey;
+        imagen.PartitionKey = $rootScope.currentUser.id + "paciente" + pacienteId.RowKey;
         imagen.generarIdentificador = true;
         imagen.path = path + data.blobname;
         imagen['name'] = data.name;

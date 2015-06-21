@@ -6,6 +6,10 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
 .state('app.gallery', {
         url: "/gallery",
         cache: false,
+        data: {
+          requireLogin: true,
+          requirePacient : true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/lib/hefesoft.standard/Directivas/gallery/views/list.html",
@@ -22,6 +26,10 @@ function routesGallery($stateProvider, $ocLazyLoadProvider){
 .state('app.picker', {
         url: "/picker",
         cache: false,
+        data: {
+          requireLogin: true,
+          requirePacient : true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/lib/hefesoft.standard/google/directivas/picker/views/picker.html",                

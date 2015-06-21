@@ -1,6 +1,7 @@
   angular.module('odontologiaApp')
-  .controller('AddFormulaMedicaCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'seleccionado', '$modalInstance',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  seleccionado, $modalInstance) {
+  .controller('AddFormulaMedicaCtrl', 
+    ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', 'messageService', 'seleccionado', '$modalInstance', '$rootScope',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, messageService,  seleccionado, $modalInstance, $rootScope) {
 
     var esNuevo = true;
     $scope.formulaMedica = {};
@@ -11,9 +12,8 @@
     }
         
    $scope.adicionar = function(){
-   	  var data = $scope.formulaMedica; 
-      //data.PartitionKey = usuario.username;
-      data.PartitionKey = "UsuarioPruebas";
+   	  var data = $scope.formulaMedica;
+      data.PartitionKey = $rootScope.currentUser.id;
       
       //Cuando es un nuevo paciente el otro caso es cuando se edita un registro
       if(angular.isUndefined(data.RowKey)){

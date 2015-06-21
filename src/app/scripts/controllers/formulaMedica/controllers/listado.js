@@ -1,6 +1,7 @@
 angular.module('odontologiaApp')
-.controller('listadoFormulaMedicaCtrl', ['$scope', 'dataTableStorageFactory', '$modal',
-	function ($scope, dataTableStorageFactory, $modal) {
+.controller('listadoFormulaMedicaCtrl', 
+	['$scope', 'dataTableStorageFactory', '$modal', '$rootScope',
+	function ($scope, dataTableStorageFactory, $modal, $rootScope) {
 
 	$scope.listados = [];
 	
@@ -35,7 +36,7 @@ angular.module('odontologiaApp')
 
       function inicializarElementos(){          
           //El ultimo parametro es el tratamiento seleccionado
-	  	dataTableStorageFactory.getTableByPartition('TmFormulaMedica', 'UsuarioPruebas')
+	  	dataTableStorageFactory.getTableByPartition('TmFormulaMedica', $rootScope.currentUser.id)
       	.success(function(data){
           $scope.listados = data;        
         }).error(function(error){

@@ -1,6 +1,7 @@
 angular.module('odontologiaApp')
-.service('inicializarTratamientosServices', ['dataTableStorageFactory', 'users','$ionicLoading',
-	function (dataTableStorageFactory, users, $ionicLoading) {
+.service('inicializarTratamientosServices', 
+    ['dataTableStorageFactory', 'users','$ionicLoading', '$rootScope',
+	function (dataTableStorageFactory, users, $ionicLoading, $rootScope) {
 
  	var usuario = users.getCurrentUser();
 	var dataFactory = {};
@@ -12,7 +13,7 @@ angular.module('odontologiaApp')
 
 
 	function get() {
-    dataTableStorageFactory.getTableByPartition('TpTratamientos', usuario.username)
+    dataTableStorageFactory.getTableByPartition('TpTratamientos', $rootScope.currentUser.id)
         .success(function (data) {            
             if(data.length == 0){
 				crearDatoslegislacionColombiana();                
@@ -39,7 +40,7 @@ angular.module('odontologiaApp')
 	 var usuario = users.getCurrentUser();      
 
          //Datos, Nombre tabla, partition key, y campo que servira como row key
-        dataTableStorageFactory.postTableArray(data, 'TpTratamientos',  usuario.username, 'RowKey')
+        dataTableStorageFactory.postTableArray(data, 'TpTratamientos',  $rootScope.currentUser.id, 'RowKey')
         .success(function (data) {
            $ionicLoading.hide();
         })

@@ -1,6 +1,7 @@
 angular.module('odontologiaApp')
-.controller('datosClinicaCtrl', ['$scope', 'dataTableStorageFactory', 'image64Service',
-	function ($scope, dataTableStorageFactory, image64Service) {
+.controller('datosClinicaCtrl', 
+	['$scope', 'dataTableStorageFactory', 'image64Service', '$rootScope',
+	function ($scope, dataTableStorageFactory, image64Service, $rootScope) {
 	
 	$scope.clinica = {};
 	$scope.cambiarImagen = false;
@@ -17,7 +18,7 @@ angular.module('odontologiaApp')
 	$scope.guardar = function(){
 		
 		$scope.clinica['nombreTabla'] = 'TmDatosClinica';
-		$scope.clinica['PartitionKey'] = "UsuarioPruebas";
+		$scope.clinica['PartitionKey'] = $rootScope.currentUser.id;
 		$scope.clinica['RowKey'] = "1";
 		
 		dataTableStorageFactory.saveStorage($scope.clinica);
@@ -32,9 +33,17 @@ angular.module('odontologiaApp')
 	}
 
 	function inicializarElementos(){
-	dataTableStorageFactory.getTableByPartitionAndRowKey('TmDatosClinica', 'UsuarioPruebas', "1")
-      .success(function(data){          
-      	$scope.clinica = data;
+	dataTableStorageFactory.getTableByPartitionAndRowKey('TmDatosClinica', $rootScope.currentUser.id, "1")
+      .success(function(data){
+      	if(!data == null){
+      	   $scope.clinica = data;
+      	}
+      	else{
+      	   $scope.clinica = {};
+      	   $scope.clinica.pathImagen = $rootScope.currentUser.picture;
+      	   $scope.clinica.nombreEntidad = $rootScope.currentUser.name;
+      	   $scope.clinica.email = $rootScope.currentUser.email;
+      	}
       	//image64Service.convertImgToBase64(data.pathImagen, image64);
    	  }).error(function(error){
       	console.log(error);          

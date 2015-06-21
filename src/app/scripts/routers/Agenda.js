@@ -6,6 +6,9 @@ function agendaClinica($stateProvider, $ocLazyLoadProvider){
 .state('app.agenda', {
         url: "/agenda",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/Agenda/Views/agenda.html",

@@ -1,13 +1,14 @@
   angular.module('odontologiaApp')
-  .controller('DxListadoCtrl', ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory',
-    function ($scope, CieCupsServices, $modal, dataTableStorageFactory) {
+  .controller('DxListadoCtrl', 
+    ['$scope', 'CieCupsServices', '$modal', 'dataTableStorageFactory', '$rootScope',
+    function ($scope, CieCupsServices, $modal, dataTableStorageFactory, $rootScope) {
 
     var modalInstance;
     $scope.Listado = [];
     $scope.diagnosticoSeleccionado = {};
    
   	function inicializar(){
-      dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
+      dataTableStorageFactory.getTableByPartition('TmDiagnosticos', $rootScope.currentUser.id)
       .success(function(data){          
           $scope.Listado = data;
         }).error(function(error){

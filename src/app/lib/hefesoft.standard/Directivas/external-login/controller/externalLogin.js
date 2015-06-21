@@ -1,7 +1,9 @@
 angular.module('directivas')
 .controller('externalLoginCtrl', 
-	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', 'tokenService', '$localstorage', 'inicializarServicios',  function ($scope, urlServicioFactory, location, authService, $state, tokenService, $localstorage, inicializarServicios) {
+	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', 'tokenService', '$localstorage', 'inicializarServicios', '$rootScope',  
+    function ($scope, urlServicioFactory, location, authService, $state, tokenService, $localstorage, inicializarServicios, $rootScope) {
 	
+    var response;
 
 	 $scope.authExternalProvider = function (provider) {
 
@@ -34,17 +36,10 @@ angular.module('directivas')
             }
             else {
                 //Obtain access token and redirect to orders
-                var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
-                authService.getProfileInfo(externalData.provider, externalData.externalAccessToken);
-                authService.obtainAccessToken(externalData).then(function (response) {
-                $localstorage.setObject('authorizationData', response);
-                $localstorage.setObject('user', response);
-                tokenService.setTokenDocument(response.access_token);
-                inicializarServicios.inicializar(response.username);
-
-                $state.go("app.main");
-                //$location.path('/orders');
-
+                var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };                
+                authService.obtainAccessToken(externalData).then(function (result) {
+                  response = result;
+                  authService.getProfileInfo(externalData.provider, externalData.externalAccessToken).then(infoUser);
                 },
              function (err) {
                  $scope.message = err.error_description;
@@ -52,6 +47,15 @@ angular.module('directivas')
             }
 
         });
+    }
+
+    function infoUser(user){
+        $rootScope.currentUser = user;
+        $localstorage.setObject('authorizationData', response);
+        $localstorage.setObject('user', response);
+        tokenService.setTokenDocument(response.access_token);
+        inicializarServicios.inicializar(response.username);
+        $state.go("app.main");
     }
 
 }])

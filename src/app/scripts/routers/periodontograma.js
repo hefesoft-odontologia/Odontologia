@@ -6,6 +6,10 @@ function routesPeriodontograma($stateProvider, $ocLazyLoadProvider){
 .state('app.periodontograma', {
         url: "/periodontograma",
         cache: false,
+        data: {
+          requireLogin: true,
+          requirePacient : true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/historia/Odontologia/realizarPeriodontograma/Views/realizarPeriodontograma.html",

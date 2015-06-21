@@ -6,6 +6,9 @@ function routesFormulaMedica($stateProvider, $ocLazyLoadProvider){
 .state('app.listadoFormulaNedica', {
         url: "/listadoFormulaMedica",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/formulaMedica/views/listado.html",

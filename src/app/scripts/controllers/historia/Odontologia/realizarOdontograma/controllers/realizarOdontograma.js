@@ -1,6 +1,7 @@
 angular.module('Historia')
-.controller('realizarOdontogramaCtrl', ['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices',
-	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices) {
+.controller('realizarOdontogramaCtrl', 
+	['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices', '$rootScope',
+	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices, $rootScope) {
 	var Hefesoft  = window.Hefesot;
 
 	$scope.Diagnosticos = [];
@@ -15,10 +16,12 @@ angular.module('Historia')
 	$scope.numeroPiezaModificada = {};
 	$scope.contextoOdontograma = {};
 
+	var idOdontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
+
 
 	function inicializarDatos(){
 	  //Carga de diagnosticos
-	  dataTableStorageFactory.getTableByPartition('TmDiagnosticos', 'UsuarioPruebas')
+	  dataTableStorageFactory.getTableByPartition('TmDiagnosticos', $rootScope.currentUser.id)
       .success(function(data){          
       	$scope.Diagnosticos = data;
    	  }).error(function(error){
@@ -26,7 +29,7 @@ angular.module('Historia')
       })
 
       //Carga de Odontograma
-      dataTableStorageFactory.getTableByPartition('TmOdontograma', 'pruebas')
+      dataTableStorageFactory.getTableByPartition('TmOdontograma', idOdontograma)
       .success(function(data){
 
       	if(angular.isDefined(data) && data.length > 0){
@@ -95,7 +98,7 @@ angular.module('Historia')
  		var listadoGuardar = piezaDental.listado;
 
  		//Datos, Nombre tabla, partition key, y campo que servira como row key
-        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  'pruebas', 'codigo')
+        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  idOdontograma, 'codigo')
         .success(function (data) {           
 			piezaDental.listado = data;			           
         })

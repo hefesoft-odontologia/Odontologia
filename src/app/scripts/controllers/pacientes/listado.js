@@ -1,6 +1,7 @@
   angular.module('odontologiaApp')
-.controller('pacientesController', ['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices',
-	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices) {
+.controller('pacientesController', 
+	['$scope','dataTableStorageFactory', 'users', '$cordovaCamera', 'imagesStorageFactory','$state','varsFactoryService','$ionicLoading','$rootScope', 'emailFactory', 'validarNavegacionService', 'messageService', 'platformService', 'inicializarTratamientosServices', '$rootScope',
+	function ($scope, dataTableStorageFactory, users, $cordovaCamera, imagesStorageFactory, $state, varsFactoryService, $ionicLoading, $rootScope, emailFactory, validarNavegacionService, messageService, platformService, inicializarTratamientosServices, $rootScope) {
 	
 	$scope.Paciente = {};
 
@@ -32,7 +33,7 @@
 	$scope.addPaciente = function(){
 
 		var data = $scope.Paciente;		
-		data.PartitionKey = usuario.username;
+		data.PartitionKey = $rootScope.currentUser.id;
 
 		//Cuando es un nuevo paciente el otro caso es cuando se edita un registro
 		if(angular.isUndefined(data.RowKey)){
@@ -94,7 +95,7 @@
 
 	function obtenerPacientes(){
 		$ionicLoading.show();
-		dataTableStorageFactory.getTableByPartition('TmPacientes', usuario.username)
+		dataTableStorageFactory.getTableByPartition('TmPacientes', $rootScope.currentUser.id)
 		.success(function(data){
       		$scope.Pacientes = data;
       		$ionicLoading.hide();
@@ -137,7 +138,7 @@
       			tipo : 1, 
       			ImagenString : data, 
       			folder: 'imagenes', 
-      			name: usuario.username + $scope.Paciente.nombre + $scope.Paciente.cedula + '.jpg'
+      			name: $rootScope.currentUser.id + $scope.Paciente.nombre + $scope.Paciente.cedula + '.jpg'
   		};
 
 		imagesStorageFactory.postImage(datos)

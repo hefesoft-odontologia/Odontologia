@@ -1,12 +1,12 @@
 angular.module('hefesoft.google')
 .controller('googlePickerCtrl', 
-	['$scope', 'googlePickerService', 'driveApi', '$q', function ($scope, googlePickerService, driveApi, $q) {
+	['$scope', 'googlePickerService', 'driveApi', '$q', '$rootScope', function ($scope, googlePickerService, driveApi, $q, $rootScope) {
 
 	$scope.mostrarBotonAutorizar = false;
 	var developerKey = 'AIzaSyDqLLd0jtzOSqJzZcXVeB70-72PmoBwjRE';
 	var pickerApiLoaded;
 	var oauthToken;
-	var carpeta = "odontologia_usuario";
+	var carpeta = "odontologia_" + $rootScope.currentPacient.nombre;
 	var idFolder;
 	var picker;
 

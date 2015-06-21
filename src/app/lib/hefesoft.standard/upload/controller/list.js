@@ -1,16 +1,15 @@
 angular.module('Upload')
-.controller('adjuntosListCtrl', ['$scope', 'validarNavegacionService', 'dataTableStorageFactory', 'users', 'varsFactoryService',
-	function ($scope, validarNavegacionService, dataTableStorageFactory, users, varsFactoryService) {
+.controller('adjuntosListCtrl', 
+	['$scope', 'validarNavegacionService', 'dataTableStorageFactory', 'users', 'varsFactoryService', '$rootScope',
+	function ($scope, validarNavegacionService, dataTableStorageFactory, users, varsFactoryService, $rootScope) {
 
 	 validarNavegacionService.validarPacienteSeleccionado();
 	 $scope.items = [];
 
 	 function load(){
-
-	 	var usuario = users.getCurrentUser();
         var paciente = varsFactoryService.pacienteSeleccionado();
 
-	 	var partition = usuario.username+ "paciente" + paciente.RowKey;
+	 	var partition = $rootScope.currentUser.id + "paciente" + paciente.RowKey;
         dataTableStorageFactory.getTableByPartition('TmArchivosAdjuntos', partition)
         .success(success)
         .error(error);	 	

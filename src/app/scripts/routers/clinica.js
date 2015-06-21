@@ -6,6 +6,9 @@ function routesClinica($stateProvider, $ocLazyLoadProvider){
 .state('app.datosclinica', {
         url: "/datosclinica",
         cache: false,
+        data: {
+          requireLogin: true
+        },
         views: {
             'menuContent': {
                 templateUrl: "app/scripts/controllers/Clinica/views/Datos_Clinica.html",

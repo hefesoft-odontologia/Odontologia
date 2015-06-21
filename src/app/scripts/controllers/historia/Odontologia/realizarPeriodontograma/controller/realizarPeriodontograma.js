@@ -1,6 +1,6 @@
 angular.module('odontologiaApp').
 controller('realizarPeriodontogramaCtrl', 
-    ['$scope', 'dataTableStorageFactory', function ($scope, dataTableStorageFactory) {
+    ['$scope', 'dataTableStorageFactory', '$rootScope', function ($scope, dataTableStorageFactory, $rootScope) {
 	
 	$scope.selecionado = {numeroPiezaDental: 18, mostrarFurca : false, tipoFurca: 'vacio', "movilidad" : "", parte: 'parte1'};
 	$scope.mostrarFurca = false;
@@ -9,9 +9,11 @@ controller('realizarPeriodontogramaCtrl',
 	$scope.seleccionado = false;
     $scope.zoom = 0.9;
 
+    var idPeriodontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
+
     function inicializarDatos(){
       //Carga de Odontograma
-      dataTableStorageFactory.getTableByPartition('TmPeriodontograma', 'pruebas')
+      dataTableStorageFactory.getTableByPartition('TmPeriodontograma', idPeriodontograma)
       .success(function(data){
 
         if(angular.isDefined(data) && data.length > 0){
@@ -103,7 +105,7 @@ controller('realizarPeriodontogramaCtrl',
         var Listado = contextoPiezas.items;
 
         //Datos, Nombre tabla, partition key, y campo que servira como row key
-        dataTableStorageFactory.postTableArray(Listado, 'TmPeriodontograma',  'pruebas', 'codigo')
+        dataTableStorageFactory.postTableArray(Listado, 'TmPeriodontograma',  idPeriodontograma, 'codigo')
         .success(function (data) {           
             contextoPiezas.items = data;
         })
