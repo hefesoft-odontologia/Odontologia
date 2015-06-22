@@ -22,13 +22,6 @@ angular.module('odontologiaApp')
 
   		$stateProvider
 
-/*
-  		.state('main',{
-  			url: "/",
-  			templateUrl : "/views/main.html"
-  		})
-  */
-
       .state('app', {
         url: "/app",
         abstract: true,

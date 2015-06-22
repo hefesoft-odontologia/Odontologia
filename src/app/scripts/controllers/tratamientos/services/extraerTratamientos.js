@@ -53,6 +53,23 @@ angular.module('odontologiaApp')
 
 	}
 
+	dataFactory.extraerTodosDiagnosticos = function(listado){
+
+		var array = [];
+
+		for (var i = listado.length - 1; i >= 0; i--) {
+			var items = dataFactory.extraerDiagnosticos(listado[i]);
+			array = array.concat(items);			
+		};
+
+		return array;
+	}
+
+	dataFactory.extraerTodosTratamientos = function(listado){
+
+		var array = dataFactory.extraerTodosDiagnosticos(listado); 
+	}
+
 	return dataFactory;
 
 }])
