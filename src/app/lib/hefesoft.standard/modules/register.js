@@ -13,5 +13,6 @@ angular.module('Util', []);
 angular.module('providers', []);
 angular.module('importIo', []);
 angular.module('Historia', []);
+angular.module('Hefesoft', []);
 angular.module('hefesoft.services', []);
 angular.module('hefesoft.google', []);

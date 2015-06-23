@@ -20,6 +20,26 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
                 }                               
             }       
           }
+      })
+
+
+  .state('app.planTratamiento', {
+        url: "/planTratamiento",
+        cache: false,
+        data: {
+          requireLogin: true,
+          requirePacient : true
+        },
+        views: {
+            'menuContent': {
+                templateUrl: "app/scripts/controllers/historia/Odontologia/planTratamiento/views/planTratamiento.html",                
+                resolve :{
+                   controller : function($ocLazyLoad){
+                     return cargarPlanTratamiento($ocLazyLoad)
+                   }
+                }                               
+            }       
+          }
       });
 
   function cargarOdontograma($ocLazyLoad){
@@ -34,7 +54,28 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
           procedimientosDependencies(),
           historiaDependencies(),
           tratamientosDependencies(),
-          cieCupsDependencies()
+          cieCupsDependencies(),
+          /* Para pruebas*/
+          authDependencies()
+      ]);
+   }
+
+   function cargarPlanTratamiento($ocLazyLoad){
+      return $ocLazyLoad.load
+      ([
+          imageDependencies(),
+          clinicaDependencies(),
+          diagnosticosDependencies(),
+          odontogramaDependencies(),
+          azureDependencies(),
+          drillDownDependencies(),
+          procedimientosDependencies(),
+          historiaDependencies(),
+          tratamientosDependencies(),
+          cieCupsDependencies(),
+          planTratamientoDependencies(),
+          /* Para pruebas*/
+          authDependencies()
       ]);
    }
 }

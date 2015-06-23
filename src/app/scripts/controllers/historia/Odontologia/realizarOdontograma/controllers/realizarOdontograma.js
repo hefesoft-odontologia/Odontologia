@@ -37,6 +37,8 @@ angular.module('Historia')
 	        data = _.sortBy(data, function(item) {
 	           return parseFloat(item.id);
 	        });
+
+	        tratamientoServices.extraerTodosTratamientos(data);
 	      	
 	      	var item = $scope.contextoOdontograma();
 	 		var piezaDental = item.piezasDentalesScope();

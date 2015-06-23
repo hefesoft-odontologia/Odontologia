@@ -146,6 +146,20 @@ function odontogramaDependencies(){
  	return dependencias;
 }
 
+function planTratamientoDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        files: 
+        [
+            "app/scripts/controllers/historia/Odontologia/planTratamiento/controller/planTratamiento.js"
+        ]
+    }
+
+    return dependencias;
+}
+
 function pacienteDependencies(){
     var dependencias = 
     {
@@ -225,6 +239,7 @@ function authDependencies(){
         [
             "app/lib/hefesoft.standard/Auth/External/Services/authService.js",
             "app/lib/hefesoft.standard/constants/External.js/constant.js",
+            "app/lib/hefesoft.standard/constants/Hefesoft/constant.js",
             "app/Template/vendors/local-storage/angular-local-storage.min.js",
             "app/lib/hefesoft.standard/Auth/usuario.js",
             "app/lib/hefesoft.standard/Auth/Controllers/signIn.js",

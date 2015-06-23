@@ -15,11 +15,18 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th ng-hide="editable"></th>
+                        <th ng-hide="editable" ng-hide="modoPagos"></th>
                         <th>Nombre de procedimiento</th>
+                        <th ng-show="modoPagos">Numero pieza dental</th>
+                        <th ng-show="modoPagos">Superficie</th>
                         <th>Especialidad</th>
                         <th>Indice de Cups</th>
                         <th>Valor</th>
+                        <th ng-show="modoPagos">Realizado</th>
+                        <th ng-show="modoPagos">Pagado</th>
+                        <th ng-show="modoPagos">Valor pagado</th>
+                        <th ng-show="modoPagos">Saldo</th>
+                        <th ng-show="modoPagos">Valor pagar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,9 +42,76 @@
                             </i>
                         </td>                      
                         <td>{{item.nombre}}</td>
+                        <td ng-show="modoPagos">{{item.numeroPiezaDental}}</td>
+                        <td ng-show="modoPagos">{{item.superficie}}</td>
                         <td>{{item.objectHefesoftEspecialidad.nombre}}</td>
                         <td>{{item.idiceCup}}</td>
-                        <td class="f-500 c-cyan">{{item.valor}}</td>                            
+                        <td class="f-500 c-cyan">{{item.valor}}</td>
+                        <td ng-show="modoPagos">
+                           <div class="toggle-switch" data-ts-color="green">
+                                <label 
+                                    for="{{$index}}_procedimientoRealizado" 
+                                    class="ts-label">                                
+                                </label>{{item.RowKey}}
+                                <input 
+                                    id="{{$index}}_procedimientoRealizado" 
+                                    type="checkbox" 
+                                    ng-model="item.Realizado" hidden="hidden">
+                                <label 
+                                    for="{{$index}}_procedimientoRealizado" 
+                                    class="ts-helper">
+                                </label>
+                            </div>
+                        </td>
+                        <td ng-show="modoPagos">
+                            <div class="toggle-switch" data-ts-color="green">
+                                <label 
+                                    for="{{$index}}_procedimientoPagado" 
+                                    class="ts-label">                                
+                                </label>
+                                <input 
+                                    id="{{$index}}_procedimientoPagado" 
+                                    type="checkbox" 
+                                    ng-model="item.Pagado" hidden="hidden">
+                                <label 
+                                    for="{{$index}}_procedimientoPagado" 
+                                    class="ts-helper">
+                                </label>
+                            </div>                            
+                        </td>
+                        <td ng-show="modoPagos">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <input type="text" 
+                                    class="form-control"
+                                    placeholder="Valor"
+                                    ng-model="item.valorPagado"
+                                    numeric-only>
+                                </div>
+                            </div>
+                        </td>
+                        <td ng-show="modoPagos">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <input type="text" 
+                                    class="form-control"
+                                    placeholder="Valor"
+                                    ng-model="item.saldo"
+                                    numeric-only>
+                                </div>
+                            </div>
+                        </td>                        
+                        <td ng-show="modoPagos">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <input type="text" 
+                                    class="form-control"
+                                    placeholder="Valor"
+                                    ng-model="item.valorAPagar"
+                                    numeric-only>
+                                </div>
+                            </div>
+                        </td>
                     </tr>                      
                 </tbody>
             </table>

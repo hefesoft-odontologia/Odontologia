@@ -60,20 +60,39 @@ angular.module('odontologiaApp')
 
 .run(function ($rootScope, $state) {
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    if(angular.isDefined(toState.data)){
-      var requireLogin = toState.data.requireLogin;
-      var requirePacient = toState.data.requirePacient;
-    }
 
-    if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
-      event.preventDefault();
-      $state.go('login');
+    var hefesoftConstants = initialParmeters();
+    
+    if(hefesoftConstants.modo == "desarrollo"){
+      $rootScope.currentUser = hefesoftConstants.usuario;
+      $rootScope.currentPacient = hefesoftConstants.paciente;
     }
+    else{
+      if(angular.isDefined(toState.data)){
+        var requireLogin = toState.data.requireLogin;
+        var requirePacient = toState.data.requirePacient;
+      }
 
-    else if (requirePacient && typeof $rootScope.currentPacient === 'undefined') {
-      event.preventDefault();
-      $state.go('app.listadoPacientes');
+      if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
+        event.preventDefault();
+        $state.go('login');
+      }
+
+      else if (requirePacient && typeof $rootScope.currentPacient === 'undefined') {
+        event.preventDefault();
+        $state.go('app.listadoPacientes');
+      }
     }
 
   })
 })
+
+
+function initialParmeters(){
+   var data = {
+      usuario : { email: "futbolito152@gmail.com", family_name: "Ramirez Espitia", gender: "male", given_name: "Jose Douglas", id: "101922266897286987361", link: "https://plus.google.com/101922266897286987361", locale: "es", name: "Jose Douglas Ramirez Espitia", picture: "https://lh5.googleusercontent.com/-MKv6GOxyhAU/AAAAAAAAAAI/AAAAAAAADVM/h7f1KrIo-mg/photo.jpg"},
+      paciente : {$$hashKey: "object:26", Estado_Entidad: "1", PartitionKey: "101922266897286987361", RowKey: "102", generarIdentificador: "False", nombre: "Usuario de prueba", nombreTabla: "TmPacientes", urlImagen: "https://hefesoft.blob.core.windows.net/profile/profile.png"},
+      modo : "desarrollo"
+    }
+    return data;
+}

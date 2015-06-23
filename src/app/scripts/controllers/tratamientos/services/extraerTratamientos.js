@@ -12,7 +12,7 @@ angular.module('odontologiaApp')
 			var itemsEnSupericie = item[arrayNombre];
 
 			if(itemsEnSupericie.length > 0){
-				array = array.concat(itemsEnSupericie);
+				concatPreservingReference(array, itemsEnSupericie);					
 			}
 		};
 
@@ -29,8 +29,8 @@ angular.module('odontologiaApp')
 			if(angular.isDefined(item[arrayNombre])){
 				var itemsEnSupericie = item[arrayNombre];
 
-				if(itemsEnSupericie.length > 0){
-					array = array.concat(itemsEnSupericie);
+				if(itemsEnSupericie.length > 0){					
+					concatPreservingReference(array, itemsEnSupericie);	
 				}
 			}
 		};
@@ -45,7 +45,7 @@ angular.module('odontologiaApp')
 		for (var i = data.length - 1; i >= 0; i--) {
 			if(angular.isDefined(data[i].arrayHefesoftTratamientos)){
 				var listTratamientos = data[i].arrayHefesoftTratamientos;
-				array = array.concat(listTratamientos);				
+				concatPreservingReference(array, listTratamientos);				
 			}
 		};
 
@@ -59,7 +59,7 @@ angular.module('odontologiaApp')
 
 		for (var i = listado.length - 1; i >= 0; i--) {
 			var items = dataFactory.extraerDiagnosticos(listado[i]);
-			array = array.concat(items);			
+			concatPreservingReference(array, items);
 		};
 
 		return array;
@@ -67,8 +67,35 @@ angular.module('odontologiaApp')
 
 	dataFactory.extraerTodosTratamientos = function(listado){
 
-		var array = dataFactory.extraerTodosDiagnosticos(listado); 
+		var arrayDiagnosticos = dataFactory.extraerTodosDiagnosticos(listado);
+		var arrayTratamientos = [];
+
+		for (var i = arrayDiagnosticos.length - 1; i >= 0; i--) {
+			concatPreservingReference(arrayTratamientos, arrayDiagnosticos[i].arrayHefesoftTratamientos);			
+		};
+
+		return arrayTratamientos;
 	}
+
+	dataFactory.extraerTodosProcedimientos = function(listado){
+
+		var arrayTratamientos = dataFactory.extraerTodosTratamientos(listado);
+		var arrayProcedimientos = [];
+
+		for (var i = arrayTratamientos.length - 1; i >= 0; i--) {
+			concatPreservingReference(arrayProcedimientos, arrayTratamientos[i].arrayHefesoftProcedimientos);
+		};
+
+		return arrayProcedimientos;
+	}
+
+	function concatPreservingReference(array, arrayAdicionar){
+		
+		for (var i = arrayAdicionar.length - 1; i >= 0; i--) {
+			array.push(arrayAdicionar[i]);
+		};
+	}
+
 
 	return dataFactory;
 

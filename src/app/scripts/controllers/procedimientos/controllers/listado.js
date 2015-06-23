@@ -2,7 +2,7 @@ angular.module('odontologiaApp')
 .controller('listadoProcedimientosCtrl', ['$scope', 'dataTableStorageFactory', '$modal',
 	function ($scope, dataTableStorageFactory, $modal) {
 
-	$scope.listado = [];
+	$scope.listado = [];  
 
 /*************************** Procedimientos *********************/
   $scope.openProcedimientos = function (size, seleccionado) {
