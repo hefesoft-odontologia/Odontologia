@@ -3,6 +3,7 @@ angular.module('odontologiaApp')
 	function ($scope, dataTableStorageFactory, $modal) {
 
 	$scope.listado = [];  
+  $scope.footer = {};
 
 /*************************** Procedimientos *********************/
   $scope.openProcedimientos = function (size, seleccionado) {
@@ -33,6 +34,8 @@ angular.module('odontologiaApp')
 
   $scope.inicializarElementos = function(elementos){	  
   	$scope.listado = Hefesot.aListado(elementos);
+    inicializarSaldos($scope.listado);
+    sumarValorFooter($scope.listado);
   }
 
   $scope.eliminar = function(item, $index){
@@ -42,4 +45,45 @@ angular.module('odontologiaApp')
    	 	$scope.fnEliminar($scope.$parent, { 'item' : item, "index" : $index });
    	}
   }
+
+  $scope.cambioValorPagado = function(item){
+    item.saldo = item.valor - item.valorPagado;
+    sumarValorFooter($scope.listado);
+  }
+
+  $scope.checkPagado = function(item){
+    if(item.Pagado){
+      item.saldo = 0;
+      item.valorPagado = item.valor;      
+    }
+    else{
+      item.saldo = item.valor;
+      item.valorPagado = 0;      
+    }
+
+    sumarValorFooter($scope.listado);
+  }
+
+  function inicializarSaldos(array){
+    if(array.length){
+      for (var i = array.length - 1; i >= 0; i--) {
+          
+          if(angular.isUndefined(array[i]['saldo'])){
+            array[i]['saldo'] = array[i]['valor']; 
+          }
+
+        };  
+    }
+  }
+
+  function sumarValorFooter(array){
+    $scope.footer.valor = _.sum(array, function(object) {
+      return object.valor;
+     });
+
+    $scope.footer.saldo = _.sum(array, function(object) {
+      return object.saldo;
+     });
+  }
+
 }])

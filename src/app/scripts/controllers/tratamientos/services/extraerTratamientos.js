@@ -11,7 +11,7 @@ angular.module('odontologiaApp')
 			var arrayNombre = partes[i] + "_arrayHefesoft";
 			var itemsEnSupericie = item[arrayNombre];
 
-			if(itemsEnSupericie.length > 0){
+			if(itemsEnSupericie.length > 0){				
 				concatPreservingReference(array, itemsEnSupericie);					
 			}
 		};
@@ -30,7 +30,7 @@ angular.module('odontologiaApp')
 				var itemsEnSupericie = item[arrayNombre];
 
 				if(itemsEnSupericie.length > 0){					
-					concatPreservingReference(array, itemsEnSupericie);	
+					array.concatByReference(itemsEnSupericie);
 				}
 			}
 		};
@@ -44,8 +44,8 @@ angular.module('odontologiaApp')
 
 		for (var i = data.length - 1; i >= 0; i--) {
 			if(angular.isDefined(data[i].arrayHefesoftTratamientos)){
-				var listTratamientos = data[i].arrayHefesoftTratamientos;
-				concatPreservingReference(array, listTratamientos);				
+				var listTratamientos = data[i].arrayHefesoftTratamientos;				
+				array.concatByReference(listTratamientos);
 			}
 		};
 
@@ -58,8 +58,8 @@ angular.module('odontologiaApp')
 		var array = [];
 
 		for (var i = listado.length - 1; i >= 0; i--) {
-			var items = dataFactory.extraerDiagnosticos(listado[i]);
-			concatPreservingReference(array, items);
+			var items = dataFactory.extraerDiagnosticos(listado[i]);			
+			array.concatByReference(items);
 		};
 
 		return array;
@@ -70,8 +70,8 @@ angular.module('odontologiaApp')
 		var arrayDiagnosticos = dataFactory.extraerTodosDiagnosticos(listado);
 		var arrayTratamientos = [];
 
-		for (var i = arrayDiagnosticos.length - 1; i >= 0; i--) {
-			concatPreservingReference(arrayTratamientos, arrayDiagnosticos[i].arrayHefesoftTratamientos);			
+		for (var i = arrayDiagnosticos.length - 1; i >= 0; i--) {			
+			arrayTratamientos.concatByReference(arrayDiagnosticos[i].arrayHefesoftTratamientos);
 		};
 
 		return arrayTratamientos;
@@ -82,18 +82,17 @@ angular.module('odontologiaApp')
 		var arrayTratamientos = dataFactory.extraerTodosTratamientos(listado);
 		var arrayProcedimientos = [];
 
-		for (var i = arrayTratamientos.length - 1; i >= 0; i--) {
-			concatPreservingReference(arrayProcedimientos, arrayTratamientos[i].arrayHefesoftProcedimientos);
+		for (var i = arrayTratamientos.length - 1; i >= 0; i--) {			
+			arrayProcedimientos.concatByReference(arrayTratamientos[i].arrayHefesoftProcedimientos);
 		};
 
 		return arrayProcedimientos;
 	}
 
-	function concatPreservingReference(array, arrayAdicionar){
-		
-		for (var i = arrayAdicionar.length - 1; i >= 0; i--) {
-			array.push(arrayAdicionar[i]);
-		};
+	function concatPreservingReference(array, arrayAdicionar){		
+		if(arrayAdicionar.length){
+			array.concatByReference(arrayAdicionar);
+		}
 	}
 
 

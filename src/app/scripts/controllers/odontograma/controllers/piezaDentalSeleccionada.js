@@ -10,13 +10,16 @@ angular.module('odontologiaApp')
 	 */
 
 	 $scope.clickSuperficie = function(superficie){
+	 	var uuid = chance.string({length: 40});
  	 	var diagnosticoAdicionar = angular.copy(diagnostico);
  	 	diagnosticoAdicionar.superficie = superficie;
+ 	 	diagnosticoAdicionar.uuid = uuid;
+
  	 	diagnosticoAdicionar.numeroPiezaDental = piezaDental.numeroPiezaDental; 
  	 	diagnosticoAdicionar.codigo = piezaDental.codigo; 
 
  	 	if(diagnosticoServices.validarYaExisteDiagnostico(superficie,diagnosticoAdicionar, piezaDental)){
-			agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar, diagnosticoAdicionar.numeroPiezaDental);
+			agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar, diagnosticoAdicionar.numeroPiezaDental, uuid);
 			$scope.piezaDental = diagnosticoServices.extraerDesdeDiagnostico($scope.piezaDental);		    
 		}
 	 }
@@ -25,7 +28,7 @@ angular.module('odontologiaApp')
 		Se agrega el elemento diagnostico a la superficies para cuando se persista
 		quede guarado el diagnostico que se realizo
 	 */
-	 function agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar, numeroPiezaDental){
+	 function agregarElementoDiagnosticoASuperficie(superficie, diagnosticoAdicionar, numeroPiezaDental, uuid){
 	 	var arrayNombre = superficie + "Diagnosticos_arrayHefesoft";
 
 	 	if(angular.isUndefined($scope.piezaDental[arrayNombre])){
@@ -33,32 +36,29 @@ angular.module('odontologiaApp')
 	 	}
 
 
-	 	adicionarATratamientos(diagnosticoAdicionar, numeroPiezaDental, superficie);	 	
+	 	adicionarATratamientos(diagnosticoAdicionar, numeroPiezaDental, superficie, uuid);
 	 	$scope.piezaDental[arrayNombre].push(diagnosticoAdicionar);
 
 
 	 }
 
 	 //Agrega el numero de pieza dental y superficie a procedimientos tratamientos de un diagnostico
-	 function adicionarATratamientos(diagnostico, numeroPiezaDental, superficie){
+	 function adicionarATratamientos(diagnostico, numeroPiezaDental, superficie, uuid){
 
 	 	for (var i = diagnostico.arrayHefesoftTratamientos.length - 1; i >= 0; i--) {
 	 		diagnostico.arrayHefesoftTratamientos[i]['numeroPiezaDental'] = numeroPiezaDental;
 	 		diagnostico.arrayHefesoftTratamientos[i]['superficie'] = superficie;
-	 		adicionarAProcedimientos(diagnostico.arrayHefesoftTratamientos[i], numeroPiezaDental, superficie);
+	 		diagnostico.arrayHefesoftTratamientos[i]['uuid'] = uuid;	 		
+	 		adicionarAProcedimientos(diagnostico.arrayHefesoftTratamientos[i], numeroPiezaDental, superficie, uuid);
 	 	};
 	 }
 
-	 function adicionarAProcedimientos(Tratamiento, numeroPiezaDental, superficie){
+	 function adicionarAProcedimientos(Tratamiento, numeroPiezaDental, superficie, uuid){
 
 	 	for (var i = Tratamiento.arrayHefesoftProcedimientos.length - 1; i >= 0; i--) {
 	 		Tratamiento.arrayHefesoftProcedimientos[i]['numeroPiezaDental'] = numeroPiezaDental;
 	 		Tratamiento.arrayHefesoftProcedimientos[i]['superficie'] = superficie;
+	 		Tratamiento.arrayHefesoftProcedimientos[i]['uuid'] = uuid;	 		
 	 	};
 	 }
-
-	
-
-   
-	
 }])

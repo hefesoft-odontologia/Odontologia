@@ -25,11 +25,11 @@
                         <th ng-show="modoPagos">Realizado</th>
                         <th ng-show="modoPagos">Pagado</th>
                         <th ng-show="modoPagos">Valor pagado</th>
-                        <th ng-show="modoPagos">Saldo</th>
-                        <th ng-show="modoPagos">Valor pagar</th>
+                        <th ng-show="modoPagos">Saldo</th>                        
                     </tr>
                 </thead>
                 <tbody>
+                    
                     <tr ng-repeat="item in listado track by $index">
                         <td>
                              <md-button ng-click="eliminar(item, $index)" class="md-delete"></md-button>
@@ -72,7 +72,9 @@
                                 <input 
                                     id="{{$index}}_procedimientoPagado" 
                                     type="checkbox" 
-                                    ng-model="item.Pagado" hidden="hidden">
+                                    ng-model="item.Pagado" 
+                                    ng-change="checkPagado(item)"
+                                    hidden="hidden">
                                 <label 
                                     for="{{$index}}_procedimientoPagado" 
                                     class="ts-helper">
@@ -82,7 +84,8 @@
                         <td ng-show="modoPagos">
                             <div class="form-group">
                                 <div class="fg-line">
-                                    <input type="text" 
+                                    <input type="text"
+                                    ng-change="cambioValorPagado(item)"
                                     class="form-control"
                                     placeholder="Valor"
                                     ng-model="item.valorPagado"
@@ -93,26 +96,31 @@
                         <td ng-show="modoPagos">
                             <div class="form-group">
                                 <div class="fg-line">
-                                    <input type="text" 
-                                    class="form-control"
-                                    placeholder="Valor"
-                                    ng-model="item.saldo"
-                                    numeric-only>
+                                    {{item.saldo}}
                                 </div>
                             </div>
                         </td>                        
-                        <td ng-show="modoPagos">
-                            <div class="form-group">
-                                <div class="fg-line">
-                                    <input type="text" 
-                                    class="form-control"
-                                    placeholder="Valor"
-                                    ng-model="item.valorAPagar"
-                                    numeric-only>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>                      
+                    </tr>
+
+
+                    <!-- Footer -->
+                     <tr ng-show="modoPagos">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{footer.valor}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{footer.saldo}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+
                 </tbody>
             </table>
         </div>           
