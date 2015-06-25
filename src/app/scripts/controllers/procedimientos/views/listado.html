@@ -56,7 +56,9 @@
                                 <input 
                                     id="{{$index}}_procedimientoRealizado" 
                                     type="checkbox" 
-                                    ng-model="item.Realizado" hidden="hidden">
+                                    ng-model="item.Realizado"
+                                    ng-change="realizado(item)"
+                                    hidden="hidden">
                                 <label 
                                     for="{{$index}}_procedimientoRealizado" 
                                     class="ts-helper">

@@ -22,6 +22,11 @@ angular.module('odontologiaApp')
 	          scope.fnAdicionado = $parse(attrs['adicionadoCallback']);
 	       }
 
+	       existClick = attrs['procedimientoRealizadoCallback'];
+	       if(angular.isDefined(existClick)){
+	          scope.fnProcedimientoRealizado = $parse(attrs['procedimientoRealizadoCallback']);
+	       }
+
 
 		   ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {

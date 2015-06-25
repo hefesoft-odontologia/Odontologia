@@ -153,7 +153,8 @@ function planTratamientoDependencies(){
         cache: true,
         files: 
         [
-            "app/scripts/controllers/historia/Odontologia/planTratamiento/controller/planTratamiento.js"
+            "app/scripts/controllers/historia/Odontologia/planTratamiento/controller/planTratamiento.js",
+            "app/scripts/controllers/historia/Odontologia/planTratamiento/directivas/directiva.js"
         ]
     }
 

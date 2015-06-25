@@ -64,6 +64,12 @@ angular.module('odontologiaApp')
     sumarValorFooter($scope.listado);
   }
 
+  $scope.realizado = function(item){
+    if(angular.isDefined($scope.fnProcedimientoRealizado) && angular.isFunction($scope.fnProcedimientoRealizado)){
+      $scope.fnProcedimientoRealizado($scope.$parent, { 'item' : item});
+    }
+  }
+
   function inicializarSaldos(array){
     if(array.length){
       for (var i = array.length - 1; i >= 0; i--) {
