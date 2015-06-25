@@ -36,11 +36,13 @@ controller('planTratamientoCtrl',
         });
 	}
 
-	//Se encarga de validar cuantos procedimientos de este tratamiento han sido realizados
+	//Se toma el procedimiento que se ha indicado como realizado
+	//Luego se busca dentro de las piezas dentales
 	$scope.procedimientoRealizado = function(item){
 
    		var diagnostico = buscarDiagnostico(item);
 
+   		//Si se encuentra el diagostico se prosigue a buscar el tratamiento a que corresponde el procedimiento
    		if(diagnostico){
 
    			var realizado = obtenerTratamiento(diagnostico, item);
@@ -61,6 +63,7 @@ controller('planTratamientoCtrl',
 	   
 	}
 
+	//Dado el procedimiento se saca la pieza dental a la que corresponde
 	function buscarDiagnostico(procedimiento){
 	   
 	   var diagnostico;	   
@@ -100,7 +103,8 @@ controller('planTratamientoCtrl',
 		return todosRealizados;
 	}
 
-	//Obtiene el tratamiento padre
+	//Dado un diagnostico y un procedimiento se valida cuantos procdimientos faltan para terminar el tratamiento
+	//Si no falta ninguno se indica que el tratamiento se ha realizado
 	function obtenerTratamiento(data, item){
 
 		var todosRealizados;
@@ -124,6 +128,8 @@ controller('planTratamientoCtrl',
 	}
 
 	//Valida cuantos procedimientos han sido realizados
+	//Y cuantos de ellos ya han sido realizados
+	//Si todos han sido realizados devuelve un true
 	function validarProcedimientosRealizados(tratamiento){
 
 		var todosRealizados = true;
