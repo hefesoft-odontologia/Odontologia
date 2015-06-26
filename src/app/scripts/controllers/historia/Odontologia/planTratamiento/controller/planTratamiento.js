@@ -28,8 +28,7 @@ controller('planTratamientoCtrl',
 	$scope.guardarCommand = function(){
 		//Datos, Nombre tabla, partition key, y campo que servira como row key
         dataTableStorageFactory.postTableArray($scope.Source, 'TmOdontograma',  idOdontograma, 'codigo')
-        .success(function (data) {           
-			piezaDental.listado = data;			           
+        .success(function (data) { 
         })
         .error(function (error) {           
             console.log(error);                    
@@ -51,16 +50,24 @@ controller('planTratamientoCtrl',
 	   		if(realizado){			   
 			   var resultTratamientos = validarTratamientosRealizados(diagnostico);
 			   if(resultTratamientos){
-			   	  diagnostico['realizado'] = true;			   	  
+			   	  diagnostico['realizado'] = true;
+			   	  cambiarColorEvolucion(diagnostico);			   	  
 			   }
 			   else{
-			   	  diagnostico['realizado'] = false;
+			   	  diagnostico['realizado'] = false;			   	  
 			   }
 
 			   dataTableStorageFactory.saveStorage(piezaDentalSeleccionada);
 	   		}
-   		}
-	   
+   		}	   
+	}
+
+	// Cambia el color de la superficie a evolucion
+	function cambiarColorEvolucion(diagnostico){
+		piezaDentalSeleccionada[diagnostico.superficie + '_objectHefesoft'].color = diagnostico.objectHefesoftEvolucion.color;
+		piezaDentalSeleccionada[diagnostico.superficie + '_objectHefesoft'].simbolo = diagnostico.objectHefesoftEvolucion.simbolo;
+		piezaDentalSeleccionada[diagnostico.superficie + '_objectHefesoft'].fuente = diagnostico.objectHefesoftEvolucion.fuente;
+		piezaDentalSeleccionada[diagnostico.superficie + '_objectHefesoft'].pathImagen = diagnostico.objectHefesoftEvolucion.pathImagen;		
 	}
 
 	//Dado el procedimiento se saca la pieza dental a la que corresponde

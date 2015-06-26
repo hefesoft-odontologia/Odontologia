@@ -530,5 +530,22 @@ function esanumDependencies(){
     return dependencias;
 }
 
+function stringFormatDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "../bower_components/ng-currency/dist/ng-currency.min.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+
+
 
 

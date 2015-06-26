@@ -46,7 +46,7 @@
                         <td ng-show="modoPagos">{{item.superficie}}</td>
                         <td>{{item.objectHefesoftEspecialidad.nombre}}</td>
                         <td>{{item.idiceCup}}</td>
-                        <td class="f-500 c-cyan">{{item.valor}}</td>
+                        <td class="f-500 c-cyan">{{item.valor | currency}}</td>
                         <td ng-show="modoPagos">
                            <div class="toggle-switch" data-ts-color="green">
                                 <label 
@@ -91,6 +91,7 @@
                                     class="form-control"
                                     placeholder="Valor"
                                     ng-model="item.valorPagado"
+                                    ng-currency
                                     numeric-only>
                                 </div>
                             </div>
@@ -98,7 +99,7 @@
                         <td ng-show="modoPagos">
                             <div class="form-group">
                                 <div class="fg-line">
-                                    {{item.saldo}}
+                                    {{item.saldo | currency}}
                                 </div>
                             </div>
                         </td>                        
@@ -113,11 +114,11 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{{footer.valor}}</td>
+                        <td>{{footer.valor | currency}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{{footer.saldo}}</td>
+                        <td>{{footer.saldo | currency}}</td>
                         <td></td>
                         <td></td>
                     </tr>

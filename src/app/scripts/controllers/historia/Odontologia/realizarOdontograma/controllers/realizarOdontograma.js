@@ -1,7 +1,7 @@
 angular.module('Historia')
 .controller('realizarOdontogramaCtrl', 
-	['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices', '$rootScope',
-	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices, $rootScope) {
+	['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices', '$rootScope', '$state',
+	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices, $rootScope, $state) {
 	var Hefesoft  = window.Hefesot;
 
 	$scope.Diagnosticos = [];
@@ -48,6 +48,10 @@ angular.module('Historia')
    	  }).error(function(error){
       	console.log(error);          
       })
+	}
+
+	$scope.planTratamiento = function(){
+		$state.go("app.planTratamiento");
 	}
 
 	$scope.procedimientoEliminado = function(item){

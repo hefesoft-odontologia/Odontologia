@@ -22,6 +22,14 @@
 		$state.go("app.picker");		
 	}
 
+	$scope.navegarPlanTratamiento = function(item){
+		$rootScope.currentPacient = item;
+		$scope.Paciente = item;
+		varsFactoryService.fijarPaciente(item.RowKey);		
+		//$state.go("app.gallery");
+		$state.go("app.planTratamiento");		
+	}
+
 	$scope.navegarOdontograma = function(item){
 		$rootScope.currentPacient = item;
 		$scope.Paciente = item;

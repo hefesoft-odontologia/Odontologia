@@ -74,6 +74,7 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
           tratamientosDependencies(),
           cieCupsDependencies(),
           planTratamientoDependencies(),
+          stringFormatDependencies(),
           /* Para pruebas*/
           authDependencies()
       ]);

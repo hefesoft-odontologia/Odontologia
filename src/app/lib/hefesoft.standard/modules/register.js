@@ -17,3 +17,4 @@ angular.module('Hefesoft', []);
 angular.module('hefesoft.services', []);
 angular.module('hefesoft.google', []);
 angular.module('esanum', []);
+angular.module('ng-currency', []);
