@@ -19,6 +19,7 @@ angular.module('odontologiaApp')
       routesPeriodontograma($stateProvider, $ocLazyLoadProvider);
       agendaClinica($stateProvider, $ocLazyLoadProvider);
       externalLogin($stateProvider, $ocLazyLoadProvider);
+      esanumNews($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
@@ -53,7 +54,11 @@ angular.module('odontologiaApp')
           clinicaDependencies(),
           newsDependencies(),
           importIoDependencies(),          
-          azureDependencies()
+          azureDependencies(),
+          esanumDependencies(),
+
+          /* Pruebas */
+          authDependencies()
       ]);
    }
 }])

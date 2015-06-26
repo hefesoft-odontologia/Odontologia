@@ -25,7 +25,8 @@ angular
   	'Global',
   	'directivas',
   	'angular-loading-bar',
-  	'ui.bootstrap'  	
+  	'ui.bootstrap',
+    'ngSanitize'
 ]);
 
 

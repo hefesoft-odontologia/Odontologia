@@ -511,3 +511,24 @@ function agendaDependencies(){
     return dependencias;
 }
 
+function esanumDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "../bower_components/angular-md5/angular-md5.min.js",
+            "app/lib/hefesoft.standard/esanum/services/login.js",
+            "app/scripts/controllers/Noticias/Directivas/directive/esanum.js",
+            "app/scripts/controllers/Noticias/Controllers/esanum.js"
+
+        ]
+    }
+
+    return dependencias;
+}
+
+
+
