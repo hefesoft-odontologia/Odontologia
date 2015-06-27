@@ -1,6 +1,6 @@
 angular.module('odontologiaApp')
-.controller('listadoProcedimientosCtrl', ['$scope', 'dataTableStorageFactory', '$modal',
-	function ($scope, dataTableStorageFactory, $modal) {
+.controller('listadoProcedimientosCtrl', ['$scope', 'dataTableStorageFactory', '$modal', '$rootScope',
+	function ($scope, dataTableStorageFactory, $modal, $rootScope) {
 
 	$scope.listado = [];  
   $scope.footer = {};
@@ -70,6 +70,24 @@ angular.module('odontologiaApp')
     }
   }
 
+  $scope.generarPdf = function(){
+    var columns = [
+        {title: "Numero", key: "numeroPiezaDental"},
+        {title: "Superficie", key: "superficie"}, 
+        {title: "Especialidad", key: "especialidad"}, 
+        //{title: "Indice de Cups", key: "indiceCups"},
+        {title: "Valor", key: "valor"}
+    ];  
+
+    var doc = new jsPDF('p', 'pt');
+
+    doc.text($rootScope.currentUser.name, 100, 60);
+    doc.addImage($rootScope.currentUser.dataImagen64, 'JPEG', 30, 40, 50, 50);
+    doc.autoTable(columns, formatearParaImprimir(), {startY: 120});
+    var data = doc.output('arraybuffer');
+    //doc.save('table.pdf');
+  }
+
   function inicializarSaldos(array){
     if(array.length){
       for (var i = array.length - 1; i >= 0; i--) {
@@ -77,9 +95,33 @@ angular.module('odontologiaApp')
           if(angular.isUndefined(array[i]['saldo'])){
             array[i]['saldo'] = array[i]['valor']; 
           }
-
-        };  
+      };  
     }
+  }
+
+  function formatearParaImprimir(){
+    var arrayImprimir = [];
+
+    for (var i = $scope.listado.length - 1; i >= 0; i--) {
+        var elemento = $scope.listado[i];
+        var numero = String(elemento.numeroPiezaDental);
+        numero = numero.replace("tachados-", "");
+        numero = numero.replace("tornillo-", "");
+
+        var valor = parseFloat(Math.round(elemento.valor * 100) / 100).toFixed(2);
+
+        arrayImprimir.push({
+          numeroPiezaDental: numero,
+          superficie : elemento.superficie,
+          especialidad : elemento.objectHefesoftEspecialidad.nombre,
+          //indiceCups: elemento.idiceCup,
+          valor : valor
+        })
+    };
+
+    var valorTotal = parseFloat(Math.round($scope.footer.valor * 100) / 100).toFixed(2);
+    arrayImprimir.push({valor : valorTotal});
+    return arrayImprimir;
   }
 
   function sumarValorFooter(array){

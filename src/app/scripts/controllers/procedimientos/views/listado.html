@@ -1,3 +1,9 @@
+
+<button ng-click="generarPdf()">
+    Imprimir
+</button>
+
+
 <div class="card">
              <div class="listview lv-bordered lv-lg">
                   <div class="card-header ch-alt m-b-20">
@@ -42,7 +48,7 @@
                             </i>
                         </td>                      
                         <td>{{item.nombre}}</td>
-                        <td ng-show="modoPagos">{{item.numeroPiezaDental}}</td>
+                        <td ng-show="modoPagos">{{item.numeroPiezaDental | piezaDentalNumero}}</td>
                         <td ng-show="modoPagos">{{item.superficie}}</td>
                         <td>{{item.objectHefesoftEspecialidad.nombre}}</td>
                         <td>{{item.idiceCup}}</td>

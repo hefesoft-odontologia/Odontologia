@@ -33,7 +33,7 @@ controller('planTratamientoCtrl',
         .error(function (error) {           
             console.log(error);                    
         });
-	}
+	}	
 
 	//Se toma el procedimiento que se ha indicado como realizado
 	//Luego se busca dentro de las piezas dentales
