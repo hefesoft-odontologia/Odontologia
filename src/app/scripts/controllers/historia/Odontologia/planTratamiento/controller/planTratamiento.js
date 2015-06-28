@@ -6,7 +6,16 @@ controller('planTratamientoCtrl',
 	var piezaDentalSeleccionada;
 
 	$scope.Listado = [];
-	$scope.Source = []; 
+	$scope.Source = [];
+	$scope.contextoProcedimientos = {};
+
+
+	$scope.$on('$locationChangeStart', function( event ) {
+		var contextoProcedimiento = $scope.contextoProcedimientos();
+		if(contextoProcedimiento.modificado){
+	    	$scope.guardarCommand();
+		}
+	});
 
 	function inicializarDatos(){
       //Carga de Odontograma

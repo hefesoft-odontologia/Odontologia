@@ -27,6 +27,12 @@ angular.module('odontologiaApp')
 	          scope.fnProcedimientoRealizado = $parse(attrs['procedimientoRealizadoCallback']);
 	       }
 
+	       if(scope.contexto){
+	        scope.contexto = function(){
+	          return scope;
+	    	}
+	   	   }
+
 
 		   ngModelCtrl[0].$render = function(){
 		  	if (!ngModelCtrl[0].$isEmpty(ngModelCtrl[0].$viewValue)) {
@@ -41,7 +47,8 @@ angular.module('odontologiaApp')
 			dxSeleccionado : '=',
 			ocultarAddProcedimiento : '=',
 			editable : '=',
-			modoPagos : '=' 
+			modoPagos : '=',
+			contexto :  '=' 
 		}
 	};
 }])

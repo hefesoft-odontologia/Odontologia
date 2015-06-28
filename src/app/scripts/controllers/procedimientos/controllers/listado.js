@@ -4,6 +4,7 @@ angular.module('odontologiaApp')
 
 	$scope.listado = [];  
   $scope.footer = {};
+  $scope.modificado = false;
 
 /*************************** Procedimientos *********************/
   $scope.openProcedimientos = function (size, seleccionado) {
@@ -49,6 +50,7 @@ angular.module('odontologiaApp')
   $scope.cambioValorPagado = function(item){
     item.saldo = item.valor - item.valorPagado;
     sumarValorFooter($scope.listado);
+    $scope.modificado = true;
   }
 
   $scope.checkPagado = function(item){
@@ -61,12 +63,14 @@ angular.module('odontologiaApp')
       item.valorPagado = 0;      
     }
 
+    $scope.modificado = true;
     sumarValorFooter($scope.listado);
   }
 
   $scope.realizado = function(item){
     if(angular.isDefined($scope.fnProcedimientoRealizado) && angular.isFunction($scope.fnProcedimientoRealizado)){
       $scope.fnProcedimientoRealizado($scope.$parent, { 'item' : item});
+      $scope.modificado = true;
     }
   }
 
@@ -75,17 +79,17 @@ angular.module('odontologiaApp')
         {title: "Numero", key: "numeroPiezaDental"},
         {title: "Superficie", key: "superficie"}, 
         {title: "Especialidad", key: "especialidad"}, 
-        //{title: "Indice de Cups", key: "indiceCups"},
+        {title: "Indice de Cups", key: "indiceCups"},
         {title: "Valor", key: "valor"}
     ];  
 
-    var doc = new jsPDF('p', 'pt');
-
+    var doc = new jsPDF('l', 'pt');
+    doc.setFontSize(10);
     doc.text($rootScope.currentUser.name, 100, 60);
     doc.addImage($rootScope.currentUser.dataImagen64, 'JPEG', 30, 40, 50, 50);
     doc.autoTable(columns, formatearParaImprimir(), {startY: 120});
-    var data = doc.output('arraybuffer');
-    //doc.save('table.pdf');
+    //var data = doc.output('arraybuffer');
+    doc.save('table.pdf');
   }
 
   function inicializarSaldos(array){
@@ -114,7 +118,7 @@ angular.module('odontologiaApp')
           numeroPiezaDental: numero,
           superficie : elemento.superficie,
           especialidad : elemento.objectHefesoftEspecialidad.nombre,
-          //indiceCups: elemento.idiceCup,
+          indiceCups: elemento.idiceCup,
           valor : valor
         })
     };
