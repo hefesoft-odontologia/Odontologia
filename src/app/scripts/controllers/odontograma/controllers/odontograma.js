@@ -23,4 +23,11 @@ angular.module('odontologiaApp')
 			$scope.fnClick($scope.$parent, { 'item' : item });
 		}
 	}
+
+	$scope.odontogramaCargado = function(item){
+
+		if(angular.isDefined($scope.fnOdontogramaBaseCargado) && angular.isFunction($scope.fnOdontogramaBaseCargado)){
+			$scope.fnOdontogramaBaseCargado($scope.$parent, { 'item' : item });
+		}
+	}
 }])

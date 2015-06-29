@@ -16,6 +16,11 @@ directive('odontograma', ['$parse',
          scope.fnClick = $parse(attrs['clickCallback']);
       }
 
+      existClick = attrs['odontogramaBaseCargadoCallback'];
+      if(angular.isDefined(existClick)){
+         scope.fnOdontogramaBaseCargado = $parse(attrs['odontogramaBaseCargadoCallback']);
+      }
+
       if(scope.contexto){
       	scope.contexto = function(){
       	  return scope;

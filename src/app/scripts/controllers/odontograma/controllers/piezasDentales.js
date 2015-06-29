@@ -1,6 +1,6 @@
 angular.module('odontologiaApp')
-.controller('piezasDentalesCtrl', ['$scope', 'odontogramaJsonServices', '$modal', 'diagnosticoServices',
-	function ($scope, odontogramaJsonServices, $modal, diagnosticoServices) {
+.controller('piezasDentalesCtrl', ['$scope', 'odontogramaJsonServices', '$modal', 'diagnosticoServices', 'piezasDentalesServices',
+	function ($scope, odontogramaJsonServices, $modal, diagnosticoServices, piezasDentalesServices) {
 
 	$scope.listado = [];	
 	$scope.tratamientoPiezaDental = [];
@@ -92,10 +92,32 @@ angular.module('odontologiaApp')
 		$scope.listado.splice(index, 1);
 	}
 
+	$scope.leerOdontogramaBase = function(){
+		odontogramaJsonServices.obtenerOdontogramaBase().then(success);
+	}
+
+	$scope.actualizarPiezas = function(elementosActualizar){
+
+		for (var i = elementosActualizar.length - 1; i >= 0; i--) {
+			var pieza = elementosActualizar[i];
+
+			var index = _.findIndex($scope.listado, function(chr) {
+			  return chr.codigo == pieza.codigo;
+		    });
+
+		   if(index >= 0){
+		   		$scope.listado[index] = pieza;
+		   }			
+		};
+
+	}
+
 	function agregarSupernumerario(index, numero, posicision){
-		
-		var elementoInsertar = angular.copy(piezaBaseSupernumerario);
+		var elemento = $scope.listado[0];
+		var elementoInsertar = angular.copy(elemento);
 		elementoInsertar.codigo = randomCodigo();
+		limpiarPropiedadesSupernumerario(elementoInsertar);
+		elementoInsertar["Modificado"] = true;
 
 		elementoInsertar.numeroPiezaDental = numero;
 		elementoInsertar['esSupernumerario'] = true;
@@ -104,16 +126,29 @@ angular.module('odontologiaApp')
 			index = index +1;
 			//Se usa para al guardar quede a la izquierda o derecha
 			//De la pieza dental
-			var id = parseFloat(piezaBaseSupernumerario.id + 0.001);
+			var id = parseFloat($scope.piezaSeleccionada.id + 0.001);
 			elementoInsertar.id = String(id);
 			$scope.listado.splice(index, 0, elementoInsertar);
 		}
 		else if(posicision == "left"){
-			var id = parseFloat(piezaBaseSupernumerario.id - 0.001);
+			var id = parseFloat($scope.piezaSeleccionada.id - 0.001);
 			//Se usa para al guardar quede a la izquierda o derecha
 			//De la pieza dental
 			elementoInsertar.id = String(id);
 			$scope.listado.splice(index, 0, elementoInsertar);
+		}
+	}
+
+	function limpiarPropiedadesSupernumerario(object){
+		for (var property in object) {
+		    if (object.hasOwnProperty(property)){
+		        if(property.indexOf("array") >= 0){
+		        	object[property] = [];
+		    	}
+		    	else if(property.indexOf("objectHefesoft") >= 0){
+		        	object[property] = {};
+		    	}
+		    }
 		}
 	}
 
@@ -129,15 +164,14 @@ angular.module('odontologiaApp')
 		return item; 
 	}
 
-	function inicializar(){
-	 odontogramaJsonServices.obtenerOdontogramaBase().then(success);
-	}
-
 	function success(data){
 		//Se usa una pieza dental como base para cuando se neceite agregar
-		//Un diente supernumerario
-		piezaBaseSupernumerario = data[0];
+		//Un diente supernumerario		
 		$scope.listado = data;
+
+		if(angular.isDefined($scope.fnOdontogramaBaseCargado) && angular.isFunction($scope.fnOdontogramaBaseCargado)){
+			$scope.fnOdontogramaBaseCargado($scope.$parent, { 'item' : data });
+		}
 	}
 
 	function modificado(item){
@@ -190,7 +224,4 @@ angular.module('odontologiaApp')
 	function hidePopOver(){
 		$('.popover').hide();
 	}
-
-	inicializar();
-
 }])

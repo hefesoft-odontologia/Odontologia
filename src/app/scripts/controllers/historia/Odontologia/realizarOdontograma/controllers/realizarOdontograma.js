@@ -1,7 +1,7 @@
 angular.module('Historia')
 .controller('realizarOdontogramaCtrl', 
-	['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices', '$rootScope', '$state',
-	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices, $rootScope, $state) {
+	['$scope', 'dataTableStorageFactory', 'tratamientoServices', 'odontogramaJsonServices', '$rootScope', '$state', 'piezasDentalesServices',
+	function ($scope, dataTableStorageFactory, tratamientoServices, odontogramaJsonServices, $rootScope, $state, piezasDentalesServices) {
 	var Hefesoft  = window.Hefesot;
 
 	$scope.Diagnosticos = [];
@@ -40,14 +40,30 @@ angular.module('Historia')
 
 	        tratamientoServices.extraerTodosTratamientos(data);
 	      	
+	      	//se ponen aca xq aca ya tienen valor
 	      	var item = $scope.contextoOdontograma();
 	 		var piezaDental = item.piezasDentalesScope();
 	 		piezaDental.listado = data;
+	 		piezasDentalesServices.fijarPiezasDentales(piezaDental.listado);
+ 		}
+ 		else{
+ 			//se ponen aca xq aca ya tienen valor
+ 			var item = $scope.contextoOdontograma();
+	 		var piezaDental = item.piezasDentalesScope();
+ 			piezaDental.leerOdontogramaBase();
  		}
 
    	  }).error(function(error){
       	console.log(error);          
       })
+	}
+
+	$scope.odontogramaBaseCargado = function(item){
+		var listadoGuardar = item;
+		var itemOdontograma = $scope.contextoOdontograma();
+ 		var piezaDental = itemOdontograma.piezasDentalesScope(); 		
+ 		piezasDentalesServices.fijarPiezasDentales(piezaDental.listado);
+ 		guardar(listadoGuardar, piezaDental.listado);
 	}
 
 	$scope.planTratamiento = function(){
@@ -81,6 +97,7 @@ angular.module('Historia')
 
  		//Limpia el listado de los procedimientos
  		$scope.listadoProcedimientosPorPiezaDental = [];
+ 		piezasDentalesServices.setModified(item.codigo);
  	}
 
  	$scope.eliminar = function(item, index){
@@ -100,17 +117,27 @@ angular.module('Historia')
  	$scope.guardarCommand = function(){
  		var item = $scope.contextoOdontograma();
  		var piezaDental = item.piezasDentalesScope();
+ 		
+ 		var listadoGuardar = piezasDentalesServices.getModifiedPiezas(); 		
+ 		guardar(listadoGuardar, piezaDental.listado);
+ 	}
 
- 		var listadoGuardar = piezaDental.listado;
-
- 		//Datos, Nombre tabla, partition key, y campo que servira como row key
-        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  idOdontograma, 'codigo')
-        .success(function (data) {           
-			piezaDental.listado = data;			           
-        })
-        .error(function (error) {           
-            console.log(error);                    
-        });
+ 	function guardar(listadoGuardar, source){
+ 		//se ponen aca xq aca ya tienen valor
+      	var item = $scope.contextoOdontograma();
+ 		var piezaDental = item.piezasDentalesScope();
+ 		
+ 		if(listadoGuardar.length >0)
+ 		{
+	 		//Datos, Nombre tabla, partition key, y campo que servira como row key
+	        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  idOdontograma, 'codigo')
+	        .success(function (data) {           
+				piezaDental.actualizarPiezas(data);			           
+	        })
+	        .error(function (error) {           
+	            console.log(error);                    
+	        });
+    	}
  	}
 
  	function fijarDiagnosticoSeleccionado(item){
@@ -126,11 +153,6 @@ angular.module('Historia')
 			$scope.tratamientoSeleccionado = item;
 		}
  	}
-
- 	//Se obtiene el odontograma desde un objeto json que esta en la carpeta data
-	function obtenerOdontogramaBase(){
-		odontogramaJsonServices.obtenerOdontogramaBase().then(success);
-	}
 
 	inicializarDatos();
 	

@@ -12,9 +12,14 @@ directive('piezasDentales', function($parse){
          scope.fnModificado = $parse(attrs['modificado']);
       }
 
-      var existClick = attrs['clickCallback'];
+      existClick = attrs['clickCallback'];
       if(angular.isDefined(existClick)){
          scope.fnClick = $parse(attrs['clickCallback']);
+      }
+
+      existClick = attrs['odontogramaBaseCargadoCallback'];
+      if(angular.isDefined(existClick)){
+         scope.fnOdontogramaBaseCargado = $parse(attrs['odontogramaBaseCargadoCallback']);
       }
 
       if(scope.contexto){

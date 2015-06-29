@@ -4,6 +4,10 @@ service('piezasDentalesServices', [function () {
 	var dataFactory = {};
 	var PiezasDentales = [];
 
+	dataFactory.addPieza = function(item){
+		PiezasDentales.push(item);
+	}
+
 	dataFactory.fijarPiezasDentales = function(data){
 		PiezasDentales = data;
 	}
