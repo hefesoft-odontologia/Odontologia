@@ -129,6 +129,7 @@ function odontogramaDependencies(){
             "app/scripts/controllers/odontograma/services/diagnosticos/diagnosticos.js",
             "app/scripts/controllers/odontograma/directivas/piezaDental/directiva/directiva.js",
             "app/scripts/controllers/odontograma/directivas/piezasDentales/directiva/directiva.js",
+            "app/scripts/controllers/odontograma/directivas/piezasDentales/services/piezasDentales.js",
             "app/scripts/controllers/odontograma/services/json/odontogramaBase.js",
             "app/scripts/controllers/odontograma/controllers/piezasDentales.js",
             "app/scripts/controllers/odontograma/controllers/odontograma.js",
@@ -154,7 +155,8 @@ function planTratamientoDependencies(){
         files: 
         [
             "app/scripts/controllers/historia/Odontologia/planTratamiento/controller/planTratamiento.js",
-            "app/scripts/controllers/historia/Odontologia/planTratamiento/directivas/directiva.js"
+            "app/scripts/controllers/historia/Odontologia/planTratamiento/directivas/directiva.js",
+            "app/scripts/controllers/odontograma/directivas/piezasDentales/services/piezasDentales.js"
         ]
     }
 
@@ -430,6 +432,7 @@ function periodontogramaDependencies(){
         [
             "app/scripts/controllers/historia/Odontologia/realizarPeriodontograma/controller/realizarPeriodontograma.js",
             "app/scripts/controllers/periodontograma/piezaDental/controller/periodontogramaPiezaDentalCtrl.js",
+            "app/scripts/controllers/odontograma/directivas/piezasDentales/services/piezasDentales.js",
             "app/scripts/controllers/periodontograma/piezaDental/directive/piezaDental.js",
             "app/scripts/controllers/periodontograma/piezasDentales/controller/piezasDentales.js",
             "app/scripts/controllers/periodontograma/piezasDentales/directive/piezas_dentales.js",

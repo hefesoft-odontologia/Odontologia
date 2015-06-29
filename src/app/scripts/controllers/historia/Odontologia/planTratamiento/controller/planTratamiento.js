@@ -1,6 +1,7 @@
 angular.module('Historia').
 controller('planTratamientoCtrl', 
-	['$scope', 'tratamientoServices', '$rootScope', 'dataTableStorageFactory', function ($scope, tratamientoServices, $rootScope, dataTableStorageFactory) {
+	['$scope', 'tratamientoServices', '$rootScope', 'dataTableStorageFactory', 'piezasDentalesServices', 
+	function ($scope, tratamientoServices, $rootScope, dataTableStorageFactory, piezasDentalesServices) {
 	
 	var idOdontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
 	var piezaDentalSeleccionada;
@@ -10,11 +11,8 @@ controller('planTratamientoCtrl',
 	$scope.contextoProcedimientos = {};
 
 
-	$scope.$on('$locationChangeStart', function( event ) {
-		var contextoProcedimiento = $scope.contextoProcedimientos();
-		if(contextoProcedimiento.modificado){
-	    	$scope.guardarCommand();
-		}
+	$scope.$on('$locationChangeStart', function( event ) {		
+    	$scope.guardarCommand();		
 	});
 
 	function inicializarDatos(){
@@ -23,6 +21,7 @@ controller('planTratamientoCtrl',
       .success(function(data){
 
       	$scope.Source = data;
+      	piezasDentalesServices.fijarPiezasDentales($scope.Source);
 
       	if(angular.isDefined(data) && data.length > 0){	
 	        $scope.Listado = tratamientoServices.extraerTodosProcedimientos($scope.Source);
@@ -35,8 +34,13 @@ controller('planTratamientoCtrl',
 
 	//Como los elementos se estan pasando por referencia se puede guardar el mismo objeto que se cargo inicialmente
 	$scope.guardarCommand = function(){
+		
+		//Se obtienen las piezas dentales que han cambiado
+		//Esto con el fin de no hacer llamados inecesarios al back end
+		var listadoGuardar = piezasDentalesServices.getModifiedPiezas();
+
 		//Datos, Nombre tabla, partition key, y campo que servira como row key
-        dataTableStorageFactory.postTableArray($scope.Source, 'TmOdontograma',  idOdontograma, 'codigo')
+        dataTableStorageFactory.postTableArray(listadoGuardar, 'TmOdontograma',  idOdontograma, 'codigo')
         .success(function (data) { 
         })
         .error(function (error) {           

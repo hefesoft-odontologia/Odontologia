@@ -1,6 +1,7 @@
 angular.module('odontologiaApp')
-.controller('listadoProcedimientosCtrl', ['$scope', 'dataTableStorageFactory', '$modal', '$rootScope',
-	function ($scope, dataTableStorageFactory, $modal, $rootScope) {
+.controller('listadoProcedimientosCtrl', 
+  ['$scope', 'dataTableStorageFactory', '$modal', '$rootScope', 'piezasDentalesServices',
+	function ($scope, dataTableStorageFactory, $modal, $rootScope, piezasDentalesServices) {
 
 	$scope.listado = [];  
   $scope.footer = {};
@@ -50,7 +51,7 @@ angular.module('odontologiaApp')
   $scope.cambioValorPagado = function(item){
     item.saldo = item.valor - item.valorPagado;
     sumarValorFooter($scope.listado);
-    $scope.modificado = true;
+    $scope.setModified(item);
   }
 
   $scope.checkPagado = function(item){
@@ -63,15 +64,20 @@ angular.module('odontologiaApp')
       item.valorPagado = 0;      
     }
 
-    $scope.modificado = true;
+    $scope.setModified(item);
     sumarValorFooter($scope.listado);
   }
 
   $scope.realizado = function(item){
     if(angular.isDefined($scope.fnProcedimientoRealizado) && angular.isFunction($scope.fnProcedimientoRealizado)){
-      $scope.fnProcedimientoRealizado($scope.$parent, { 'item' : item});
-      $scope.modificado = true;
+      $scope.fnProcedimientoRealizado($scope.$parent, { 'item' : item});     
+      $scope.setModified(item);
     }
+  }
+
+  $scope.setModified = function(item){
+    var numero = String(item.codigo);   
+    piezasDentalesServices.setModified(numero);
   }
 
   $scope.generarPdf = function(){

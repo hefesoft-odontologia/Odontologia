@@ -117,6 +117,7 @@
                                 class="form-control"
                                 placeholder="Valor"
                                 ng-model="item.valorPagado"
+                                ng-keyup="setModified(item)"
                                 ng-currency
                                 numeric-only>
                             </div>
