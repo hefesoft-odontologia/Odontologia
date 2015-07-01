@@ -29,7 +29,9 @@ function routesPeriodontograma($stateProvider, $ocLazyLoadProvider){
           imageDependencies(),
           clinicaDependencies(),         
           azureDependencies(),
-          periodontogramaDependencies()
+          periodontogramaDependencies(),
+          /* Para pruebas*/
+          authDependencies()
       ]);
    }
 }

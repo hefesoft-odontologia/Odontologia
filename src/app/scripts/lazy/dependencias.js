@@ -437,7 +437,8 @@ function periodontogramaDependencies(){
             "app/scripts/controllers/periodontograma/piezasDentales/controller/piezasDentales.js",
             "app/scripts/controllers/periodontograma/piezasDentales/directive/piezas_dentales.js",
             "app/scripts/controllers/periodontograma/piezasDentales/filters/implante.js",
-            "app/scripts/controllers/periodontograma/piezaDental/directive/ngpoint.js"
+            "app/scripts/controllers/periodontograma/piezaDental/directive/ngpoint.js",
+            "app/scripts/controllers/periodontograma/piezasDentales/services/piezaDentalService.js"
         ]
     }
 

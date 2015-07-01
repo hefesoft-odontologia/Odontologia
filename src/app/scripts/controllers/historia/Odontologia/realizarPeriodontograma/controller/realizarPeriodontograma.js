@@ -1,6 +1,6 @@
 angular.module('odontologiaApp').
 controller('realizarPeriodontogramaCtrl', 
-    ['$scope', 'dataTableStorageFactory', '$rootScope', function ($scope, dataTableStorageFactory, $rootScope) {
+    ['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesPeriodontogramaServices', function ($scope, dataTableStorageFactory, $rootScope, piezasDentalesServices) {
 	
 	$scope.selecionado = {numeroPiezaDental: 18, mostrarFurca : false, tipoFurca: 'vacio', "movilidad" : "", parte: 'parte1'};
 	$scope.mostrarFurca = false;
@@ -10,6 +10,10 @@ controller('realizarPeriodontogramaCtrl',
     $scope.zoom = 0.9;
 
     var idPeriodontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
+
+    $scope.$on('$locationChangeStart', function( event ) {      
+        $scope.guardarCommand();        
+    });
 
     function inicializarDatos(){
       //Carga de Odontograma
@@ -23,7 +27,9 @@ controller('realizarPeriodontogramaCtrl',
             });
             
             var contextoPiezas = $scope.contextoPiezaDental();
-            contextoPiezas.items = data;            
+            contextoPiezas.items = data; 
+
+            piezasDentalesServices.fijarPiezasDentales(contextoPiezas.items);
         }
       }).error(function(error){
         console.log(error);          
@@ -35,6 +41,7 @@ controller('realizarPeriodontogramaCtrl',
         $scope.mostrarFurca = Boolean(item.mostrarFurca);
         cambioDetectado = true;
         $scope.seleccionado = true;
+        piezasDentalesServices.setModified(item.codigo);
 	}
 
 	$scope.sangradoSupurado = function(parte){
@@ -102,12 +109,14 @@ controller('realizarPeriodontogramaCtrl',
 
 	$scope.guardarCommand = function(){
         var contextoPiezas = $scope.contextoPiezaDental();
-        var Listado = contextoPiezas.items;
+        
+        //var Listado = contextoPiezas.items;
+        var Listado = piezasDentalesServices.getModifiedPiezas();
 
         //Datos, Nombre tabla, partition key, y campo que servira como row key
         dataTableStorageFactory.postTableArray(Listado, 'TmPeriodontograma',  idPeriodontograma, 'codigo')
         .success(function (data) {           
-            contextoPiezas.items = data;
+            contextoPiezas.actualizarPiezas(data);
         })
         .error(function (error) {           
             console.log(error);                    

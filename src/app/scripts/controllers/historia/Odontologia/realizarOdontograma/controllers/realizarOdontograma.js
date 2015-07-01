@@ -18,6 +18,9 @@ angular.module('Historia')
 
 	var idOdontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
 
+	$scope.$on('$locationChangeStart', function( event ) {		
+    	$scope.guardarCommand();		
+	});
 
 	function inicializarDatos(){
 	  //Carga de diagnosticos

@@ -10,11 +10,11 @@ angular.module('odontologiaApp')
 	
 	function obtenerPeriodontogramaBase(){
         dataTableStorageFactory.getJsonData('Periodontograma.json').success(function (data) {               
-                $scope.items = data;                
-            })
-            .error(function (error) {
-                console.log(error);
-            });
+            $scope.items = data;                
+        })
+        .error(function (error) {
+            console.log(error);
+        });
     }
 
     $scope.clickPiezaDental = function(item){
@@ -50,7 +50,23 @@ angular.module('odontologiaApp')
     function error(error){
         console.log(error);
         obtenerPeriodontogramaBase();
-    }    
+    }
+
+    $scope.actualizarPiezas = function(elementosActualizar){
+
+        for (var i = elementosActualizar.length - 1; i >= 0; i--) {
+            var pieza = elementosActualizar[i];
+
+            var index = _.findIndex($scope.items, function(chr) {
+              return chr.codigo == pieza.codigo;
+            });
+
+           if(index >= 0){
+                $scope.items[index] = pieza;
+           }            
+        };
+
+    }
 
     obtenerPeriodontogramaBase();
 
