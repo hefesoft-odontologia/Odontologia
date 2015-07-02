@@ -13,6 +13,8 @@
 	$scope.textoBuscar;
 	inicializarTratamientosServices.inicializar();
 
+
+
 	
 	$scope.navegarAdjuntos = function(item){
 		$rootScope.currentPacient = item;
@@ -22,26 +24,12 @@
 		$state.go("app.picker");		
 	}
 
-	$scope.navegarPlanTratamiento = function(item){
+	$scope.irDiagnosticos = function(item){
 		$rootScope.currentPacient = item;
 		$scope.Paciente = item;
 		varsFactoryService.fijarPaciente(item.RowKey);		
 		//$state.go("app.gallery");
-		$state.go("app.planTratamiento");		
-	}
-
-	$scope.navegarOdontograma = function(item){
-		$rootScope.currentPacient = item;
-		$scope.Paciente = item;
-		varsFactoryService.fijarPaciente(item.RowKey);		
-		$state.go("app.odontograma");
-	}
-
-	$scope.navegarPeriododntograma = function(item){
-		$rootScope.currentPacient = item;
-		$scope.Paciente = item;
-		varsFactoryService.fijarPaciente(item.RowKey);
-		$state.go("app.periodontograma", { "pacienteId": item.RowKey});
+		$state.go("app.diagnosticosPacientes");
 	}
 
 

@@ -110,6 +110,13 @@ Hefesoft.eliminar = function(item, array){
     }
 }
 
+Hefesoft.getHash = function(path){
+    var idx = path.indexOf('#');
+    var elemento = path.substr(idx + 2);
+    elemento = elemento.replace("/",".");
+    return elemento; 
+}
+
 function random(length, chars) {
     var result = '';
     for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];

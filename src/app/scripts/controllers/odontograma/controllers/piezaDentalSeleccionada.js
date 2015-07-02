@@ -44,14 +44,15 @@ angular.module('odontologiaApp')
 
 	 //Agrega el numero de pieza dental y superficie a procedimientos tratamientos de un diagnostico
 	 function adicionarATratamientos(diagnostico, numeroPiezaDental, superficie, uuid, codigo){
-
-	 	for (var i = diagnostico.arrayHefesoftTratamientos.length - 1; i >= 0; i--) {
-	 		diagnostico.arrayHefesoftTratamientos[i]['numeroPiezaDental'] = numeroPiezaDental;
-	 		diagnostico.arrayHefesoftTratamientos[i]['superficie'] = superficie;
-	 		diagnostico.arrayHefesoftTratamientos[i]['uuid'] = uuid;
-	 		diagnostico.arrayHefesoftTratamientos[i]['codigo'] = codigo;
-	 		adicionarAProcedimientos(diagnostico.arrayHefesoftTratamientos[i], numeroPiezaDental, superficie, uuid, codigo);
-	 	};
+	 	if(angular.isDefined(diagnostico.arrayHefesoftTratamientos)){
+		 	for (var i = diagnostico.arrayHefesoftTratamientos.length - 1; i >= 0; i--) {
+		 		diagnostico.arrayHefesoftTratamientos[i]['numeroPiezaDental'] = numeroPiezaDental;
+		 		diagnostico.arrayHefesoftTratamientos[i]['superficie'] = superficie;
+		 		diagnostico.arrayHefesoftTratamientos[i]['uuid'] = uuid;
+		 		diagnostico.arrayHefesoftTratamientos[i]['codigo'] = codigo;
+		 		adicionarAProcedimientos(diagnostico.arrayHefesoftTratamientos[i], numeroPiezaDental, superficie, uuid, codigo);
+		 	};
+	 	}
 	 }
 
 	 function adicionarAProcedimientos(Tratamiento, numeroPiezaDental, superficie, uuid, codigo){

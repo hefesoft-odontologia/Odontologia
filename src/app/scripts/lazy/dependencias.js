@@ -549,7 +549,17 @@ function stringFormatDependencies(){
     return dependencias;
 }
 
+function diagnosticosPacientesDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "app/scripts/controllers/historia/Odontologia/diagnosticosPaciente/controler/diagnosticosPaciente.js"
+        ]
+    }
 
-
-
-
+    return dependencias;
+}

@@ -20,6 +20,7 @@ angular.module('odontologiaApp')
       agendaClinica($stateProvider, $ocLazyLoadProvider);
       externalLogin($stateProvider, $ocLazyLoadProvider);
       esanumNews($stateProvider, $ocLazyLoadProvider);
+      routesHistoria($stateProvider, $ocLazyLoadProvider);
 
   		$stateProvider
 
@@ -64,18 +65,20 @@ angular.module('odontologiaApp')
 }])
 
 .run(function ($rootScope, $state) {
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, from, form2) {
 
     var hefesoftConstants = initialParmeters();
     
     if(hefesoftConstants.modo == "desarrollo"){
       $rootScope.currentUser = hefesoftConstants.usuario;
       $rootScope.currentPacient = hefesoftConstants.paciente;
+      $rootScope.currentDiagnostico = 201;
     }
     else{
       if(angular.isDefined(toState.data)){
         var requireLogin = toState.data.requireLogin;
         var requirePacient = toState.data.requirePacient;
+        var requirePacientDiagnostic = toState.data.requirePacientDiagnostic;
       }
 
       if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
@@ -84,6 +87,10 @@ angular.module('odontologiaApp')
       }
 
       else if (requirePacient && typeof $rootScope.currentPacient === 'undefined') {
+        event.preventDefault();
+        $state.go('app.listadoPacientes');
+      }
+      else if (requirePacientDiagnostic && typeof $rootScope.currentDiagnostico === 'undefined') {
         event.preventDefault();
         $state.go('app.listadoPacientes');
       }

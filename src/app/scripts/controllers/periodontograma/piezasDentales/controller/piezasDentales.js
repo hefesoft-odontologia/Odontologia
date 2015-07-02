@@ -1,7 +1,7 @@
 angular.module('odontologiaApp')
 .controller('piezasDentalesPeriodontogramaCtrl', 
-	['$scope', 'dataTableStorageFactory', '$rootScope',
-	function ($scope, dataTableStorageFactory, $rootScope) {
+	['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesServices',
+	function ($scope, dataTableStorageFactory, $rootScope, piezasDentalesServices) {
 
 	var i = 0;	
     $scope.zoom = 0.7;
@@ -10,7 +10,8 @@ angular.module('odontologiaApp')
 	
 	function obtenerPeriodontogramaBase(){
         dataTableStorageFactory.getJsonData('Periodontograma.json').success(function (data) {               
-            $scope.items = data;                
+            $scope.items = data;
+            piezasDentalesServices.fijarPiezasDentales($scope.items);
         })
         .error(function (error) {
             console.log(error);
@@ -22,34 +23,6 @@ angular.module('odontologiaApp')
         if(angular.isDefined($scope.fnPiezaDental) && angular.isFunction($scope.fnPiezaDental)){
             $scope.fnPiezaDental($scope.$parent, { 'item' : item });
          }
-    }
-
-    function obtenerPeriodontogramaBlob(){
-        var usuario = users.getCurrentUser();
-        dataTableStorageFactory.getTableByPartition('TmPeriodontograma', $rootScope.currentUser.id +'paciente'+pacienteId)
-        .success(success)
-        .error(error);
-    }
-
-    function success(result){
-        if(result.length > 0 ){
-            datosGuardar = result;
-            var data = result;
-            for (var i = 0; i < data.length; i++) {
-                data[i].click = clickPiezaDental;
-            };
-
-            $scope.items = data;
-            $ionicLoading.hide();
-        }
-        else{
-            obtenerPeriodontogramaBase();    
-        }
-    }
-
-    function error(error){
-        console.log(error);
-        obtenerPeriodontogramaBase();
     }
 
     $scope.actualizarPiezas = function(elementosActualizar){

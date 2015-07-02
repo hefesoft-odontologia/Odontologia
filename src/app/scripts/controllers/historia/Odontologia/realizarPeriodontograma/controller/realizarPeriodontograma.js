@@ -1,6 +1,7 @@
 angular.module('odontologiaApp').
 controller('realizarPeriodontogramaCtrl', 
-    ['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesPeriodontogramaServices', function ($scope, dataTableStorageFactory, $rootScope, piezasDentalesServices) {
+    ['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesPeriodontogramaServices', 'messageService',
+    function ($scope, dataTableStorageFactory, $rootScope, piezasDentalesServices, messageService) {
 	
 	$scope.selecionado = {numeroPiezaDental: 18, mostrarFurca : false, tipoFurca: 'vacio', "movilidad" : "", parte: 'parte1'};
 	$scope.mostrarFurca = false;
@@ -9,10 +10,15 @@ controller('realizarPeriodontogramaCtrl',
 	$scope.seleccionado = false;
     $scope.zoom = 0.9;
 
-    var idPeriodontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey;
+    var idPeriodontograma = "usuario" + $rootScope.currentUser.id + "paciente" + $rootScope.currentPacient.RowKey + "diagnosticoPaciente" + $rootScope.currentDiagnostico;
 
-    $scope.$on('$locationChangeStart', function( event ) {      
-        $scope.guardarCommand();        
+    $scope.$on('$locationChangeStart', function(event) {      
+        var Listado = piezasDentalesServices.getModifiedPiezas();
+
+        if(Listado.length > 0){
+            event.preventDefault();
+            messageService.notify('Hay elementos sin guardar', 'danger');
+        }              
     });
 
     function inicializarDatos(){
@@ -29,7 +35,9 @@ controller('realizarPeriodontogramaCtrl',
             var contextoPiezas = $scope.contextoPiezaDental();
             contextoPiezas.items = data; 
 
-            piezasDentalesServices.fijarPiezasDentales(contextoPiezas.items);
+            if(contextoPiezas.items.length > 0){
+                piezasDentalesServices.fijarPiezasDentales(contextoPiezas.items);
+            }
         }
       }).error(function(error){
         console.log(error);          

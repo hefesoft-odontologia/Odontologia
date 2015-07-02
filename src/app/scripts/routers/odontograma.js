@@ -8,7 +8,8 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
         cache: false,
         data: {
           requireLogin: true,
-          requirePacient : true
+          requirePacient : true,
+          requirePacientDiagnostic : true
         },
         views: {
             'menuContent': {
@@ -28,7 +29,8 @@ function routesOdontograma($stateProvider, $ocLazyLoadProvider){
         cache: false,
         data: {
           requireLogin: true,
-          requirePacient : true
+          requirePacient : true,
+          requirePacientDiagnostic : true
         },
         views: {
             'menuContent': {
