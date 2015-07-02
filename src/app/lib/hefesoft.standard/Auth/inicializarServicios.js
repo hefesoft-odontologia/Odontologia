@@ -8,7 +8,7 @@ angular.module('auth')
 		dataFactory.inicializar = function(username){
 
 			var user = users.userEmailToUser(username);
-			stripeService.getSubscription(user).then(subscripcionActiva, errorStripe);
+			//stripeService.getSubscription(user).then(subscripcionActiva, errorStripe);
 			
 			//Notification Hub
 			if(platformService.esMobile()){		
@@ -18,9 +18,7 @@ angular.module('auth')
 			dataFactory.registrarEnSocket(username);
 		}
 
-		dataFactory.registrarEnSocket = function(username){
-			//Valida que existan datos en prestador para que se le puedan solicitar citas a el
-			datosActualizadosPrestador();
+		dataFactory.registrarEnSocket = function(username){			
 
 			//para, de, tipo, mensaje, accion
 			//Esta instruccion es para inicializar el proxy
@@ -53,18 +51,7 @@ angular.module('auth')
 			if(data == "No ha registrado medio de pago"){
 				console.log("No se ha registrado medio de pago");
 			}
-		}
-
-		function datosActualizadosPrestador(){			
-	    	dataTableStorageFactory.getTableByPartitionAndRowKey('TmPrestador', 'PrestadoresOdontologia', $rootScope.currentUser.id)
-		  	.success(function(data){
-		  		if(data == null){
-		  			var msj = "Estimado usuario recuerde actualizar sus datos en el apartado 'Mis datos' de esta manera sera visible para que sus pacientes soliciten citas en el sistema";
-		  			messageService.showMessage(msj);
-		  		}
-		  	})
-		  	.error(error);
-    	}
+		}		
 
     	function error(e){
     		console.log(e);

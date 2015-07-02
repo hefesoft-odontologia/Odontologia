@@ -1,7 +1,7 @@
 angular.module('auth')
 .controller('signInController', 
-	['$scope','signFactoryService','$state', 'users', 'varsFactoryService', 'validarNavegacionService',  '$timeout', 'stripeService', 'inicializarServicios', 'messageService',
-	function ($scope, signFactoryService, $state, users, varsFactoryService, validarNavegacionService,  $timeout,  stripeService, inicializarServicios, messageService) {
+	['$scope','signFactoryService','$state', 'users', 'varsFactoryService', 'validarNavegacionService',  '$timeout', 'stripeService', 'inicializarServicios', 'messageService', 'clinicaNavigation',
+	function ($scope, signFactoryService, $state, users, varsFactoryService, validarNavegacionService,  $timeout,  stripeService, inicializarServicios, messageService, clinicaNavigation) {
 	
 	$scope.loginData= {};	
 
@@ -11,7 +11,7 @@ angular.module('auth')
 	}
 
 	function success(data){
-		 $state.go("app.main");
+		 clinicaNavigation.validarDatosClinica();
 		 inicializarServicios.inicializar($scope.loginData.username);
 	}
 

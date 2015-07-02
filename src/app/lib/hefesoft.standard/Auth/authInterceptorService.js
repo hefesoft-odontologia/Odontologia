@@ -3,8 +3,8 @@
 */
 
 angular.module('auth')
-.factory('authInterceptorService', ['$q', '$localstorage',
-    function ($q, $localstorage) {
+.factory('authInterceptorService', ['$q', '$localstorage', '$location',
+    function ($q, $localstorage, $location) {
  
     var Hefesot = window.Hefesot;
     var authInterceptorServiceFactory = {};

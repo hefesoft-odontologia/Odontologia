@@ -46,7 +46,7 @@ controller('planTratamientoCtrl',
 		var deferred = $q.defer();
 		//Se obtienen las piezas dentales que han cambiado
 		//Esto con el fin de no hacer llamados inecesarios al back end
-		var listadoGuardar = piezasDentalesServices.getModifiedPiezas();
+		var listadoGuardar = piezasDentalesServices.getModifiedPiezas(true);
 
 		if(listadoGuardar.length > 0){
 			

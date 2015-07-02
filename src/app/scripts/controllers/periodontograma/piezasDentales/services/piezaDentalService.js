@@ -12,9 +12,11 @@ service('piezasDentalesPeriodontogramaServices', [function () {
 		PiezasDentales = data;
 	}
 
-	dataFactory.getModifiedPiezas = function(){		
+	dataFactory.getModifiedPiezas = function(fijarModificado){		
 		var array = _.where(PiezasDentales, { 'Modificado': true });
-		fijarModificadoFalso();
+		if(fijarModificado){
+			fijarModificadoFalso();
+		}
 		return array;
 	}
 

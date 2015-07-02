@@ -3,8 +3,7 @@ angular.module('azure')
         function($http, urlServicioFactory, $q) {
     
     var urlBase = urlServicioFactory.getUrlService();
-    var dataFactory = {};
-
+    var dataFactory = {};    
 
     dataFactory.getJsonData = function (nombre) {
         return $http.get('app/scripts/json/data/' + nombre);
@@ -24,7 +23,7 @@ angular.module('azure')
         return deferred.promise;
     };
 
-    dataFactory.getTableByPartition = function (nombreTabla,PartitionKey) {
+    dataFactory.getTableByPartition = function (nombreTabla, PartitionKey) {
         return $http.get(urlBase + "table/?nombreTabla=" + nombreTabla +"&partitionKey="+ PartitionKey);
     };
 

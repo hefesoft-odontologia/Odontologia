@@ -11,6 +11,12 @@ angular.module('odontologiaApp')
           scope.fnPiezaDental = $parse(attrs['clickPiezaDental']);
        }
 
+       
+       existClick = attrs['periodontogramaBaseCargadoCallback'];
+	   if(angular.isDefined(existClick)){
+         scope.fnPeriodontogranaBaseCargado = $parse(attrs['periodontogramaBaseCargadoCallback']);
+	   }
+
        if(scope.contexto){
       	scope.contexto = function(){
       	  return scope;

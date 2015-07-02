@@ -25,7 +25,7 @@ controller('realizarPeriodontogramaCtrl',
       //Carga de Odontograma
       dataTableStorageFactory.getTableByPartition('TmPeriodontograma', idPeriodontograma)
       .success(function(data){
-
+        
         if(angular.isDefined(data) && data.length > 0){
             //Ordenarlos deacuerdo al codigo como en la nube se guardan en string no los ordena bien
             data = _.sortBy(data, function(item) {
@@ -38,6 +38,10 @@ controller('realizarPeriodontogramaCtrl',
             if(contextoPiezas.items.length > 0){
                 piezasDentalesServices.fijarPiezasDentales(contextoPiezas.items);
             }
+        }
+        else{
+             var contextoPiezas = $scope.contextoPiezaDental();
+             contextoPiezas.obtenerPeriodontogramaBase();
         }
       }).error(function(error){
         console.log(error);          
@@ -116,11 +120,14 @@ controller('realizarPeriodontogramaCtrl',
     }
 
 	$scope.guardarCommand = function(){
-        var contextoPiezas = $scope.contextoPiezaDental();
-        
         //var Listado = contextoPiezas.items;
-        var Listado = piezasDentalesServices.getModifiedPiezas();
+        var Listado = piezasDentalesServices.getModifiedPiezas(true);
+        guardar(Listado);
+        
+	}
 
+    function guardar(Listado){
+        var contextoPiezas = $scope.contextoPiezaDental();
         //Datos, Nombre tabla, partition key, y campo que servira como row key
         dataTableStorageFactory.postTableArray(Listado, 'TmPeriodontograma',  idPeriodontograma, 'codigo')
         .success(function (data) {           
@@ -129,7 +136,13 @@ controller('realizarPeriodontogramaCtrl',
         .error(function (error) {           
             console.log(error);                    
         });
-	}
+    }
+
+    //Periodontograma base cargado
+    $scope.periodontogramaBaseCargado = function(item){        
+        var listadoGuardar = item;
+        guardar(listadoGuardar);
+    }
 
     inicializarDatos()
 }])

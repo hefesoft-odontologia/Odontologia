@@ -1,6 +1,6 @@
 angular.module('odontologiaApp')
 .controller('piezasDentalesPeriodontogramaCtrl', 
-	['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesServices',
+	['$scope', 'dataTableStorageFactory', '$rootScope', 'piezasDentalesPeriodontogramaServices',
 	function ($scope, dataTableStorageFactory, $rootScope, piezasDentalesServices) {
 
 	var i = 0;	
@@ -8,10 +8,14 @@ angular.module('odontologiaApp')
     $scope.items = [];
 
 	
-	function obtenerPeriodontogramaBase(){
+	$scope.obtenerPeriodontogramaBase = function (){
         dataTableStorageFactory.getJsonData('Periodontograma.json').success(function (data) {               
             $scope.items = data;
-            piezasDentalesServices.fijarPiezasDentales($scope.items);
+            piezasDentalesServices.fijarPiezasDentales($scope.items);            
+            if(angular.isDefined($scope.fnPeriodontogranaBaseCargado) && angular.isFunction($scope.fnPeriodontogranaBaseCargado)){
+                $scope.fnPeriodontogranaBaseCargado($scope.$parent, { 'item' : data });
+            }
+
         })
         .error(function (error) {
             console.log(error);
@@ -38,9 +42,5 @@ angular.module('odontologiaApp')
                 $scope.items[index] = pieza;
            }            
         };
-
     }
-
-    obtenerPeriodontogramaBase();
-
 }])

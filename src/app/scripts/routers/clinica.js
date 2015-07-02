@@ -29,7 +29,10 @@ function routesClinica($stateProvider, $ocLazyLoadProvider){
         azureDependencies(),
         clinicaDependencies(),
         pdfDependencies(),
-        imageDependencies()
+        imageDependencies(),
+
+        /* Pruebas */
+        authDependencies()
       ]);
    }
 }

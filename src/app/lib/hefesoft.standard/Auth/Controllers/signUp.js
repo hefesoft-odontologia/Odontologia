@@ -38,7 +38,7 @@ angular.module('auth')
 			console.log(data);
 			$ionicLoading.hide();
 			inicializarServicios.inicializar($scope.loginData.username);
-			$state.go("app.pacientes");
+			clinicaNavigation.validarDatosClinica();
 		}
 		catch(ex){
 			$ionicLoading.hide();

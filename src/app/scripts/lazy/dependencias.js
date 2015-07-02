@@ -259,7 +259,8 @@ function authDependencies(){
             "app/lib/hefesoft.standard/Directivas/external-login/directive/directive.js",
             "app/lib/hefesoft.standard/Directivas/external-login/controller/externalLogin.js",
             "app/lib/hefesoft.standard/Directivas/external-login/controller/associateController.js",
-            "app/lib/hefesoft.standard/Auth/Controllers/logOut.js"
+            "app/lib/hefesoft.standard/Auth/Controllers/logOut.js",
+            "app/lib/hefesoft.standard/Navigation/datosClinica.js"
         ]
     }
 
@@ -533,6 +534,25 @@ function esanumDependencies(){
 
     return dependencias;
 }
+
+function fbDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "app/lib/hefesoft.standard/fb/services/asociasionOdontologos.js",
+            "app/scripts/controllers/Noticias/Directivas/directive/asociacionOdontologos.js",
+            "app/scripts/controllers/Noticias/Controllers/asociacionOdontologos.js"
+        ]
+    }
+
+    return dependencias;
+}
+
+
 
 function stringFormatDependencies(){
     var dependencias = 

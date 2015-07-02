@@ -1,7 +1,7 @@
 angular.module('directivas')
 .controller('externalLoginCtrl', 
-	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', 'tokenService', '$localstorage', 'inicializarServicios', '$rootScope',  
-    function ($scope, urlServicioFactory, location, authService, $state, tokenService, $localstorage, inicializarServicios, $rootScope) {
+	['$scope', 'urlServicioFactory', '$location', 'authService', '$state', 'tokenService', '$localstorage', 'inicializarServicios', '$rootScope', 'clinicaNavigation',
+    function ($scope, urlServicioFactory, location, authService, $state, tokenService, $localstorage, inicializarServicios, $rootScope, clinicaNavigation) {
 	
     var response;
 
@@ -54,8 +54,8 @@ angular.module('directivas')
         $localstorage.setObject('authorizationData', response);
         $localstorage.setObject('user', response);
         tokenService.setTokenDocument(response.access_token);
-        inicializarServicios.inicializar(response.username);
-        $state.go("app.main");
+        inicializarServicios.inicializar(response.username);       
+        clinicaNavigation.validarDatosClinica();
     }
 
 }])
