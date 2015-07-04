@@ -12,5 +12,10 @@ directive('odontologoscomco', function(){
    directiva.controller = 'odontologoscomcoCtrl';   
 
    directiva.templateUrl = 'app/scripts/controllers/Noticias/Directivas/template/odontologos.com.co.html';
+
+   directiva.scope = {
+   	contexto : '='
+   }
+
    return directiva;
 });

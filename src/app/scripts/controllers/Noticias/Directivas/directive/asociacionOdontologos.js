@@ -11,5 +11,9 @@ directive('asociacionOdontologos', function(){
 
    directiva.controller = 'asociacionOdontologosCtrl';
    directiva.templateUrl = 'app/scripts/controllers/Noticias/Directivas/template/asociacionOdontologos.html';
+   directiva.scope = {
+   	contexto : '='
+   }
+
    return directiva;
 });

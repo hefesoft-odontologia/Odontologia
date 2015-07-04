@@ -126,7 +126,7 @@ angular.module('Historia')
  		var item = $scope.contextoOdontograma();
  		var piezaDental = item.piezasDentalesScope();
  		
- 		var listadoGuardar = piezasDentalesServices.getModifiedPiezas(); 		
+ 		var listadoGuardar = piezasDentalesServices.getModifiedPiezas(true); 		
  		guardar(listadoGuardar, piezaDental.listado, deferred);
 
  		return deferred.promise;
