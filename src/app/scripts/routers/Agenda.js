@@ -30,7 +30,10 @@ function agendaClinica($stateProvider, $ocLazyLoadProvider){
         clinicaDependencies(),
         imageDependencies(),
         calendarDependencies(),
-        agendaDependencies()
+        agendaDependencies(),
+        
+        /* Para pruebas*/
+          authDependencies()
       ]);
    }
 }

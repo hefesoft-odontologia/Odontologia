@@ -167,7 +167,7 @@
 
     function autoGoogleLogin(deferred){
         gapi.auth.authorize({
-        client_id: "505952414500-c04fnrdu3njem1cl2ug9h5gbd6rs025k.apps.googleusercontent.com",
+        client_id: ngAuthSettings.googleClientId,
           immediate: true,
           scope: SCOPES,
           cookie_policy: 'single_host_origin'
@@ -182,7 +182,7 @@
 
     function connectGoogle(deferred) {
       gapi.auth.authorize({
-        client_id: _googleClientId,
+        client_id: ngAuthSettings.googleClientId,
         immediate: false,
         scope: SCOPES,
         cookie_policy: 'single_host_origin'

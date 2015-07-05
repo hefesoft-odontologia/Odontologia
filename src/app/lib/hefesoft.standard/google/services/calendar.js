@@ -113,6 +113,16 @@ angular.module('hefesoft.google')
     return deferred.promise;
   }
 
+  dataFactory.listCalendars = function(){
+    var deferred = $q.defer();
+     gapi.client.calendar.calendarList.list({}).execute(
+      function(resp) { 
+          deferred.resolve(resp);
+      })
+
+     return deferred.promise;
+  }
+
 	return dataFactory;
 
 }])

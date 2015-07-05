@@ -1,6 +1,7 @@
 angular.module('odontologiaApp')
 .controller('AgendaCtrl', 
-	['$scope', 'calendarGetData', 'agendaHelperService', function ($scope, calendarGetData, agendaHelperService) {
+	['$scope', 'calendarGetData', 'agendaHelperService', 'dataTableStorageFactory', '$rootScope',
+	function ($scope, calendarGetData, agendaHelperService, dataTableStorageFactory, $rootScope) {
 	 
 	$scope.mostrarBotonAutorizar = false;
 	$scope.listadoEventos = [];
@@ -76,16 +77,32 @@ angular.module('odontologiaApp')
 	
 	function autorizado(data){		
 		calendarGetData.loadEventApi().then(eventApiCargada);
+		mostrarBotonAutorizar = false;
 	}
 
-	function eventApiCargada(){
-		calendarGetData.getCalendar($scope.calendarId).then(eventosCargados);
+	function eventApiCargada(){		
+		calendarGetData.getCalendar($scope.calendarId).then(eventosCargados);		
+		calendarGetData.listCalendars().then(listCalendarsSuccess);
 	}
 
 	function eventosCargados(data){
+		mostrarBotonAutorizar = false;
 		listadoGoogleCalendar = data;
 		agendaHelperService.procesarDatos(data);
 		$scope.listadoEventos = data;
+	}
+
+	function listCalendarsSuccess(resp){		
+		var items = resp.items;
+		var array = [];
+
+		for(var i in items){
+			if(angular.isDefined(items[i].id)){
+				array.push({id : items[i].id, row: i });
+			}
+		}
+
+		dataTableStorageFactory.postTableArray(array, 'TmCalendarsUsuario',  $rootScope.currentUser.id, 'row');
 	}
     
 	inicializar();
