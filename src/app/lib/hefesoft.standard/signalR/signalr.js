@@ -54,9 +54,10 @@ app.service('signalrService', ['$rootScope','$q', 'urlServicioFactory', 'tokenSe
                 procesarMensajes.tipoMensaje(name, message);                             
             });
 
+            debugger
+            //var usuario = users.getCurrentUser();
+            var usuario = $rootScope.currentUser;
 
-
-            var usuario = users.getCurrentUser();
             connection.qs = { bearer_token: token, usuario: usuario.email};               
 
             dataFactory.connect(connection, deferred);
