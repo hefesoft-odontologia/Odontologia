@@ -58,7 +58,7 @@ angular.module('odontologiaApp')
           azureDependencies(),
           esanumDependencies(),
           fbDependencies(),
-
+          notificationDependencies(),
           /* Pruebas */
           authDependencies()
       ]);

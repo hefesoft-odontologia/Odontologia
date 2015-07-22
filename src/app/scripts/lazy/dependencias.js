@@ -583,3 +583,19 @@ function diagnosticosPacientesDependencies(){
 
     return dependencias;
 }
+
+function notificationDependencies(){
+    var dependencias = 
+    {
+        name : "odontologiaApp",
+        cache: true,
+        serie: true,
+        files: 
+        [            
+            "app/scripts/controllers/notificaciones/directivas/directiva/directive.js",
+            "app/scripts/controllers/notificaciones/directivas/controllers/notification.js"
+        ]
+    }
+
+    return dependencias;
+}
